@@ -96,6 +96,7 @@ export default function GaleriaPage() {
               {/* Photos grid */}
               {edition.gallery.length > 0 ? (
                 <div
+                  className="photo-grid"
                   style={{
                     display: "grid",
                     gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
@@ -164,6 +165,7 @@ export default function GaleriaPage() {
       {/* Lightbox */}
       {lightboxPhoto && (
         <div
+          className="lightbox-overlay"
           style={{
             position: "fixed",
             inset: 0,
@@ -212,7 +214,7 @@ export default function GaleriaPage() {
               ✕
             </button>
 
-            <div style={{ height: "340px", padding: "1.5rem" }}>
+            <div className="lightbox-img-wrap" style={{ height: "340px", padding: "1.5rem" }}>
               <ImagePlaceholder
                 height="100%"
                 label="(Imagen)"

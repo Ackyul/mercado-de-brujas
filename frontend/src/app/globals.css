@@ -473,6 +473,10 @@ html, body { overflow-x: hidden; }
 
   /* Chips wrap tightly */
   .chip { font-size: 0.68rem; padding: 0.2rem 0.5rem; }
+
+  /* Lightbox overlay and container adjustment for mobile */
+  .lightbox-overlay { padding: 1rem !important; }
+  .lightbox-img-wrap { height: 220px !important; padding: 0.75rem !important; }
 }
 
 /* ── Very small phones (< 380px) ── */
