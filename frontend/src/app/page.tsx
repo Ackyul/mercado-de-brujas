@@ -50,7 +50,7 @@ export default function Home() {
         </div>
 
         {/* 3 pillars */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "1.5rem" }}>
+        <div className="pillars-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "1.5rem" }}>
           {[
             { icon: "🌿", title: "Alquimia & Botánica", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam.", sub: "Arte & Herbolaria Ancestral" },
             { icon: "💎", title: "El Valor del Oficio", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam.", sub: "Creación Artesanal Independiente" },
@@ -113,6 +113,7 @@ export default function Home() {
         </div>
 
         <div
+          className="nav-tiles-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
@@ -166,6 +167,7 @@ export default function Home() {
       {/* ── Footer ── */}
       <footer className="footer-bar" style={{ marginTop: "auto" }}>
         <div
+          className="footer-grid"
           style={{
             maxWidth: "1200px",
             margin: "0 auto",

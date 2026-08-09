@@ -380,3 +380,165 @@ p, span, a, li, button, input, label {
   font-family: var(--font-sans);
   gap: 0.25rem;
 }
+
+/* ─────────────────────────────────────────────
+   MOBILE RESPONSIVE — base breakpoint 768px
+───────────────────────────────────────────── */
+
+/* Prevent horizontal overflow on all screens */
+html, body { overflow-x: hidden; }
+
+/* ── Tablet & below ── */
+@media (max-width: 900px) {
+  /* Ediciones 2-col → 1-col stack */
+  .ediciones-layout {
+    grid-template-columns: 1fr !important;
+  }
+  .ediciones-sidebar {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  /* Timeline: full-width single column */
+  .timeline-row {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+  .timeline-node { display: none !important; }
+  .timeline-img  { display: none !important; }
+  .timeline-card { grid-column: 1 !important; order: 1 !important; text-align: left !important; }
+  .timeline-container::before { left: 0; width: 0; }
+}
+
+/* ── Mobile ── */
+@media (max-width: 640px) {
+  /* Utility helpers */
+  .hide-mobile { display: none !important; }
+
+  /* Sections padding */
+  section { padding-left: 1rem !important; padding-right: 1rem !important; }
+
+  /* Buttons — full width on small screens */
+  .btn-primary, .btn-secondary {
+    width: 100%;
+    justify-content: center;
+    padding: 0.75rem 1rem !important;
+  }
+
+  /* Stats grid → 1 col */
+  .stats-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Pillar cards → 1 col */
+  .pillars-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Nav tiles → 1 col */
+  .nav-tiles-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Photo grids → 2 col on mobile */
+  .photo-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.6rem !important;
+  }
+
+  /* Footer grid → 1 col */
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    text-align: center !important;
+  }
+  .footer-grid ul {
+    align-items: center !important;
+  }
+
+  /* Parchment quick-info → 1 col */
+  .quick-info-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Edition selector list items: bigger tap targets */
+  .edition-selector-item {
+    padding: 1rem !important;
+  }
+
+  /* Image placeholder: smaller minimum on mobile */
+  .image-placeholder-box { min-height: 130px; }
+
+  /* Ornament divider: smaller on mobile */
+  .ornament-divider { max-width: 280px; }
+
+  /* Chips wrap tightly */
+  .chip { font-size: 0.68rem; padding: 0.2rem 0.5rem; }
+}
+
+/* ── Very small phones (< 380px) ── */
+@media (max-width: 380px) {
+  .photo-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ── Mobile nav (header) ── */
+.mobile-menu-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(8, 6, 4, 0.98);
+  backdrop-filter: blur(20px);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 2rem;
+}
+.mobile-menu-overlay.open { display: flex; }
+
+.mobile-nav-link {
+  font-family: var(--font-serif) !important;
+  font-size: 1.4rem !important;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-main);
+  text-decoration: none;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid var(--border-subtle);
+  width: 100%;
+  text-align: center;
+  transition: color 0.2s ease;
+}
+.mobile-nav-link.active { color: var(--accent-gold); }
+.mobile-nav-link:hover  { color: var(--accent-gold); }
+
+.hamburger-btn {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 8px;
+  z-index: 300;
+}
+.hamburger-btn span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--text-main);
+  transition: all 0.25s ease;
+  border-radius: 2px;
+}
+.hamburger-btn.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger-btn.open span:nth-child(2) { opacity: 0; }
+.hamburger-btn.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+@media (max-width: 768px) {
+  .hamburger-btn { display: flex !important; }
+  .desktop-nav   { display: none !important; }
+  .desktop-cta   { display: none !important; }
+}
+
