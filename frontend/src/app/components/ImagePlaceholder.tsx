@@ -26,27 +26,49 @@ export default function ImagePlaceholder({
         cursor: onClick ? "pointer" : "default",
       }}
     >
-      <div
+      {/* Sigil-like SVG ornament instead of plain emoji */}
+      <svg
+        width="36"
+        height="36"
+        viewBox="0 0 36 36"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        style={{ opacity: 0.45, marginBottom: "0.25rem" }}
+      >
+        <circle cx="18" cy="18" r="17" stroke="rgba(201, 164, 90, 0.6)" strokeWidth="0.8" strokeDasharray="3 3" />
+        <circle cx="18" cy="18" r="10" stroke="rgba(201, 164, 90, 0.4)" strokeWidth="0.6" />
+        <line x1="18" y1="1" x2="18" y2="35" stroke="rgba(201, 164, 90, 0.25)" strokeWidth="0.6" />
+        <line x1="1" y1="18" x2="35" y2="18" stroke="rgba(201, 164, 90, 0.25)" strokeWidth="0.6" />
+        <circle cx="18" cy="18" r="2.5" fill="rgba(201, 164, 90, 0.5)" />
+      </svg>
+
+      <span
         style={{
-          width: "44px",
-          height: "44px",
-          borderRadius: "50%",
-          backgroundColor: "rgba(224, 169, 109, 0.12)",
-          border: "1px solid rgba(224, 169, 109, 0.3)",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          fontSize: "1.2rem",
-          marginBottom: "0.25rem",
+          fontSize: "0.88rem",
+          fontWeight: 700,
+          fontFamily: "var(--font-serif)",
+          color: "rgba(201, 164, 90, 0.7)",
+          letterSpacing: "0.12em",
+          textTransform: "uppercase",
         }}
       >
-        🖼️
-      </div>
-      <span style={{ fontSize: "1.05rem", fontWeight: 700, color: "var(--accent-gold)", letterSpacing: "0.04em" }}>
         {label}
       </span>
+
       {sublabel && (
-        <span style={{ fontSize: "0.78rem", color: "var(--text-muted)", fontWeight: 500, padding: "0 1rem", textAlign: "center" }}>
+        <span
+          style={{
+            fontSize: "0.7rem",
+            color: "var(--text-muted)",
+            fontWeight: 400,
+            fontFamily: "var(--font-sans)",
+            padding: "0 1rem",
+            textAlign: "center",
+            letterSpacing: "0.04em",
+            lineHeight: 1.4,
+            opacity: 0.75,
+          }}
+        >
           {sublabel}
         </span>
       )}
