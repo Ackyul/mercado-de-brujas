@@ -168,7 +168,7 @@ export default function HeroStory() {
               opacity: 0.7,
             }}
           >
-            Historia & Tradición
+            Lorem ipsum · dolor sit amet
           </span>
         </div>
 
@@ -186,7 +186,7 @@ export default function HeroStory() {
           <strong style={{ color: "var(--accent-cream)", fontFamily: "var(--font-serif)", letterSpacing: "0.05em" }}>
             Mercado de Brujas
           </strong>{" "}
-          es un espacio cultural itinerante donde el arte independiente, la herbolaria ancestral, los cristales sagrados y la creatividad artesanal convergen en cada feria pop-up celebrada bajo el signo del aquelarre.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
         </p>
 
         {/* Stats — parchment style cards */}

@@ -45,31 +45,16 @@ export default function Home() {
             className="text-muted"
             style={{ maxWidth: "660px", margin: "0 auto", fontSize: "1rem", lineHeight: 1.75 }}
           >
-            Mercado de Brujas nació como un espacio de resistencia cultural y celebración mística, donde el trabajo hecho a mano recupera el valor ceremonial del intercambio ancestral.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
         </div>
 
         {/* 3 pillars */}
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "1.5rem" }}>
           {[
-            {
-              icon: "🌿",
-              title: "Alquimia & Botánica",
-              text: "Promovemos la herbolaria consciente, las esencias limpias de cultivo ético y las herramientas de transformación personal creadas en armonía con los ciclos naturales.",
-              sub: "Arte & Herbolaria Ancestral",
-            },
-            {
-              icon: "💎",
-              title: "El Valor del Oficio",
-              text: "Cada amuleto de obsidiana, joya de plata, baraja de tarot e ilustración tiene detrás horas de dedicación, estudio e intención de creadores independientes.",
-              sub: "Creación Artesanal Independiente",
-            },
-            {
-              icon: "🔮",
-              title: "Encuentro Itinerante",
-              text: "Mercado de Brujas no es solo un mercado; es una experiencia inmersiva con música, talleres, rituales de temporada y aprendizajes compartidos.",
-              sub: "Comunidad & Encuentros Pop-Up",
-            },
+            { icon: "🌿", title: "Alquimia & Botánica", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam.", sub: "Arte & Herbolaria Ancestral" },
+            { icon: "💎", title: "El Valor del Oficio", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam.", sub: "Creación Artesanal Independiente" },
+            { icon: "🔮", title: "Encuentro Itinerante", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam.", sub: "Comunidad & Encuentros Pop-Up" },
           ].map((pillar) => (
             <div
               key={pillar.title}
@@ -135,27 +120,9 @@ export default function Home() {
           }}
         >
           {[
-            {
-              href: "/origenes",
-              icon: "📜",
-              title: "Orígenes",
-              text: "Conoce la línea del tiempo y la historia de cómo surgió el primer aquelarre en 2021.",
-              accent: false,
-            },
-            {
-              href: "/ediciones",
-              icon: "🎪",
-              title: "Ediciones de la Feria",
-              text: "Accede al catálogo de cada feria con sus relatos, fechas y fotos exclusivas.",
-              accent: true,
-            },
-            {
-              href: "/galeria",
-              icon: "📸",
-              title: "Recopilación Fotográfica",
-              text: "Una vista a la memoria gráfica compilada de todas las ediciones pasadas.",
-              accent: false,
-            },
+            { href: "/origenes", icon: "📜", title: "Orígenes", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.", accent: false },
+            { href: "/ediciones", icon: "🎪", title: "Ediciones de la Feria", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.", accent: true },
+            { href: "/galeria", icon: "📸", title: "Recopilación Fotográfica", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.", accent: false },
           ].map((tile) => (
             <Link key={tile.href} href={tile.href} style={{ textDecoration: "none" }}>
               <div
@@ -222,7 +189,7 @@ export default function Home() {
               🌙 Mercado de Brujas
             </h3>
             <p className="text-muted" style={{ fontSize: "0.85rem", lineHeight: 1.65 }}>
-              Plataforma itinerante de arte esotérico, alquimia artesanal, botánica sagrada y comunidad de creadores independientes.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </p>
           </div>
 
@@ -261,7 +228,7 @@ export default function Home() {
               Redes Oficiales
             </h4>
             <p className="text-muted" style={{ fontSize: "0.85rem", marginBottom: "1rem" }}>
-              Síguenos en Instagram para enterarte de las convocatorias y fechas de los próximos encuentros.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
             </p>
             <a
               href="https://www.instagram.com/mercado_brujas/?hl=es"
