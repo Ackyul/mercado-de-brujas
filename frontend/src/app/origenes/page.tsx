@@ -263,7 +263,7 @@ export default function OrigenesPage() {
                     <ImagePlaceholder
                       height="100%"
                       label="(Imagen)"
-                      sublabel={`Memoria Fotográfica · ${item.year}`}
+                      
                     />
                   </div>
                 </div>

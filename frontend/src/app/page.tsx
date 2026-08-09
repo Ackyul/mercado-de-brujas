@@ -69,7 +69,7 @@ export default function Home() {
                   overflow: "hidden",
                 }}
               >
-                <ImagePlaceholder height="100%" label="(Imagen)" sublabel={pillar.sub} />
+                <ImagePlaceholder height="100%" label="(Imagen)"  />
               </div>
               <h3
                 style={{

@@ -132,23 +132,9 @@ export default function GaleriaPage() {
                         }}
                       >
                         <div style={{ flexGrow: 1 }}>
-                          <ImagePlaceholder height="100%" label="(Imagen)" sublabel={photo.caption} />
+                          <ImagePlaceholder height="100%" label="(Imagen)" />
                         </div>
-                        <div
-                          style={{
-                            padding: "0.6rem 0.85rem",
-                            backgroundColor: "rgba(14, 10, 8, 0.97)",
-                            borderTop: "1px solid var(--border-subtle)",
-                            display: "flex",
-                            justifyContent: "space-between",
-                            alignItems: "center",
-                          }}
-                        >
-                          <span style={{ fontSize: "0.75rem", fontWeight: 600, color: "var(--text-main)" }}>
-                            {photo.caption}
-                          </span>
-                          <span className="badge" style={{ fontSize: "0.6rem" }}>{photo.tag}</span>
-                        </div>
+
                       </div>
                     );
                   })}
@@ -230,7 +216,7 @@ export default function GaleriaPage() {
               <ImagePlaceholder
                 height="100%"
                 label="(Imagen)"
-                sublabel={`${lightboxPhoto.caption} · ${lightboxPhoto.editionTitle}`}
+                
               />
             </div>
 

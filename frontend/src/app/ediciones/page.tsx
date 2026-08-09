@@ -161,7 +161,7 @@ export default function EdicionesPage() {
             <ImagePlaceholder
               height="100%"
               label="(Imagen)"
-              sublabel={`Portada Oficial · ${selectedEdition.title}`}
+              
             />
             <div
               style={{
@@ -316,23 +316,9 @@ export default function EdicionesPage() {
                   onMouseLeave={(e) => ((e.currentTarget as HTMLDivElement).style.transform = "scale(1)")}
                 >
                   <div style={{ flexGrow: 1 }}>
-                    <ImagePlaceholder height="100%" label="(Imagen)" sublabel={photo.caption} />
+                    <ImagePlaceholder height="100%" label="(Imagen)" />
                   </div>
-                  <div
-                    style={{
-                      padding: "0.55rem 0.75rem",
-                      backgroundColor: "rgba(14, 10, 8, 0.95)",
-                      borderTop: "1px solid var(--border-subtle)",
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                    }}
-                  >
-                    <span style={{ fontSize: "0.72rem", fontWeight: 600, color: "var(--text-main)" }}>
-                      {photo.caption}
-                    </span>
-                    <span className="badge" style={{ fontSize: "0.58rem" }}>{photo.tag}</span>
-                  </div>
+
                 </div>
               ))}
             </div>
@@ -389,7 +375,7 @@ export default function EdicionesPage() {
               <ImagePlaceholder
                 height="100%"
                 label="(Imagen)"
-                sublabel={`${lightboxPhoto.caption} · ${selectedEdition.title}`}
+                
               />
             </div>
 
