@@ -105,7 +105,7 @@ export default function OrigenesPage() {
             className="text-muted"
             style={{ maxWidth: "640px", margin: "0 auto", fontSize: "1rem", lineHeight: 1.75 }}
           >
-            Explora los hitos históricos que convirtieron una modesta reunión artesanal en el mercado místico itinerante más emblemático de la región.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
         </div>
 
@@ -118,6 +118,7 @@ export default function OrigenesPage() {
             return (
               <div
                 key={item.year}
+                className="timeline-row"
                 onClick={() => setActiveStep(index)}
                 style={{
                   display: "grid",
@@ -130,6 +131,7 @@ export default function OrigenesPage() {
               >
                 {/* Text card */}
                 <div
+                  className="timeline-card"
                   style={{
                     gridColumn: isLeft ? "1" : "3",
                     order: isLeft ? 1 : 3,
@@ -216,6 +218,7 @@ export default function OrigenesPage() {
 
                 {/* Center node */}
                 <div
+                  className="timeline-node"
                   style={{
                     gridColumn: "2",
                     order: 2,
@@ -247,6 +250,7 @@ export default function OrigenesPage() {
 
                 {/* Image placeholder */}
                 <div
+                  className="timeline-img"
                   style={{
                     gridColumn: isLeft ? "3" : "1",
                     order: isLeft ? 3 : 1,

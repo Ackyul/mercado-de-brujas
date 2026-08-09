@@ -66,10 +66,11 @@ export default function EdicionesPage() {
 
       {/* Main layout */}
       <div
+        className="ediciones-layout"
         style={{
           maxWidth: "1280px",
           margin: "0 auto 6rem",
-          padding: "0 2rem",
+          padding: "0 1.25rem",
           width: "100%",
           display: "grid",
           gridTemplateColumns: "minmax(270px, 320px) 1fr",
@@ -78,7 +79,7 @@ export default function EdicionesPage() {
         }}
       >
         {/* Left: edition selector */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+        <div className="ediciones-sidebar" style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
           <h2
             style={{
               fontFamily: "var(--font-serif)",
@@ -98,7 +99,7 @@ export default function EdicionesPage() {
               <div
                 key={ed.id}
                 onClick={() => setSelectedEdition(ed)}
-                className={isSelected ? "glass-card-gold" : "glass-panel"}
+                className={`edition-selector-item ${isSelected ? "glass-card-gold" : "glass-panel"}`}
                 style={{
                   padding: "1.1rem 1.25rem",
                   cursor: "pointer",
@@ -194,7 +195,7 @@ export default function EdicionesPage() {
 
           {/* Quick info — parchment style */}
           <div
-            className="parchment-panel"
+            className="parchment-panel quick-info-grid"
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
@@ -292,6 +293,7 @@ export default function EdicionesPage() {
             </div>
 
             <div
+              className="photo-grid"
               style={{
                 display: "grid",
                 gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
