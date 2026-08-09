@@ -5,23 +5,10 @@ import Header from "../components/Header";
 import ImagePlaceholder from "../components/ImagePlaceholder";
 import { EDITIONS_DATA, EditionPhoto } from "../data/editionsData";
 
+type PhotoWithEdition = EditionPhoto & { editionTitle: string; editionId: string };
+
 export default function GaleriaPage() {
-  // Aggregate all photos from all editions
-  const allPhotos: (EditionPhoto & { editionTitle: string; editionId: string })[] = [];
-  EDITIONS_DATA.forEach((ed) => {
-    ed.gallery.forEach((photo) => {
-      allPhotos.push({ ...photo, editionTitle: ed.title, editionId: ed.id });
-    });
-  });
-
-  const [activeFilter, setActiveFilter] = useState<string>("Todos");
-  const [lightboxPhoto, setLightboxPhoto] = useState<(EditionPhoto & { editionTitle: string }) | null>(null);
-
-  const filterTags = ["Todos", "Alquimia", "Artesanías", "Cristales", "Tarot", "Botanica", "Arte"];
-
-  const filteredPhotos = allPhotos.filter((p) =>
-    activeFilter === "Todos" ? true : p.tag.toLowerCase() === activeFilter.toLowerCase()
-  );
+  const [lightboxPhoto, setLightboxPhoto] = useState<PhotoWithEdition | null>(null);
 
   return (
     <div
@@ -36,7 +23,7 @@ export default function GaleriaPage() {
 
       <section style={{ padding: "4.5rem 2rem 6rem", maxWidth: "1280px", margin: "0 auto", width: "100%" }}>
         {/* Page header */}
-        <div style={{ textAlign: "center", marginBottom: "3.5rem" }}>
+        <div style={{ textAlign: "center", marginBottom: "4rem" }}>
           <span className="badge badge-gold" style={{ marginBottom: "1rem" }}>
             ✦ Memorias Fotográficas ✦
           </span>
@@ -66,119 +53,126 @@ export default function GaleriaPage() {
           </div>
           <p
             className="text-muted"
-            style={{ maxWidth: "620px", margin: "0 auto", fontSize: "1rem", lineHeight: 1.75 }}
+            style={{ maxWidth: "580px", margin: "0 auto", fontSize: "1rem", lineHeight: 1.75 }}
           >
-            Una mirada a los momentos capturados a lo largo de las distintas ediciones de Mercado de Brujas.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
         </div>
 
-        {/* Filter row */}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            gap: "0.5rem",
-            flexWrap: "wrap",
-            marginBottom: "3rem",
-          }}
-        >
-          {filterTags.map((tag) => (
-            <button
-              key={tag}
-              onClick={() => setActiveFilter(tag)}
-              className={activeFilter === tag ? "btn-primary" : "btn-secondary"}
-              style={{ padding: "0.4rem 1rem", fontSize: "0.72rem", borderRadius: "2px" }}
-            >
-              {tag}
-            </button>
-          ))}
-        </div>
-
-        {/* Photo grid */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(270px, 1fr))",
-            gap: "1.25rem",
-          }}
-        >
-          {filteredPhotos.map((photo) => (
-            <div
-              key={photo.id}
-              className="glass-panel"
-              onClick={() => setLightboxPhoto(photo)}
-              style={{
-                height: "260px",
-                position: "relative",
-                overflow: "hidden",
-                borderRadius: "var(--radius-sm)",
-                cursor: "pointer",
-                display: "flex",
-                flexDirection: "column",
-                transition: "transform 0.2s ease, box-shadow 0.2s ease",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLDivElement).style.transform = "scale(1.02)";
-                (e.currentTarget as HTMLDivElement).style.boxShadow = "var(--shadow-gold)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLDivElement).style.transform = "scale(1)";
-                (e.currentTarget as HTMLDivElement).style.boxShadow = "";
-              }}
-            >
-              <div style={{ flexGrow: 1, position: "relative" }}>
-                <ImagePlaceholder height="100%" label="(Imagen)" sublabel={photo.caption} />
-              </div>
-
-              {/* Info bar */}
-              <div
-                style={{
-                  padding: "0.75rem 1rem",
-                  backgroundColor: "rgba(14, 10, 8, 0.97)",
-                  borderTop: "1px solid var(--border-subtle)",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                }}
-              >
-                <div>
-                  <span
+        {/* One section per edition */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "4.5rem" }}>
+          {EDITIONS_DATA.map((edition) => (
+            <div key={edition.id}>
+              {/* Edition header */}
+              <div style={{ marginBottom: "1.5rem", paddingBottom: "1rem", borderBottom: "1px solid var(--border-subtle)" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "1rem", flexWrap: "wrap" }}>
+                  <h2
                     style={{
-                      fontSize: "0.8rem",
-                      fontWeight: 700,
-                      color: "var(--text-main)",
-                      display: "block",
-                    }}
-                  >
-                    {photo.caption}
-                  </span>
-                  <span
-                    style={{
-                      fontSize: "0.68rem",
-                      color: "var(--accent-gold)",
                       fontFamily: "var(--font-serif)",
-                      letterSpacing: "0.04em",
-                      opacity: 0.8,
+                      fontSize: "clamp(1.1rem, 2.5vw, 1.6rem)",
+                      letterSpacing: "0.05em",
+                      color: "var(--text-main)",
                     }}
                   >
-                    {photo.editionTitle}
+                    {edition.title}
+                  </h2>
+                  <span className={edition.status === "Próxima" ? "badge badge-purple" : "badge badge-gold"}>
+                    {edition.status}
                   </span>
                 </div>
-                <span className="badge" style={{ fontSize: "0.62rem" }}>{photo.tag}</span>
+                <p
+                  style={{
+                    fontSize: "0.8rem",
+                    color: "var(--text-muted)",
+                    marginTop: "0.35rem",
+                    fontFamily: "var(--font-serif)",
+                    letterSpacing: "0.06em",
+                  }}
+                >
+                  📅 {edition.date} &nbsp;·&nbsp; 📍 {edition.location}
+                </p>
               </div>
+
+              {/* Photos grid */}
+              {edition.gallery.length > 0 ? (
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
+                    gap: "1.1rem",
+                  }}
+                >
+                  {edition.gallery.map((photo) => {
+                    const photoWithEdition: PhotoWithEdition = {
+                      ...photo,
+                      editionTitle: edition.title,
+                      editionId: edition.id,
+                    };
+                    return (
+                      <div
+                        key={photo.id}
+                        className="glass-panel"
+                        onClick={() => setLightboxPhoto(photoWithEdition)}
+                        style={{
+                          height: "240px",
+                          overflow: "hidden",
+                          borderRadius: "var(--radius-sm)",
+                          cursor: "pointer",
+                          display: "flex",
+                          flexDirection: "column",
+                          transition: "transform 0.2s ease, box-shadow 0.2s ease",
+                        }}
+                        onMouseEnter={(e) => {
+                          (e.currentTarget as HTMLDivElement).style.transform = "scale(1.025)";
+                          (e.currentTarget as HTMLDivElement).style.boxShadow = "var(--shadow-gold)";
+                        }}
+                        onMouseLeave={(e) => {
+                          (e.currentTarget as HTMLDivElement).style.transform = "scale(1)";
+                          (e.currentTarget as HTMLDivElement).style.boxShadow = "";
+                        }}
+                      >
+                        <div style={{ flexGrow: 1 }}>
+                          <ImagePlaceholder height="100%" label="(Imagen)" sublabel={photo.caption} />
+                        </div>
+                        <div
+                          style={{
+                            padding: "0.6rem 0.85rem",
+                            backgroundColor: "rgba(14, 10, 8, 0.97)",
+                            borderTop: "1px solid var(--border-subtle)",
+                            display: "flex",
+                            justifyContent: "space-between",
+                            alignItems: "center",
+                          }}
+                        >
+                          <span style={{ fontSize: "0.75rem", fontWeight: 600, color: "var(--text-main)" }}>
+                            {photo.caption}
+                          </span>
+                          <span className="badge" style={{ fontSize: "0.6rem" }}>{photo.tag}</span>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              ) : (
+                <div
+                  className="glass-panel"
+                  style={{
+                    padding: "2.5rem",
+                    textAlign: "center",
+                    borderRadius: "var(--radius-sm)",
+                    color: "var(--text-muted)",
+                    borderStyle: "dashed",
+                  }}
+                >
+                  <span style={{ fontSize: "1.8rem", display: "block", marginBottom: "0.5rem", opacity: 0.4 }}>🔮</span>
+                  <p style={{ fontFamily: "var(--font-serif)", fontSize: "0.85rem", letterSpacing: "0.06em", opacity: 0.6 }}>
+                    Fotografías próximamente
+                  </p>
+                </div>
+              )}
             </div>
           ))}
         </div>
-
-        {/* Empty state */}
-        {filteredPhotos.length === 0 && (
-          <div style={{ textAlign: "center", padding: "4rem 2rem", color: "var(--text-muted)" }}>
-            <span style={{ fontSize: "2.5rem", display: "block", marginBottom: "1rem" }}>🔮</span>
-            <p style={{ fontFamily: "var(--font-serif)", letterSpacing: "0.06em" }}>
-              No se encontraron fotografías para este filtro
-            </p>
-          </div>
-        )}
       </section>
 
       {/* Lightbox */}
@@ -247,11 +241,13 @@ export default function GaleriaPage() {
                 borderTop: "1px solid var(--border-subtle)",
               }}
             >
-              <span className="badge badge-gold" style={{ marginBottom: "0.5rem" }}>{lightboxPhoto.tag}</span>
+              <span className="badge badge-gold" style={{ marginBottom: "0.5rem" }}>
+                {lightboxPhoto.tag}
+              </span>
               <h3
                 style={{
                   fontFamily: "var(--font-serif)",
-                  fontSize: "1.1rem",
+                  fontSize: "1.05rem",
                   letterSpacing: "0.04em",
                   color: "var(--text-main)",
                   marginBottom: "0.25rem",
@@ -260,8 +256,8 @@ export default function GaleriaPage() {
               >
                 {lightboxPhoto.caption}
               </h3>
-              <p className="text-muted" style={{ fontSize: "0.82rem" }}>
-                Fotografía de la recopilación de {lightboxPhoto.editionTitle}
+              <p className="text-muted" style={{ fontSize: "0.8rem" }}>
+                {lightboxPhoto.editionTitle}
               </p>
             </div>
           </div>
