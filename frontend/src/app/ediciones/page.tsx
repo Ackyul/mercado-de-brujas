@@ -81,6 +81,7 @@ export default function EdicionesPage() {
         {/* Left: edition selector */}
         <div className="ediciones-sidebar" style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
           <h2
+            className="ediciones-sidebar-title"
             style={{
               fontFamily: "var(--font-serif)",
               fontSize: "0.8rem",
@@ -93,64 +94,71 @@ export default function EdicionesPage() {
             ✦ Seleccionar Edición ({EDITIONS_DATA.length})
           </h2>
 
-          {EDITIONS_DATA.map((ed) => {
-            const isSelected = selectedEdition.id === ed.id;
-            return (
-              <div
-                key={ed.id}
-                onClick={() => setSelectedEdition(ed)}
-                className={`edition-selector-item ${isSelected ? "glass-card-gold" : "glass-panel"}`}
-                style={{
-                  padding: "1.1rem 1.25rem",
-                  cursor: "pointer",
-                  borderRadius: "var(--radius-sm)",
-                  borderLeft: `3px solid ${isSelected ? "var(--accent-gold)" : "transparent"}`,
-                  transition: "all 0.2s ease",
-                  transform: isSelected ? "translateX(4px)" : "none",
-                }}
-              >
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.35rem" }}>
-                  <span className="badge" style={{ fontSize: "0.6rem" }}>{ed.status}</span>
-                  <span
-                    style={{
-                      fontFamily: "var(--font-serif)",
-                      fontSize: "0.75rem",
-                      color: "var(--accent-gold)",
-                      fontWeight: 700,
-                    }}
-                  >
-                    {ed.number > 0 ? `#${ed.number}` : "Especial"}
-                  </span>
-                </div>
-                <h3
+          <div className="ediciones-selector-container">
+            {EDITIONS_DATA.map((ed) => {
+              const isSelected = selectedEdition.id === ed.id;
+              return (
+                <div
+                  key={ed.id}
+                  onClick={(e) => {
+                    setSelectedEdition(ed);
+                    e.currentTarget.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+                  }}
+                  className={`edition-selector-item ${isSelected ? "glass-card-gold" : "glass-panel"}`}
                   style={{
-                    fontFamily: "var(--font-serif)",
-                    fontSize: "0.95rem",
-                    letterSpacing: "0.02em",
-                    color: "var(--text-main)",
-                    marginBottom: "0.2rem",
+                    padding: "1.1rem 1.25rem",
+                    cursor: "pointer",
+                    borderRadius: "var(--radius-sm)",
+                    borderLeft: `3px solid ${isSelected ? "var(--accent-gold)" : "transparent"}`,
+                    transition: "all 0.2s ease",
+                    transform: isSelected ? "translateX(4px)" : "none",
                   }}
                 >
-                  {ed.title}
-                </h3>
-                <p style={{ fontSize: "0.75rem", color: "var(--text-muted)", marginBottom: "0.2rem" }}>
-                  📅 {ed.date}
-                </p>
-                <span style={{ fontSize: "0.72rem", color: "var(--accent-gold)", fontStyle: "italic", opacity: 0.8 }}>
-                  📍 {ed.location}
-                </span>
-              </div>
-            );
-          })}
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.35rem" }}>
+                    <span className="badge" style={{ fontSize: "0.6rem" }}>{ed.status}</span>
+                    <span
+                      style={{
+                        fontFamily: "var(--font-serif)",
+                        fontSize: "0.75rem",
+                        color: "var(--accent-gold)",
+                        fontWeight: 700,
+                      }}
+                    >
+                      {ed.number > 0 ? `#${ed.number}` : "Especial"}
+                    </span>
+                  </div>
+                  <h3
+                    className="edition-selector-title"
+                    style={{
+                      fontFamily: "var(--font-serif)",
+                      fontSize: "0.95rem",
+                      letterSpacing: "0.02em",
+                      color: "var(--text-main)",
+                      marginBottom: "0.2rem",
+                    }}
+                  >
+                    {ed.title}
+                  </h3>
+                  <p className="edition-selector-date" style={{ fontSize: "0.75rem", color: "var(--text-muted)", marginBottom: "0.2rem" }}>
+                    📅 {ed.date}
+                  </p>
+                  <span className="edition-selector-location" style={{ fontSize: "0.72rem", color: "var(--accent-gold)", fontStyle: "italic", opacity: 0.8 }}>
+                    📍 {ed.location}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
         </div>
 
         {/* Right: edition details */}
         <div
-          className="glass-panel ornate-frame"
+          className="glass-panel ornate-frame ediciones-detail-panel"
           style={{ padding: "2.25rem", borderRadius: "var(--radius-md)" }}
         >
           {/* Cover image */}
           <div
+            className="edition-cover-wrapper"
             style={{
               position: "relative",
               height: "260px",
@@ -162,9 +170,9 @@ export default function EdicionesPage() {
             <ImagePlaceholder
               height="100%"
               label="(Imagen)"
-              
             />
             <div
+              className="edition-cover-overlay"
               style={{
                 position: "absolute",
                 bottom: 0,
@@ -174,12 +182,13 @@ export default function EdicionesPage() {
                 padding: "1.25rem 1.5rem",
               }}
             >
-              <div style={{ display: "flex", gap: "0.5rem", marginBottom: "0.5rem" }}>
+              <div className="edition-cover-badges" style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem 0.5rem", marginBottom: "0.5rem" }}>
                 <span className="badge badge-gold">{selectedEdition.status}</span>
                 <span className="badge">{selectedEdition.attendeesCount}</span>
                 <span className="badge badge-purple">{selectedEdition.exhibitorsCount}</span>
               </div>
               <h2
+                className="edition-cover-title"
                 style={{
                   fontFamily: "var(--font-serif)",
                   fontSize: "1.6rem",
