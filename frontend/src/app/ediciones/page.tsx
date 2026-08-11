@@ -345,7 +345,7 @@ export default function EdicionesPage() {
             </div>
           </div>
 
-          {/* Photos grid */}
+          {/* Photos grid (Exact 3 preview images) */}
           <div>
             <div
               style={{
@@ -363,20 +363,25 @@ export default function EdicionesPage() {
                   color: "var(--accent-gold)",
                 }}
               >
-                📸 Fotografías ({selectedEdition.gallery.length})
+                📸 Fotografías de la Edición (3 Muestras)
               </h3>
-              <span style={{ fontSize: "0.75rem", color: "var(--text-muted)" }}>Haz clic para ampliar</span>
+              <Link
+                href={`/galeria/${selectedEdition.slug}`}
+                style={{ fontSize: "0.78rem", color: "var(--accent-gold)", textDecoration: "none", fontFamily: "var(--font-serif)" }}
+              >
+                Ver Galería Completa →
+              </Link>
             </div>
 
             <div
-              className="photo-grid"
+              className="photo-grid-3"
               style={{
                 display: "grid",
-                gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
+                gridTemplateColumns: "repeat(3, 1fr)",
                 gap: "1rem",
               }}
             >
-              {selectedEdition.gallery.map((photo) => (
+              {selectedEdition.gallery.slice(0, 3).map((photo) => (
                 <div
                   key={photo.id}
                   onClick={() => setLightboxPhoto(photo)}
@@ -396,7 +401,6 @@ export default function EdicionesPage() {
                   <div style={{ flexGrow: 1 }}>
                     <ImagePlaceholder height="100%" label="(Imagen)" />
                   </div>
-
                 </div>
               ))}
             </div>

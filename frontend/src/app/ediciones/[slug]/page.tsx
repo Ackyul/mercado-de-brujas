@@ -241,7 +241,7 @@ export default function DedicatedEditionPage() {
           </div>
         </section>
 
-        {/* Gallery section */}
+        {/* Gallery section (Exact 3 preview images as requested) */}
         <section style={{ marginBottom: "4rem" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.5rem", flexWrap: "wrap", gap: "1rem" }}>
             <h2
@@ -252,7 +252,7 @@ export default function DedicatedEditionPage() {
                 color: "var(--accent-gold)",
               }}
             >
-              📸 Galería Fotográfica de esta Edición ({edition.gallery.length})
+              📸 Fotografías de esta Edición (3 Muestras)
             </h2>
             <Link
               href={`/galeria/${edition.slug}`}
@@ -264,14 +264,14 @@ export default function DedicatedEditionPage() {
           </div>
 
           <div
-            className="photo-grid"
+            className="photo-grid-3"
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))",
+              gridTemplateColumns: "repeat(3, 1fr)",
               gap: "1.25rem",
             }}
           >
-            {edition.gallery.map((photo) => (
+            {edition.gallery.slice(0, 3).map((photo) => (
               <div
                 key={photo.id}
                 onClick={() => setLightboxPhoto(photo)}

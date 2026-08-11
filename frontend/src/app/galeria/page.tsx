@@ -113,70 +113,118 @@ export default function GaleriaPage() {
                 </div>
               </div>
 
-              {/* Photos grid */}
-              {edition.gallery.length > 0 ? (
-                <div
-                  className="photo-grid"
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
-                    gap: "1.1rem",
-                  }}
-                >
-                  {edition.gallery.map((photo) => {
-                    const photoWithEdition: PhotoWithEdition = {
-                      ...photo,
-                      editionTitle: edition.title,
-                      editionId: edition.id,
-                    };
-                    return (
-                      <div
-                        key={photo.id}
-                        className="glass-panel"
-                        onClick={() => setLightboxPhoto(photoWithEdition)}
-                        style={{
-                          height: "240px",
-                          overflow: "hidden",
-                          borderRadius: "var(--radius-sm)",
-                          cursor: "pointer",
-                          display: "flex",
-                          flexDirection: "column",
-                          transition: "transform 0.2s ease, box-shadow 0.2s ease",
-                        }}
-                        onMouseEnter={(e) => {
-                          (e.currentTarget as HTMLDivElement).style.transform = "scale(1.025)";
-                          (e.currentTarget as HTMLDivElement).style.boxShadow = "var(--shadow-gold)";
-                        }}
-                        onMouseLeave={(e) => {
-                          (e.currentTarget as HTMLDivElement).style.transform = "scale(1)";
-                          (e.currentTarget as HTMLDivElement).style.boxShadow = "";
-                        }}
-                      >
-                        <div style={{ flexGrow: 1 }}>
-                          <ImagePlaceholder height="100%" label="(Imagen)" />
-                        </div>
-
+              {/* Horizontal scroll slider (7 photos + 8th arrow card) */}
+              <div
+                className="ediciones-gallery-slider"
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  gap: "1.1rem",
+                  overflowX: "auto",
+                  scrollSnapType: "x mandatory",
+                  paddingBottom: "0.85rem",
+                  scrollbarWidth: "none",
+                  msOverflowStyle: "none",
+                  WebkitOverflowScrolling: "touch",
+                }}
+              >
+                {/* First 7 photos */}
+                {edition.gallery.slice(0, 7).map((photo) => {
+                  const photoWithEdition: PhotoWithEdition = {
+                    ...photo,
+                    editionTitle: edition.title,
+                    editionId: edition.id,
+                  };
+                  return (
+                    <div
+                      key={photo.id}
+                      className="glass-panel"
+                      onClick={() => setLightboxPhoto(photoWithEdition)}
+                      style={{
+                        flex: "0 0 auto",
+                        width: "250px",
+                        height: "210px",
+                        scrollSnapAlign: "start",
+                        overflow: "hidden",
+                        borderRadius: "var(--radius-sm)",
+                        cursor: "pointer",
+                        display: "flex",
+                        flexDirection: "column",
+                        transition: "transform 0.2s ease, box-shadow 0.2s ease",
+                      }}
+                      onMouseEnter={(e) => {
+                        (e.currentTarget as HTMLDivElement).style.transform = "scale(1.025)";
+                        (e.currentTarget as HTMLDivElement).style.boxShadow = "var(--shadow-gold)";
+                      }}
+                      onMouseLeave={(e) => {
+                        (e.currentTarget as HTMLDivElement).style.transform = "scale(1)";
+                        (e.currentTarget as HTMLDivElement).style.boxShadow = "";
+                      }}
+                    >
+                      <div style={{ flexGrow: 1 }}>
+                        <ImagePlaceholder height="100%" label="(Imagen)" />
                       </div>
-                    );
-                  })}
-                </div>
-              ) : (
-                <div
-                  className="glass-panel"
+                    </div>
+                  );
+                })}
+
+                {/* 8th item: Arrow Card to view all photos of the feria */}
+                <Link
+                  href={`/galeria/${edition.slug}`}
+                  className="glass-card-gold ver-mas-galeria-card"
                   style={{
-                    padding: "2.5rem",
-                    textAlign: "center",
+                    flex: "0 0 auto",
+                    width: "210px",
+                    height: "210px",
+                    scrollSnapAlign: "start",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    textDecoration: "none",
                     borderRadius: "var(--radius-sm)",
-                    color: "var(--text-muted)",
-                    borderStyle: "dashed",
+                    border: "1px solid var(--accent-gold)",
+                    padding: "1.25rem",
+                    textAlign: "center",
+                    cursor: "pointer",
+                    boxShadow: "0 4px 18px rgba(212, 175, 55, 0.2)",
+                    transition: "transform 0.2s ease, background 0.2s ease",
                   }}
                 >
-                  <span style={{ fontSize: "1.8rem", display: "block", marginBottom: "0.5rem", opacity: 0.4 }}>🔮</span>
-                  <p style={{ fontFamily: "var(--font-serif)", fontSize: "0.85rem", letterSpacing: "0.06em", opacity: 0.6 }}>
-                    Fotografías próximamente
-                  </p>
-                </div>
-              )}
+                  <div
+                    style={{
+                      width: "48px",
+                      height: "48px",
+                      borderRadius: "50%",
+                      border: "1px solid var(--accent-gold)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: "1.4rem",
+                      color: "var(--accent-gold)",
+                      marginBottom: "0.75rem",
+                      background: "rgba(212, 175, 55, 0.12)",
+                    }}
+                  >
+                    ➔
+                  </div>
+                  <span
+                    style={{
+                      fontFamily: "var(--font-serif)",
+                      fontSize: "0.92rem",
+                      color: "var(--accent-gold)",
+                      fontWeight: 700,
+                      letterSpacing: "0.03em",
+                      marginBottom: "0.25rem",
+                    }}
+                  >
+                    Ver todas las fotos
+                  </span>
+                  <span style={{ fontSize: "0.75rem", color: "var(--text-muted)" }}>
+                    {edition.title}
+                  </span>
+                </Link>
+              </div>
             </div>
           ))}
         </div>
