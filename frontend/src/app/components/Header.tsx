@@ -9,7 +9,6 @@ const navLinks = [
   { href: "/origenes", label: "Orígenes" },
   { href: "/ediciones", label: "Ediciones" },
   { href: "/galeria", label: "Galería" },
-  { href: "/admin", label: "Admin 🔐" },
 ];
 
 export default function Header() {
