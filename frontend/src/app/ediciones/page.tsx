@@ -118,52 +118,9 @@ export default function EdicionesPage() {
           alignItems: "start",
         }}
       >
-        {/* Left / Top: Active edition display box & Cambiar edición button */}
+        {/* Left / Top: Cambiar edición button AT THE TOP, followed by list of latest 5 editions */}
         <div className="ediciones-sidebar" style={{ display: "flex", flexDirection: "column", gap: "0.85rem" }}>
-          {/* Active Edition Display Card */}
-          <div
-            onClick={() => setIsModalOpen(true)}
-            className="glass-card-gold active-edition-card"
-            style={{
-              padding: "1.25rem 1.4rem",
-              cursor: "pointer",
-              borderRadius: "var(--radius-md)",
-              border: "1px solid var(--accent-gold)",
-              boxShadow: "0 4px 20px rgba(212, 175, 55, 0.2)",
-              transition: "all 0.25s ease",
-            }}
-          >
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.5rem" }}>
-              <span className="badge badge-gold" style={{ fontSize: "0.65rem" }}>
-                ✦ Edición Mostrada
-              </span>
-              <span className="badge" style={{ fontSize: "0.65rem" }}>
-                {selectedEdition.status}
-              </span>
-            </div>
-
-            <h2
-              style={{
-                fontFamily: "var(--font-serif)",
-                fontSize: "1.3rem",
-                color: "var(--text-main)",
-                letterSpacing: "0.03em",
-                marginBottom: "0.4rem",
-              }}
-            >
-              {selectedEdition.title}
-            </h2>
-
-            <p style={{ fontSize: "0.82rem", color: "var(--text-muted)", marginBottom: "0.25rem" }}>
-              📅 {selectedEdition.date}
-            </p>
-
-            <span style={{ fontSize: "0.78rem", color: "var(--accent-gold)", fontStyle: "italic", opacity: 0.9 }}>
-              📍 {selectedEdition.location}
-            </span>
-          </div>
-
-          {/* Button: Cambiar Edición */}
+          {/* Button: Cambiar Edición (AT THE TOP) */}
           <button
             onClick={() => setIsModalOpen(true)}
             className="btn-secondary btn-cambiar-edicion"
@@ -184,6 +141,83 @@ export default function EdicionesPage() {
           >
             🔍 Cambiar Edición
           </button>
+
+          {/* Section subtitle */}
+          <h2
+            style={{
+              fontFamily: "var(--font-serif)",
+              fontSize: "0.75rem",
+              letterSpacing: "0.16em",
+              textTransform: "uppercase",
+              color: "var(--accent-gold)",
+              marginTop: "0.2rem",
+              marginBottom: "0.1rem",
+            }}
+          >
+            ✦ Últimas 5 Ediciones Pop-Up
+          </h2>
+
+          {/* List of 5 Latest Editions */}
+          <div className="ediciones-latest-list" style={{ display: "flex", flexDirection: "column", gap: "0.65rem" }}>
+            {EDITIONS_DATA.slice(0, 5).map((ed) => {
+              const isSelected = selectedEdition.id === ed.id;
+              return (
+                <div
+                  key={ed.id}
+                  onClick={() => handleSelectEdition(ed)}
+                  className={`edition-list-item ${isSelected ? "glass-card-gold active" : "glass-panel"}`}
+                  style={{
+                    padding: "0.95rem 1.1rem",
+                    cursor: "pointer",
+                    borderRadius: "var(--radius-sm)",
+                    borderLeft: isSelected ? "3px solid var(--accent-gold)" : "3px solid transparent",
+                    borderTop: isSelected ? "1px solid var(--accent-gold)" : "1px solid var(--border-subtle)",
+                    borderRight: isSelected ? "1px solid var(--accent-gold)" : "1px solid var(--border-subtle)",
+                    borderBottom: isSelected ? "1px solid var(--accent-gold)" : "1px solid var(--border-subtle)",
+                    boxShadow: isSelected ? "0 4px 18px rgba(212, 175, 55, 0.25)" : "none",
+                    transition: "all 0.2s ease",
+                    transform: isSelected ? "translateX(4px)" : "none",
+                  }}
+                >
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.3rem" }}>
+                    <span
+                      style={{
+                        fontFamily: "var(--font-serif)",
+                        fontSize: "0.72rem",
+                        color: "var(--accent-gold)",
+                        fontWeight: 700,
+                      }}
+                    >
+                      {ed.number > 0 ? `#${ed.number}` : "Especial"}
+                    </span>
+                    <span className={ed.status === "Próxima" ? "badge badge-purple" : "badge badge-gold"} style={{ fontSize: "0.6rem" }}>
+                      {ed.status}
+                    </span>
+                  </div>
+
+                  <h3
+                    style={{
+                      fontFamily: "var(--font-serif)",
+                      fontSize: "0.98rem",
+                      letterSpacing: "0.02em",
+                      color: isSelected ? "var(--accent-gold)" : "var(--text-main)",
+                      marginBottom: "0.2rem",
+                      fontWeight: isSelected ? 700 : 500,
+                    }}
+                  >
+                    {ed.title}
+                  </h3>
+
+                  <p style={{ fontSize: "0.75rem", color: "var(--text-muted)", marginBottom: "0.15rem" }}>
+                    📅 {ed.date}
+                  </p>
+                  <span style={{ fontSize: "0.72rem", color: "var(--accent-gold)", fontStyle: "italic", opacity: 0.85 }}>
+                    📍 {ed.location}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
         </div>
 
         {/* Right: edition details */}
