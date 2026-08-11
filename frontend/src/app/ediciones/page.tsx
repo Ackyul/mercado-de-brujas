@@ -22,30 +22,31 @@ export default function EdicionesPage() {
 
       {/* Page hero */}
       <section
+        className="ediciones-hero"
         style={{
-          padding: "4.5rem 2rem 3rem",
+          padding: "4.5rem 2rem 2rem",
           textAlign: "center",
           maxWidth: "900px",
           margin: "0 auto",
           width: "100%",
         }}
       >
-        <span className="badge badge-gold" style={{ marginBottom: "1rem" }}>
+        <span className="badge badge-gold" style={{ marginBottom: "0.75rem" }}>
           ✦ Catálogo Histórico de Encuentros Pop-Up ✦
         </span>
         <h1
           className="text-gradient"
           style={{
-            fontSize: "clamp(2rem, 4.5vw, 3.4rem)",
+            fontSize: "clamp(1.8rem, 4.5vw, 3.4rem)",
             fontFamily: "var(--font-serif)",
             letterSpacing: "0.05em",
             lineHeight: 1.2,
-            marginBottom: "0.75rem",
+            marginBottom: "0.5rem",
           }}
         >
           Ediciones de Mercado de Brujas
         </h1>
-        <div className="ornament-divider" style={{ marginBottom: "1.25rem" }}>
+        <div className="ornament-divider" style={{ marginBottom: "1rem" }}>
           <span
             style={{
               fontFamily: "var(--font-serif)",
@@ -59,7 +60,7 @@ export default function EdicionesPage() {
             Aquelarre · Ferias & Ediciones
           </span>
         </div>
-        <p className="text-muted" style={{ fontSize: "1rem", maxWidth: "660px", margin: "0 auto", lineHeight: 1.75 }}>
+        <p className="hero-subtext text-muted" style={{ fontSize: "0.95rem", maxWidth: "660px", margin: "0 auto", lineHeight: 1.6 }}>
           Selecciona una edición para leer su relato completo, datos de encuentro y sus fotos exclusivas.
         </p>
       </section>
@@ -80,6 +81,38 @@ export default function EdicionesPage() {
       >
         {/* Left: edition selector */}
         <div className="ediciones-sidebar" style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+          {/* Mobile dropdown selector */}
+          <div className="ediciones-mobile-dropdown-wrap">
+            <label
+              style={{
+                fontFamily: "var(--font-serif)",
+                fontSize: "0.72rem",
+                letterSpacing: "0.15em",
+                textTransform: "uppercase",
+                color: "var(--accent-gold)",
+                display: "block",
+                marginBottom: "0.35rem",
+                fontWeight: 600,
+              }}
+            >
+              ✦ Elige una Edición ({EDITIONS_DATA.length}):
+            </label>
+            <select
+              className="ediciones-mobile-select"
+              value={selectedEdition.id}
+              onChange={(e) => {
+                const ed = EDITIONS_DATA.find((item) => item.id === e.target.value);
+                if (ed) setSelectedEdition(ed);
+              }}
+            >
+              {EDITIONS_DATA.map((ed) => (
+                <option key={ed.id} value={ed.id} style={{ background: "#18120e", color: "#f0e6d2" }}>
+                  {ed.number > 0 ? `Edición #${ed.number}` : ed.title} — {ed.status} ({ed.date})
+                </option>
+              ))}
+            </select>
+          </div>
+
           <h2
             className="ediciones-sidebar-title"
             style={{
@@ -100,11 +133,8 @@ export default function EdicionesPage() {
               return (
                 <div
                   key={ed.id}
-                  onClick={(e) => {
-                    setSelectedEdition(ed);
-                    e.currentTarget.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
-                  }}
-                  className={`edition-selector-item ${isSelected ? "glass-card-gold" : "glass-panel"}`}
+                  onClick={() => setSelectedEdition(ed)}
+                  className={`edition-selector-item ${isSelected ? "glass-card-gold active" : "glass-panel"}`}
                   style={{
                     padding: "1.1rem 1.25rem",
                     cursor: "pointer",
@@ -114,7 +144,7 @@ export default function EdicionesPage() {
                     transform: isSelected ? "translateX(4px)" : "none",
                   }}
                 >
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.35rem" }}>
+                  <div className="edition-selector-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.35rem" }}>
                     <span className="badge" style={{ fontSize: "0.6rem" }}>{ed.status}</span>
                     <span
                       style={{

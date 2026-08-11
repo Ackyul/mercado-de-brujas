@@ -388,27 +388,68 @@ p, span, a, li, button, input, label {
 /* Prevent horizontal overflow on all screens */
 html, body { overflow-x: hidden; }
 
+/* Default desktop helper rules for ediciones mobile selector */
+.ediciones-mobile-dropdown-wrap {
+  display: none;
+}
+
 /* ── Tablet & below ── */
 @media (max-width: 900px) {
+  .ediciones-hero {
+    padding: 2.5rem 1rem 0.75rem !important;
+  }
+  .hero-subtext {
+    display: none !important;
+  }
+
   /* Ediciones 2-col → 1-col stack */
   .ediciones-layout {
     grid-template-columns: 1fr !important;
-    gap: 1.25rem !important;
+    gap: 1rem !important;
+    margin-bottom: 3rem !important;
   }
   .ediciones-sidebar {
     max-width: 100% !important;
     width: 100% !important;
+    gap: 0.4rem !important;
   }
 
-  /* Ediciones horizontal pill navigation bar for mobile */
+  .ediciones-sidebar-title {
+    display: none !important;
+  }
+
+  .ediciones-mobile-dropdown-wrap {
+    display: block !important;
+    margin-bottom: 0.4rem !important;
+  }
+
+  .ediciones-mobile-select {
+    display: block !important;
+    width: 100% !important;
+    padding: 0.75rem 1rem !important;
+    border-radius: var(--radius-sm) !important;
+    border: 1px solid var(--accent-gold) !important;
+    color: var(--accent-gold) !important;
+    font-family: var(--font-serif) !important;
+    font-size: 0.9rem !important;
+    font-weight: 700 !important;
+    background: rgba(20, 14, 10, 0.95) !important;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15) !important;
+    outline: none !important;
+    cursor: pointer !important;
+  }
+
+  /* Ediciones horizontal compact pill navigation bar for mobile */
   .ediciones-selector-container {
     display: flex !important;
     flex-direction: row !important;
-    gap: 0.65rem !important;
+    gap: 0.45rem !important;
     overflow-x: auto !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
     scroll-snap-type: x mandatory;
-    padding: 0.25rem 0.25rem 0.75rem 0.25rem !important;
-    margin: 0 -0.25rem !important;
+    padding: 0.2rem 0 0.5rem 0 !important;
+    margin: 0 !important;
     scrollbar-width: none;
     -ms-overflow-style: none;
     -webkit-overflow-scrolling: touch;
@@ -418,42 +459,56 @@ html, body { overflow-x: hidden; }
   }
   .edition-selector-item {
     flex: 0 0 auto !important;
-    width: clamp(165px, 48vw, 220px) !important;
+    width: auto !important;
+    min-width: unset !important;
     scroll-snap-align: start;
-    padding: 0.75rem 0.85rem !important;
+    padding: 0.45rem 0.85rem !important;
+    border-radius: 20px !important;
+    border: 1px solid var(--border-subtle) !important;
     border-left: 1px solid var(--border-subtle) !important;
-    border-bottom: 3px solid transparent !important;
+    border-bottom: 1px solid var(--border-subtle) !important;
     transform: none !important;
     margin-bottom: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.4rem !important;
+    box-sizing: border-box !important;
+  }
+  .edition-selector-item .edition-selector-header {
+    margin-bottom: 0 !important;
+  }
+  .edition-selector-item .edition-selector-date,
+  .edition-selector-item .edition-selector-location {
+    display: none !important;
   }
   .edition-selector-item.glass-card-gold {
-    border-bottom-color: var(--accent-gold) !important;
-    border-left-color: var(--accent-gold) !important;
-    background: rgba(212, 175, 55, 0.15) !important;
-    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15) !important;
+    border-color: var(--accent-gold) !important;
+    background: rgba(212, 175, 55, 0.22) !important;
+    box-shadow: 0 2px 10px rgba(212, 175, 55, 0.25) !important;
   }
-  .edition-selector-title,
-  .edition-selector-date,
-  .edition-selector-location {
+  .edition-selector-title {
+    font-size: 0.8rem !important;
     white-space: nowrap !important;
     overflow: hidden !important;
-    text-overflow: ellipsis !important;
-    display: block !important;
+    margin-bottom: 0 !important;
   }
 
   .ediciones-detail-panel {
     padding: 1.25rem 1rem !important;
     border-radius: var(--radius-sm) !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
   }
   .edition-cover-wrapper {
-    height: 200px !important;
+    height: 190px !important;
     margin-bottom: 1.25rem !important;
   }
   .edition-cover-overlay {
-    padding: 0.85rem 1rem !important;
+    padding: 0.75rem 0.9rem !important;
   }
   .edition-cover-title {
-    font-size: 1.3rem !important;
+    font-size: 1.25rem !important;
   }
   .edition-cover-badges {
     gap: 0.35rem !important;
