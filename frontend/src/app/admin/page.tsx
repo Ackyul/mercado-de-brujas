@@ -20,6 +20,8 @@ export default function AdminConsolePage() {
     deletePhotoFromEdition,
   } = useEditions();
 
+  const GOOGLE_CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || "788476622736-rr4quumbg1c2717b8d93v3hblvmgv6uh.apps.googleusercontent.com";
+
   // Authentication State
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [adminUser, setAdminUser] = useState<{ email: string; name: string } | null>(null);
