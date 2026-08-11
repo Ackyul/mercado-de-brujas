@@ -8,6 +8,164 @@ import { EDITIONS_DATA, EditionPhoto } from "../data/editionsData";
 
 type PhotoWithEdition = EditionPhoto & { editionTitle: string; editionId: string };
 
+function EditionGallerySlider({
+  edition,
+  onPhotoClick,
+}: {
+  edition: any;
+  onPhotoClick: (photo: PhotoWithEdition) => void;
+}) {
+  const sliderRef = React.useRef<HTMLDivElement>(null);
+
+  const scrollLeft = () => {
+    if (sliderRef.current) {
+      sliderRef.current.scrollBy({ left: -460, behavior: "smooth" });
+    }
+  };
+
+  const scrollRight = () => {
+    if (sliderRef.current) {
+      sliderRef.current.scrollBy({ left: 460, behavior: "smooth" });
+    }
+  };
+
+  return (
+    <div className="carousel-wrapper" style={{ position: "relative" }}>
+      {/* PC & Mobile Navigation Arrows */}
+      <button
+        onClick={scrollLeft}
+        className="carousel-arrow-btn carousel-arrow-left"
+        aria-label="Anterior"
+        title="Ver fotos anteriores"
+      >
+        ‹
+      </button>
+
+      <button
+        onClick={scrollRight}
+        className="carousel-arrow-btn carousel-arrow-right"
+        aria-label="Siguiente"
+        title="Ver más fotos"
+      >
+        ›
+      </button>
+
+      {/* Horizontal scroll slider (7 photos + 8th arrow card) */}
+      <div
+        ref={sliderRef}
+        className="ediciones-gallery-slider"
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          gap: "1.1rem",
+          overflowX: "auto",
+          scrollSnapType: "x mandatory",
+          paddingBottom: "0.85rem",
+          scrollBehavior: "smooth",
+          WebkitOverflowScrolling: "touch",
+        }}
+      >
+        {/* First 7 photos */}
+        {edition.gallery.slice(0, 7).map((photo: any) => {
+          const photoWithEdition: PhotoWithEdition = {
+            ...photo,
+            editionTitle: edition.title,
+            editionId: edition.id,
+          };
+          return (
+            <div
+              key={photo.id}
+              className="glass-panel"
+              onClick={() => onPhotoClick(photoWithEdition)}
+              style={{
+                flex: "0 0 auto",
+                width: "250px",
+                height: "210px",
+                scrollSnapAlign: "start",
+                overflow: "hidden",
+                borderRadius: "var(--radius-sm)",
+                cursor: "pointer",
+                display: "flex",
+                flexDirection: "column",
+                transition: "transform 0.2s ease, box-shadow 0.2s ease",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLDivElement).style.transform = "scale(1.025)";
+                (e.currentTarget as HTMLDivElement).style.boxShadow = "var(--shadow-gold)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLDivElement).style.transform = "scale(1)";
+                (e.currentTarget as HTMLDivElement).style.boxShadow = "";
+              }}
+            >
+              <div style={{ flexGrow: 1 }}>
+                <ImagePlaceholder height="100%" label="(Imagen)" />
+              </div>
+            </div>
+          );
+        })}
+
+        {/* 8th item: Arrow Card to view all photos of the feria */}
+        <Link
+          href={`/galeria/${edition.slug}`}
+          className="glass-card-gold ver-mas-galeria-card"
+          style={{
+            flex: "0 0 auto",
+            width: "210px",
+            height: "210px",
+            scrollSnapAlign: "start",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            textDecoration: "none",
+            borderRadius: "var(--radius-sm)",
+            border: "1px solid var(--accent-gold)",
+            padding: "1.25rem",
+            textAlign: "center",
+            cursor: "pointer",
+            boxShadow: "0 4px 18px rgba(212, 175, 55, 0.2)",
+            transition: "transform 0.2s ease, background 0.2s ease",
+          }}
+        >
+          <div
+            style={{
+              width: "48px",
+              height: "48px",
+              borderRadius: "50%",
+              border: "1px solid var(--accent-gold)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: "1.4rem",
+              color: "var(--accent-gold)",
+              marginBottom: "0.75rem",
+              background: "rgba(212, 175, 55, 0.12)",
+            }}
+          >
+            ➔
+          </div>
+          <span
+            style={{
+              fontFamily: "var(--font-serif)",
+              fontSize: "0.92rem",
+              color: "var(--accent-gold)",
+              fontWeight: 700,
+              letterSpacing: "0.03em",
+              marginBottom: "0.25rem",
+            }}
+          >
+            Ver todas las fotos
+          </span>
+          <span style={{ fontSize: "0.75rem", color: "var(--text-muted)" }}>
+            {edition.title}
+          </span>
+        </Link>
+      </div>
+    </div>
+  );
+}
+
 export default function GaleriaPage() {
   const [lightboxPhoto, setLightboxPhoto] = useState<PhotoWithEdition | null>(null);
 
@@ -56,7 +214,7 @@ export default function GaleriaPage() {
             className="text-muted"
             style={{ maxWidth: "580px", margin: "0 auto", fontSize: "1rem", lineHeight: 1.75 }}
           >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Explora la galería fotográfica histórica de cada una de nuestras ediciones pop-up celebradas.
           </p>
         </div>
 
@@ -113,118 +271,11 @@ export default function GaleriaPage() {
                 </div>
               </div>
 
-              {/* Horizontal scroll slider (7 photos + 8th arrow card) */}
-              <div
-                className="ediciones-gallery-slider"
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  gap: "1.1rem",
-                  overflowX: "auto",
-                  scrollSnapType: "x mandatory",
-                  paddingBottom: "0.85rem",
-                  scrollbarWidth: "none",
-                  msOverflowStyle: "none",
-                  WebkitOverflowScrolling: "touch",
-                }}
-              >
-                {/* First 7 photos */}
-                {edition.gallery.slice(0, 7).map((photo) => {
-                  const photoWithEdition: PhotoWithEdition = {
-                    ...photo,
-                    editionTitle: edition.title,
-                    editionId: edition.id,
-                  };
-                  return (
-                    <div
-                      key={photo.id}
-                      className="glass-panel"
-                      onClick={() => setLightboxPhoto(photoWithEdition)}
-                      style={{
-                        flex: "0 0 auto",
-                        width: "250px",
-                        height: "210px",
-                        scrollSnapAlign: "start",
-                        overflow: "hidden",
-                        borderRadius: "var(--radius-sm)",
-                        cursor: "pointer",
-                        display: "flex",
-                        flexDirection: "column",
-                        transition: "transform 0.2s ease, box-shadow 0.2s ease",
-                      }}
-                      onMouseEnter={(e) => {
-                        (e.currentTarget as HTMLDivElement).style.transform = "scale(1.025)";
-                        (e.currentTarget as HTMLDivElement).style.boxShadow = "var(--shadow-gold)";
-                      }}
-                      onMouseLeave={(e) => {
-                        (e.currentTarget as HTMLDivElement).style.transform = "scale(1)";
-                        (e.currentTarget as HTMLDivElement).style.boxShadow = "";
-                      }}
-                    >
-                      <div style={{ flexGrow: 1 }}>
-                        <ImagePlaceholder height="100%" label="(Imagen)" />
-                      </div>
-                    </div>
-                  );
-                })}
-
-                {/* 8th item: Arrow Card to view all photos of the feria */}
-                <Link
-                  href={`/galeria/${edition.slug}`}
-                  className="glass-card-gold ver-mas-galeria-card"
-                  style={{
-                    flex: "0 0 auto",
-                    width: "210px",
-                    height: "210px",
-                    scrollSnapAlign: "start",
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    textDecoration: "none",
-                    borderRadius: "var(--radius-sm)",
-                    border: "1px solid var(--accent-gold)",
-                    padding: "1.25rem",
-                    textAlign: "center",
-                    cursor: "pointer",
-                    boxShadow: "0 4px 18px rgba(212, 175, 55, 0.2)",
-                    transition: "transform 0.2s ease, background 0.2s ease",
-                  }}
-                >
-                  <div
-                    style={{
-                      width: "48px",
-                      height: "48px",
-                      borderRadius: "50%",
-                      border: "1px solid var(--accent-gold)",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontSize: "1.4rem",
-                      color: "var(--accent-gold)",
-                      marginBottom: "0.75rem",
-                      background: "rgba(212, 175, 55, 0.12)",
-                    }}
-                  >
-                    ➔
-                  </div>
-                  <span
-                    style={{
-                      fontFamily: "var(--font-serif)",
-                      fontSize: "0.92rem",
-                      color: "var(--accent-gold)",
-                      fontWeight: 700,
-                      letterSpacing: "0.03em",
-                      marginBottom: "0.25rem",
-                    }}
-                  >
-                    Ver todas las fotos
-                  </span>
-                  <span style={{ fontSize: "0.75rem", color: "var(--text-muted)" }}>
-                    {edition.title}
-                  </span>
-                </Link>
-              </div>
+              {/* Slider with arrow buttons for PC & Mobile */}
+              <EditionGallerySlider
+                edition={edition}
+                onPhotoClick={setLightboxPhoto}
+              />
             </div>
           ))}
         </div>
