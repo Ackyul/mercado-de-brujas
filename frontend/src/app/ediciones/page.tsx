@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import Header from "../components/Header";
 import ImagePlaceholder from "../components/ImagePlaceholder";
 import { EDITIONS_DATA, Edition, EditionPhoto } from "../data/editionsData";
@@ -305,10 +306,42 @@ export default function EdicionesPage() {
             <p style={{ fontSize: "1rem", lineHeight: 1.75, color: "var(--text-main)", marginBottom: "1.25rem" }}>
               {selectedEdition.fullStory}
             </p>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", marginBottom: "1.75rem" }}>
               {selectedEdition.highlights.map((item, idx) => (
                 <span key={idx} className="chip">✦ {item}</span>
               ))}
+            </div>
+
+            <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+              <Link
+                href={`/ediciones/${selectedEdition.slug}`}
+                className="btn-primary"
+                style={{
+                  textDecoration: "none",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "0.5rem",
+                  padding: "0.8rem 1.4rem",
+                  fontSize: "0.9rem",
+                }}
+              >
+                ✦ Ver más sobre la edición →
+              </Link>
+
+              <Link
+                href={`/galeria/${selectedEdition.slug}`}
+                className="btn-secondary"
+                style={{
+                  textDecoration: "none",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "0.5rem",
+                  padding: "0.8rem 1.4rem",
+                  fontSize: "0.9rem",
+                }}
+              >
+                📸 Ver Galería de Fotos
+              </Link>
             </div>
           </div>
 

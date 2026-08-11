@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import Header from "../components/Header";
 import ImagePlaceholder from "../components/ImagePlaceholder";
 import { EDITIONS_DATA, EditionPhoto } from "../data/editionsData";
@@ -64,33 +65,52 @@ export default function GaleriaPage() {
           {EDITIONS_DATA.map((edition) => (
             <div key={edition.id}>
               {/* Edition header */}
-              <div style={{ marginBottom: "1.5rem", paddingBottom: "1rem", borderBottom: "1px solid var(--border-subtle)" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: "1rem", flexWrap: "wrap" }}>
-                  <h2
+              <div style={{ marginBottom: "1.5rem", paddingBottom: "1rem", borderBottom: "1px solid var(--border-subtle)", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem" }}>
+                <div>
+                  <div style={{ display: "flex", alignItems: "center", gap: "1rem", flexWrap: "wrap" }}>
+                    <h2
+                      style={{
+                        fontFamily: "var(--font-serif)",
+                        fontSize: "clamp(1.1rem, 2.5vw, 1.6rem)",
+                        letterSpacing: "0.05em",
+                        color: "var(--text-main)",
+                      }}
+                    >
+                      {edition.title}
+                    </h2>
+                    <span className={edition.status === "Próxima" ? "badge badge-purple" : "badge badge-gold"}>
+                      {edition.status}
+                    </span>
+                  </div>
+                  <p
                     style={{
+                      fontSize: "0.8rem",
+                      color: "var(--text-muted)",
+                      marginTop: "0.35rem",
                       fontFamily: "var(--font-serif)",
-                      fontSize: "clamp(1.1rem, 2.5vw, 1.6rem)",
-                      letterSpacing: "0.05em",
-                      color: "var(--text-main)",
+                      letterSpacing: "0.06em",
                     }}
                   >
-                    {edition.title}
-                  </h2>
-                  <span className={edition.status === "Próxima" ? "badge badge-purple" : "badge badge-gold"}>
-                    {edition.status}
-                  </span>
+                    📅 {edition.date} &nbsp;·&nbsp; 📍 {edition.location}
+                  </p>
                 </div>
-                <p
-                  style={{
-                    fontSize: "0.8rem",
-                    color: "var(--text-muted)",
-                    marginTop: "0.35rem",
-                    fontFamily: "var(--font-serif)",
-                    letterSpacing: "0.06em",
-                  }}
-                >
-                  📅 {edition.date} &nbsp;·&nbsp; 📍 {edition.location}
-                </p>
+
+                <div style={{ display: "flex", gap: "0.6rem" }}>
+                  <Link
+                    href={`/ediciones/${edition.slug}`}
+                    className="btn-primary"
+                    style={{ textDecoration: "none", fontSize: "0.78rem", padding: "0.45rem 0.85rem" }}
+                  >
+                    ✦ Ver Edición
+                  </Link>
+                  <Link
+                    href={`/galeria/${edition.slug}`}
+                    className="btn-secondary"
+                    style={{ textDecoration: "none", fontSize: "0.78rem", padding: "0.45rem 0.85rem" }}
+                  >
+                    📸 Ver Galería
+                  </Link>
+                </div>
               </div>
 
               {/* Photos grid */}
