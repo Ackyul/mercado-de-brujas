@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
 import ImagePlaceholder from "../components/ImagePlaceholder";
 import { EDITIONS_DATA, Edition, EditionPhoto } from "../data/editionsData";
@@ -8,6 +8,44 @@ import { EDITIONS_DATA, Edition, EditionPhoto } from "../data/editionsData";
 export default function EdicionesPage() {
   const [selectedEdition, setSelectedEdition] = useState<Edition>(EDITIONS_DATA[0]);
   const [lightboxPhoto, setLightboxPhoto] = useState<EditionPhoto | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [searchQuery, setSearchQuery] = useState<string>("");
+
+  // Sync state with URL search params on mount & window navigation
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const slugParam = params.get("slug");
+      if (slugParam) {
+        const ed = EDITIONS_DATA.find((item) => item.slug === slugParam);
+        if (ed) setSelectedEdition(ed);
+      }
+    }
+  }, []);
+
+  const handleSelectEdition = (ed: Edition) => {
+    setSelectedEdition(ed);
+    setIsModalOpen(false);
+    setSearchQuery("");
+    if (typeof window !== "undefined") {
+      const url = new URL(window.location.href);
+      url.searchParams.set("slug", ed.slug);
+      window.history.pushState({}, "", url.toString());
+    }
+  };
+
+  const filteredEditions = EDITIONS_DATA.filter((ed) => {
+    const q = searchQuery.toLowerCase().trim();
+    if (!q) return true;
+    return (
+      ed.title.toLowerCase().includes(q) ||
+      ed.date.toLowerCase().includes(q) ||
+      ed.location.toLowerCase().includes(q) ||
+      ed.city.toLowerCase().includes(q) ||
+      ed.status.toLowerCase().includes(q) ||
+      ed.number.toString().includes(q)
+    );
+  });
 
   return (
     <div
@@ -79,109 +117,72 @@ export default function EdicionesPage() {
           alignItems: "start",
         }}
       >
-        {/* Left: edition selector */}
-        <div className="ediciones-sidebar" style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
-          {/* Mobile dropdown selector */}
-          <div className="ediciones-mobile-dropdown-wrap">
-            <label
-              style={{
-                fontFamily: "var(--font-serif)",
-                fontSize: "0.72rem",
-                letterSpacing: "0.15em",
-                textTransform: "uppercase",
-                color: "var(--accent-gold)",
-                display: "block",
-                marginBottom: "0.35rem",
-                fontWeight: 600,
-              }}
-            >
-              ✦ Elige una Edición ({EDITIONS_DATA.length}):
-            </label>
-            <select
-              className="ediciones-mobile-select"
-              value={selectedEdition.id}
-              onChange={(e) => {
-                const ed = EDITIONS_DATA.find((item) => item.id === e.target.value);
-                if (ed) setSelectedEdition(ed);
-              }}
-            >
-              {EDITIONS_DATA.map((ed) => (
-                <option key={ed.id} value={ed.id} style={{ background: "#18120e", color: "#f0e6d2" }}>
-                  {ed.number > 0 ? `Edición #${ed.number}` : ed.title} · {ed.status}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <h2
-            className="ediciones-sidebar-title"
+        {/* Left / Top: Active edition display box & Cambiar edición button */}
+        <div className="ediciones-sidebar" style={{ display: "flex", flexDirection: "column", gap: "0.85rem" }}>
+          {/* Active Edition Display Card */}
+          <div
+            onClick={() => setIsModalOpen(true)}
+            className="glass-card-gold active-edition-card"
             style={{
-              fontFamily: "var(--font-serif)",
-              fontSize: "0.8rem",
-              letterSpacing: "0.18em",
-              textTransform: "uppercase",
-              color: "var(--accent-gold)",
-              marginBottom: "0.25rem",
+              padding: "1.25rem 1.4rem",
+              cursor: "pointer",
+              borderRadius: "var(--radius-md)",
+              border: "1px solid var(--accent-gold)",
+              boxShadow: "0 4px 20px rgba(212, 175, 55, 0.2)",
+              transition: "all 0.25s ease",
             }}
           >
-            ✦ Seleccionar Edición ({EDITIONS_DATA.length})
-          </h2>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.5rem" }}>
+              <span className="badge badge-gold" style={{ fontSize: "0.65rem" }}>
+                ✦ Edición Mostrada
+              </span>
+              <span className="badge" style={{ fontSize: "0.65rem" }}>
+                {selectedEdition.status}
+              </span>
+            </div>
 
-          <div className="ediciones-selector-container">
-            {EDITIONS_DATA.map((ed) => {
-              const isSelected = selectedEdition.id === ed.id;
-              return (
-                <div
-                  key={ed.id}
-                  onClick={() => setSelectedEdition(ed)}
-                  className={`edition-selector-item ${isSelected ? "glass-card-gold active" : "glass-panel"}`}
-                  style={{
-                    padding: "1.1rem 1.25rem",
-                    cursor: "pointer",
-                    borderRadius: "var(--radius-sm)",
-                    borderLeft: `3px solid ${isSelected ? "var(--accent-gold)" : "transparent"}`,
-                    transition: "all 0.2s ease",
-                    transform: isSelected ? "translateX(4px)" : "none",
-                  }}
-                >
-                  <div className="edition-selector-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.35rem" }}>
-                    <span className="badge" style={{ fontSize: "0.6rem" }}>{ed.status}</span>
-                    <span
-                      style={{
-                        fontFamily: "var(--font-serif)",
-                        fontSize: "0.75rem",
-                        color: "var(--accent-gold)",
-                        fontWeight: 700,
-                      }}
-                    >
-                      {ed.number > 0 ? `#${ed.number}` : "Especial"}
-                    </span>
-                  </div>
-                  <h3
-                    className="edition-selector-title"
-                    style={{
-                      fontFamily: "var(--font-serif)",
-                      fontSize: "0.95rem",
-                      letterSpacing: "0.02em",
-                      color: "var(--text-main)",
-                      marginBottom: "0.2rem",
-                    }}
-                  >
-                    {ed.title}
-                  </h3>
-                  <span className="mobile-pill-label" style={{ display: "none" }}>
-                    ● {ed.number > 0 ? `#${ed.number}` : ed.title} ({ed.status})
-                  </span>
-                  <p className="edition-selector-date" style={{ fontSize: "0.75rem", color: "var(--text-muted)", marginBottom: "0.2rem" }}>
-                    📅 {ed.date}
-                  </p>
-                  <span className="edition-selector-location" style={{ fontSize: "0.72rem", color: "var(--accent-gold)", fontStyle: "italic", opacity: 0.8 }}>
-                    📍 {ed.location}
-                  </span>
-                </div>
-              );
-            })}
+            <h2
+              style={{
+                fontFamily: "var(--font-serif)",
+                fontSize: "1.3rem",
+                color: "var(--text-main)",
+                letterSpacing: "0.03em",
+                marginBottom: "0.4rem",
+              }}
+            >
+              {selectedEdition.title}
+            </h2>
+
+            <p style={{ fontSize: "0.82rem", color: "var(--text-muted)", marginBottom: "0.25rem" }}>
+              📅 {selectedEdition.date}
+            </p>
+
+            <span style={{ fontSize: "0.78rem", color: "var(--accent-gold)", fontStyle: "italic", opacity: 0.9 }}>
+              📍 {selectedEdition.location}
+            </span>
           </div>
+
+          {/* Button: Cambiar Edición */}
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="btn-secondary btn-cambiar-edicion"
+            style={{
+              width: "100%",
+              padding: "0.85rem 1.25rem",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "0.5rem",
+              fontSize: "0.95rem",
+              fontWeight: 600,
+              fontFamily: "var(--font-serif)",
+              letterSpacing: "0.05em",
+              cursor: "pointer",
+              borderRadius: "var(--radius-sm)",
+            }}
+          >
+            🔍 Cambiar Edición
+          </button>
         </div>
 
         {/* Right: edition details */}
@@ -447,6 +448,187 @@ export default function EdicionesPage() {
               <p className="text-muted" style={{ fontSize: "0.82rem" }}>
                 Fotografía de {selectedEdition.title}
               </p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Modal Overlay for Edition Selection with Live Search */}
+      {isModalOpen && (
+        <div
+          className="ediciones-modal-overlay"
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 1100,
+            backgroundColor: "rgba(6, 4, 3, 0.92)",
+            backdropFilter: "blur(16px)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "1.25rem",
+          }}
+          onClick={() => setIsModalOpen(false)}
+        >
+          <div
+            className="ediciones-modal-content glass-panel ornate-frame"
+            style={{
+              maxWidth: "720px",
+              width: "100%",
+              maxHeight: "88vh",
+              display: "flex",
+              flexDirection: "column",
+              borderRadius: "var(--radius-md)",
+              position: "relative",
+              overflow: "hidden",
+              backgroundColor: "rgba(18, 12, 9, 0.98)",
+              border: "1px solid var(--border-gold)",
+              boxShadow: "0 10px 40px rgba(0, 0, 0, 0.8)",
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div
+              style={{
+                padding: "1.25rem 1.5rem 1rem",
+                borderBottom: "1px solid var(--border-subtle)",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <div>
+                <span className="badge badge-gold" style={{ fontSize: "0.62rem", marginBottom: "0.25rem" }}>
+                  ✦ Aquelarre Pop-Up ✦
+                </span>
+                <h2
+                  style={{
+                    fontFamily: "var(--font-serif)",
+                    fontSize: "1.35rem",
+                    color: "var(--text-main)",
+                    letterSpacing: "0.04em",
+                  }}
+                >
+                  Seleccionar Edición
+                </h2>
+              </div>
+              <button
+                onClick={() => setIsModalOpen(false)}
+                style={{
+                  background: "rgba(255,255,255,0.05)",
+                  border: "1px solid var(--border-subtle)",
+                  borderRadius: "50%",
+                  width: "36px",
+                  height: "36px",
+                  color: "var(--text-main)",
+                  fontSize: "1.1rem",
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* Search Bar */}
+            <div style={{ padding: "1rem 1.5rem 0.5rem" }}>
+              <input
+                type="text"
+                placeholder="🔍 Buscar por número, fecha, lugar o estado (ej: 41, Diciembre, Casona)..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="ediciones-search-input"
+                style={{
+                  width: "100%",
+                  padding: "0.75rem 1rem",
+                  borderRadius: "var(--radius-sm)",
+                  border: "1px solid var(--border-gold)",
+                  background: "rgba(10, 6, 4, 0.9)",
+                  color: "var(--text-main)",
+                  fontSize: "0.9rem",
+                  outline: "none",
+                  boxSizing: "border-box",
+                  fontFamily: "var(--font-sans)",
+                }}
+              />
+            </div>
+
+            {/* Editions List / Table */}
+            <div
+              style={{
+                padding: "0.75rem 1.5rem 1.5rem",
+                overflowY: "auto",
+                flexGrow: 1,
+              }}
+            >
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+                {filteredEditions.length > 0 ? (
+                  filteredEditions.map((ed) => {
+                    const isSelected = selectedEdition.id === ed.id;
+                    return (
+                      <div
+                        key={ed.id}
+                        onClick={() => handleSelectEdition(ed)}
+                        className={`modal-edition-item ${isSelected ? "glass-card-gold" : "glass-panel"}`}
+                        style={{
+                          padding: "1rem 1.25rem",
+                          borderRadius: "var(--radius-sm)",
+                          cursor: "pointer",
+                          display: "flex",
+                          justifyContent: "space-between",
+                          alignItems: "center",
+                          borderLeft: `4px solid ${isSelected ? "var(--accent-gold)" : "transparent"}`,
+                          transition: "all 0.2s ease",
+                        }}
+                      >
+                        <div style={{ flexGrow: 1, paddingRight: "1rem" }}>
+                          <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.25rem" }}>
+                            <span className="badge badge-gold" style={{ fontSize: "0.6rem" }}>
+                              {ed.number > 0 ? `#${ed.number}` : "Especial"}
+                            </span>
+                            <span className="badge" style={{ fontSize: "0.6rem" }}>
+                              {ed.status}
+                            </span>
+                          </div>
+                          <h3
+                            style={{
+                              fontFamily: "var(--font-serif)",
+                              fontSize: "1.05rem",
+                              color: isSelected ? "var(--accent-gold)" : "var(--text-main)",
+                              margin: "0.2rem 0",
+                            }}
+                          >
+                            {ed.title}
+                          </h3>
+                          <p style={{ fontSize: "0.78rem", color: "var(--text-muted)", margin: 0 }}>
+                            📅 {ed.date} · 📍 {ed.location}
+                          </p>
+                        </div>
+
+                        <div>
+                          <span
+                            className={isSelected ? "btn-primary" : "btn-secondary"}
+                            style={{
+                              fontSize: "0.75rem",
+                              padding: "0.4rem 0.85rem",
+                              whiteSpace: "nowrap",
+                            }}
+                          >
+                            {isSelected ? "Activa ✦" : "Ver Edición →"}
+                          </span>
+                        </div>
+                      </div>
+                    );
+                  })
+                ) : (
+                  <div style={{ textAlign: "center", padding: "2.5rem 1rem", color: "var(--text-muted)" }}>
+                    <p style={{ fontSize: "1.1rem", marginBottom: "0.5rem" }}>🔮 No se encontraron ediciones</p>
+                    <p style={{ fontSize: "0.85rem" }}>Intenta buscar con otro término de búsqueda.</p>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>

@@ -388,6 +388,42 @@ p, span, a, li, button, input, label {
 /* Prevent horizontal overflow on all screens */
 html, body { overflow-x: hidden; }
 
+/* Active Edition card hover & modal styles */
+.active-edition-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.active-edition-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent-gold) !important;
+  box-shadow: 0 8px 28px rgba(212, 175, 55, 0.3) !important;
+}
+
+.btn-cambiar-edicion {
+  border: 1px solid var(--accent-gold) !important;
+  color: var(--accent-gold) !important;
+  background: rgba(212, 175, 55, 0.08) !important;
+  transition: all 0.2s ease !important;
+}
+.btn-cambiar-edicion:hover {
+  background: var(--accent-gold) !important;
+  color: #120c09 !important;
+  box-shadow: 0 4px 18px rgba(212, 175, 55, 0.4) !important;
+}
+
+.modal-edition-item {
+  transition: all 0.2s ease;
+}
+.modal-edition-item:hover {
+  border-left-color: var(--accent-gold) !important;
+  background: rgba(212, 175, 55, 0.14) !important;
+  transform: translateX(3px);
+}
+
+.ediciones-search-input:focus {
+  border-color: var(--accent-gold) !important;
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.3) !important;
+}
+
 /* Default desktop helper rules for ediciones mobile selector */
 .ediciones-mobile-dropdown-wrap {
   display: none;
