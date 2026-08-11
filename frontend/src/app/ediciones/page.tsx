@@ -31,13 +31,13 @@ export default function EdicionesPage() {
           width: "100%",
         }}
       >
-        <span className="badge badge-gold" style={{ marginBottom: "0.75rem" }}>
-          ✦ Catálogo Histórico de Encuentros Pop-Up ✦
+        <span className="badge badge-gold hero-badge" style={{ marginBottom: "0.75rem" }}>
+          ✦ Catálogo de Ediciones Pop-Up ✦
         </span>
         <h1
           className="text-gradient"
           style={{
-            fontSize: "clamp(1.8rem, 4.5vw, 3.4rem)",
+            fontSize: "clamp(1.75rem, 4.5vw, 3.4rem)",
             fontFamily: "var(--font-serif)",
             letterSpacing: "0.05em",
             lineHeight: 1.2,
@@ -107,7 +107,7 @@ export default function EdicionesPage() {
             >
               {EDITIONS_DATA.map((ed) => (
                 <option key={ed.id} value={ed.id} style={{ background: "#18120e", color: "#f0e6d2" }}>
-                  {ed.number > 0 ? `Edición #${ed.number}` : ed.title} — {ed.status} ({ed.date})
+                  {ed.number > 0 ? `Edición #${ed.number}` : ed.title} · {ed.status}
                 </option>
               ))}
             </select>
@@ -169,6 +169,9 @@ export default function EdicionesPage() {
                   >
                     {ed.title}
                   </h3>
+                  <span className="mobile-pill-label" style={{ display: "none" }}>
+                    ● {ed.number > 0 ? `#${ed.number}` : ed.title} ({ed.status})
+                  </span>
                   <p className="edition-selector-date" style={{ fontSize: "0.75rem", color: "var(--text-muted)", marginBottom: "0.2rem" }}>
                     📅 {ed.date}
                   </p>
