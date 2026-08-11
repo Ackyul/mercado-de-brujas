@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cinzel, Outfit } from "next/font/google";
 import "./globals.css";
+import { EditionsProvider } from "./context/EditionsContext";
 
 const cinzel = Cinzel({
   variable: "--font-cinzel",
@@ -27,7 +28,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className={`${cinzel.variable} ${outfit.variable}`}>
-      <body>{children}</body>
+      <body>
+        <EditionsProvider>{children}</EditionsProvider>
+      </body>
     </html>
   );
 }

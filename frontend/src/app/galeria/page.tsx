@@ -4,7 +4,8 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Header from "../components/Header";
 import ImagePlaceholder from "../components/ImagePlaceholder";
-import { EDITIONS_DATA, EditionPhoto } from "../data/editionsData";
+import { EditionPhoto } from "../data/editionsData";
+import { useEditions } from "../context/EditionsContext";
 
 type PhotoWithEdition = EditionPhoto & { editionTitle: string; editionId: string };
 
@@ -167,6 +168,7 @@ function EditionGallerySlider({
 }
 
 export default function GaleriaPage() {
+  const { editions } = useEditions();
   const [lightboxPhoto, setLightboxPhoto] = useState<PhotoWithEdition | null>(null);
 
   return (
@@ -220,7 +222,7 @@ export default function GaleriaPage() {
 
         {/* One section per edition */}
         <div style={{ display: "flex", flexDirection: "column", gap: "4.5rem" }}>
-          {EDITIONS_DATA.map((edition) => (
+          {editions.map((edition) => (
             <div key={edition.id}>
               {/* Edition header */}
               <div style={{ marginBottom: "1.5rem", paddingBottom: "1rem", borderBottom: "1px solid var(--border-subtle)", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem" }}>

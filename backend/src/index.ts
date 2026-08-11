@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import healthRoutes from './routes/health.routes';
 import productsRoutes from './routes/products.routes';
+import editionsRoutes from './routes/editions.routes';
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ app.use(express.json());
 // Routes
 app.use('/api', healthRoutes);
 app.use('/api/products', productsRoutes);
+app.use('/api/editions', editionsRoutes);
 
 app.get('/', (req: Request, res: Response) => {
   res.send('🔮 Bienvenido a la API de Mercado de Brujas');
@@ -30,4 +32,5 @@ app.listen(PORT, () => {
   console.log(`🔌 Endpoints disponibles:`);
   console.log(`   - GET http://localhost:${PORT}/api/health`);
   console.log(`   - GET http://localhost:${PORT}/api/products`);
+  console.log(`   - GET http://localhost:${PORT}/api/editions`);
 });

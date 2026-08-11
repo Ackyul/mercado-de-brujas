@@ -5,16 +5,18 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import Header from "../../components/Header";
 import ImagePlaceholder from "../../components/ImagePlaceholder";
-import { EDITIONS_DATA, Edition, EditionPhoto } from "../../data/editionsData";
+import { Edition, EditionPhoto } from "../../data/editionsData";
+import { useEditions } from "../../context/EditionsContext";
 
 export default function DedicatedGalleryPage() {
   const params = useParams();
   const slug = params?.slug as string;
+  const { editions } = useEditions();
 
   const [lightboxPhoto, setLightboxPhoto] = useState<EditionPhoto | null>(null);
 
-  const currentIdx = EDITIONS_DATA.findIndex((ed) => ed.slug === slug || ed.id === slug);
-  const edition: Edition | undefined = EDITIONS_DATA[currentIdx !== -1 ? currentIdx : 0];
+  const currentIdx = editions.findIndex((ed) => ed.slug === slug || ed.id === slug);
+  const edition: Edition | undefined = editions[currentIdx !== -1 ? currentIdx : 0];
 
   if (!edition) {
     return (

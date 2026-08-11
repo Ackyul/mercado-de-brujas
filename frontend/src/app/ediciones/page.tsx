@@ -4,25 +4,33 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Header from "../components/Header";
 import ImagePlaceholder from "../components/ImagePlaceholder";
-import { EDITIONS_DATA, Edition, EditionPhoto } from "../data/editionsData";
+import { Edition, EditionPhoto } from "../data/editionsData";
+import { useEditions } from "../context/EditionsContext";
 
 export default function EdicionesPage() {
-  const [selectedEdition, setSelectedEdition] = useState<Edition>(EDITIONS_DATA[0]);
+  const { editions } = useEditions();
+  const [selectedEdition, setSelectedEdition] = useState<Edition>(editions[0] || {} as Edition);
   const [lightboxPhoto, setLightboxPhoto] = useState<EditionPhoto | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [searchQuery, setSearchQuery] = useState<string>("");
 
+  useEffect(() => {
+    if (editions.length > 0 && (!selectedEdition || !selectedEdition.id)) {
+      setSelectedEdition(editions[0]);
+    }
+  }, [editions, selectedEdition]);
+
   // Sync state with URL search params on mount & window navigation
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (typeof window !== "undefined" && editions.length > 0) {
       const params = new URLSearchParams(window.location.search);
       const slugParam = params.get("slug");
       if (slugParam) {
-        const ed = EDITIONS_DATA.find((item) => item.slug === slugParam);
+        const ed = editions.find((item) => item.slug === slugParam);
         if (ed) setSelectedEdition(ed);
       }
     }
-  }, []);
+  }, [editions]);
 
   const handleSelectEdition = (ed: Edition) => {
     setSelectedEdition(ed);
@@ -35,7 +43,7 @@ export default function EdicionesPage() {
     }
   };
 
-  const filteredEditions = EDITIONS_DATA.filter((ed) => {
+  const filteredEditions = editions.filter((ed: Edition) => {
     const q = searchQuery.toLowerCase().trim();
     if (!q) return true;
     return (
@@ -159,7 +167,7 @@ export default function EdicionesPage() {
 
           {/* List of 5 Latest Editions */}
           <div className="ediciones-latest-list" style={{ display: "flex", flexDirection: "column", gap: "0.65rem" }}>
-            {EDITIONS_DATA.slice(0, 5).map((ed) => {
+            {editions.slice(0, 5).map((ed: Edition) => {
               const isSelected = selectedEdition.id === ed.id;
               return (
                 <div
@@ -636,7 +644,7 @@ export default function EdicionesPage() {
             >
               <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
                 {filteredEditions.length > 0 ? (
-                  filteredEditions.map((ed) => {
+                  filteredEditions.map((ed: Edition) => {
                     const isSelected = selectedEdition.id === ed.id;
                     return (
                       <div

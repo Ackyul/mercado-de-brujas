@@ -5,20 +5,22 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import Header from "../../components/Header";
 import ImagePlaceholder from "../../components/ImagePlaceholder";
-import { EDITIONS_DATA, Edition, EditionPhoto } from "../../data/editionsData";
+import { Edition, EditionPhoto } from "../../data/editionsData";
+import { useEditions } from "../../context/EditionsContext";
 
 export default function DedicatedEditionPage() {
   const params = useParams();
   const slug = params?.slug as string;
+  const { editions } = useEditions();
 
   const [lightboxPhoto, setLightboxPhoto] = useState<EditionPhoto | null>(null);
 
   // Find edition by slug or ID
-  const currentIdx = EDITIONS_DATA.findIndex((ed) => ed.slug === slug || ed.id === slug);
-  const edition: Edition | undefined = EDITIONS_DATA[currentIdx !== -1 ? currentIdx : 0];
+  const currentIdx = editions.findIndex((ed) => ed.slug === slug || ed.id === slug);
+  const edition: Edition | undefined = editions[currentIdx !== -1 ? currentIdx : 0];
 
-  const prevEdition = currentIdx > 0 ? EDITIONS_DATA[currentIdx - 1] : null;
-  const nextEdition = currentIdx < EDITIONS_DATA.length - 1 ? EDITIONS_DATA[currentIdx + 1] : null;
+  const prevEdition = currentIdx > 0 ? editions[currentIdx - 1] : null;
+  const nextEdition = currentIdx < editions.length - 1 ? editions[currentIdx + 1] : null;
 
   if (!edition) {
     return (
