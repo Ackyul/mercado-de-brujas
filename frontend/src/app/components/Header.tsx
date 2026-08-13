@@ -38,15 +38,15 @@ export default function Header() {
           position: "sticky",
           top: 0,
           zIndex: 100,
-          backgroundColor: scrolled ? "rgba(14, 10, 8, 0.97)" : "rgba(14, 10, 8, 0.6)",
+          backgroundColor: scrolled ? "rgba(5, 5, 7, 0.95)" : "rgba(5, 5, 7, 0.6)",
           backdropFilter: "blur(20px)",
           WebkitBackdropFilter: "blur(20px)",
-          borderBottom: `1px solid ${scrolled ? "rgba(201, 164, 90, 0.35)" : "rgba(201, 164, 90, 0.12)"}`,
+          borderBottom: `1px solid ${scrolled ? "rgba(255, 255, 255, 0.18)" : "rgba(255, 255, 255, 0.08)"}`,
           transition: "all 0.35s ease",
           padding: "0.9rem 1.25rem",
         }}
       >
-        {/* Gold accent top line on scroll */}
+        {/* Accent top line on scroll */}
         <div
           style={{
             position: "absolute",
@@ -55,7 +55,7 @@ export default function Header() {
             right: 0,
             height: "2px",
             background:
-              "linear-gradient(90deg, transparent 0%, rgba(201, 164, 90, 0.6) 30%, rgba(153, 102, 204, 0.4) 70%, transparent 100%)",
+              "linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.7) 30%, rgba(168, 85, 247, 0.6) 70%, transparent 100%)",
             opacity: scrolled ? 1 : 0,
             transition: "opacity 0.35s ease",
           }}
@@ -77,13 +77,13 @@ export default function Header() {
                 width: "36px",
                 height: "36px",
                 borderRadius: "50%",
-                border: "1px solid rgba(201, 164, 90, 0.5)",
+                border: "1px solid rgba(255, 255, 255, 0.3)",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 fontSize: "1.15rem",
-                background: "radial-gradient(circle, rgba(40, 30, 15, 0.9), rgba(15, 10, 5, 0.95))",
-                boxShadow: "0 0 10px rgba(201, 164, 90, 0.18)",
+                background: "radial-gradient(circle, rgba(168, 85, 247, 0.25), rgba(5, 5, 7, 0.95))",
+                boxShadow: "0 0 12px rgba(168, 85, 247, 0.3)",
                 flexShrink: 0,
               }}
             >
@@ -93,12 +93,12 @@ export default function Header() {
               <span
                 style={{
                   fontFamily: "var(--font-serif)",
-                  fontSize: "clamp(0.85rem, 2.5vw, 1.1rem)",
+                  fontSize: "clamp(0.9rem, 2.5vw, 1.18rem)",
                   fontWeight: 700,
-                  letterSpacing: "0.1em",
+                  letterSpacing: "0.08em",
                   display: "block",
                   lineHeight: 1.1,
-                  color: "var(--accent-cream)",
+                  color: "#ffffff",
                   textTransform: "uppercase",
                 }}
               >
@@ -109,11 +109,11 @@ export default function Header() {
                 style={{
                   fontSize: "0.56rem",
                   letterSpacing: "0.18em",
-                  color: "var(--accent-gold)",
+                  color: "var(--accent-purple-light)",
                   textTransform: "uppercase",
                   display: "block",
                   fontFamily: "var(--font-serif)",
-                  opacity: 0.75,
+                  opacity: 0.85,
                 }}
               >
                 ✦ Aquelarre · Historia & Ferias ✦

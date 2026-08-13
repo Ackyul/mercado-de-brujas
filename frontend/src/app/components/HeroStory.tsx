@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
 
 export default function HeroStory() {
   return (
@@ -18,44 +17,44 @@ export default function HeroStory() {
         textAlign: "center",
       }}
     >
-      {/* ── Background atmospheric glows ── */}
-      {/* Top center glow — like moonlight from the flyers */}
+      {/* ── Background atmospheric glows (Black, White & Purple) ── */}
+      {/* Top center purple moon glow */}
       <div
         className="animate-pulse-glow"
         style={{
           position: "absolute",
-          top: "-120px",
+          top: "-140px",
           left: "50%",
           transform: "translateX(-50%)",
-          width: "600px",
-          height: "600px",
+          width: "650px",
+          height: "650px",
           background:
-            "radial-gradient(circle, rgba(153, 102, 204, 0.15) 0%, rgba(100, 70, 160, 0.08) 45%, transparent 70%)",
-          filter: "blur(70px)",
+            "radial-gradient(circle, rgba(168, 85, 247, 0.18) 0%, rgba(107, 33, 168, 0.08) 45%, transparent 70%)",
+          filter: "blur(75px)",
           pointerEvents: "none",
           zIndex: 0,
         }}
       />
-      {/* Bottom warm fire glow */}
+      {/* Central stark white highlight glow behind title */}
       <div
         className="animate-pulse-glow"
         style={{
           position: "absolute",
-          bottom: "-60px",
+          top: "40%",
           left: "50%",
-          transform: "translateX(-50%)",
-          width: "500px",
-          height: "350px",
+          transform: "translate(-50%, -50%)",
+          width: "450px",
+          height: "300px",
           background:
-            "radial-gradient(ellipse, rgba(201, 120, 40, 0.12) 0%, rgba(150, 70, 20, 0.06) 50%, transparent 75%)",
-          filter: "blur(55px)",
+            "radial-gradient(ellipse, rgba(255, 255, 255, 0.08) 0%, rgba(168, 85, 247, 0.05) 50%, transparent 75%)",
+          filter: "blur(60px)",
           pointerEvents: "none",
           zIndex: 0,
-          animationDelay: "2s",
+          animationDelay: "1s",
         }}
       />
 
-      {/* Rotating dashed sigil ring */}
+      {/* Rotating dashed sigil rings (Crisp Monochrome) */}
       <div
         className="animate-rotate-slow"
         style={{
@@ -67,7 +66,7 @@ export default function HeroStory() {
           marginTop: "-340px",
           marginLeft: "-340px",
           borderRadius: "50%",
-          border: "1px dashed rgba(201, 164, 90, 0.1)",
+          border: "1px dashed rgba(255, 255, 255, 0.12)",
           pointerEvents: "none",
           zIndex: 0,
         }}
@@ -82,7 +81,7 @@ export default function HeroStory() {
           marginTop: "-240px",
           marginLeft: "-240px",
           borderRadius: "50%",
-          border: "1px dashed rgba(153, 102, 204, 0.08)",
+          border: "1px dashed rgba(168, 85, 247, 0.15)",
           pointerEvents: "none",
           zIndex: 0,
         }}
@@ -91,12 +90,12 @@ export default function HeroStory() {
       {/* Scattered star dots */}
       {[
         { top: "10%", left: "7%", s: "3px", delay: "0s" },
-        { top: "18%", left: "90%", s: "2px", delay: "1.2s" },
+        { top: "18%", left: "90%", s: "2.5px", delay: "1.2s" },
         { top: "72%", left: "5%",  s: "2px", delay: "0.7s" },
         { top: "82%", left: "93%", s: "3px", delay: "2s" },
         { top: "35%", left: "97%", s: "2px", delay: "1.5s" },
         { top: "60%", left: "2%",  s: "2px", delay: "0.3s" },
-        { top: "48%", left: "94%", s: "2px", delay: "1.8s" },
+        { top: "48%", left: "94%", s: "2.5px", delay: "1.8s" },
       ].map((star, i) => (
         <div
           key={i}
@@ -108,67 +107,89 @@ export default function HeroStory() {
             width: star.s,
             height: star.s,
             borderRadius: "50%",
-            background: "#c9a45a",
-            opacity: 0.6,
+            background: "#ffffff",
+            opacity: 0.8,
             animationDelay: star.delay,
             zIndex: 0,
-            boxShadow: "0 0 4px rgba(201, 164, 90, 0.8)",
+            boxShadow: "0 0 6px rgba(168, 85, 247, 0.9), 0 0 10px rgba(255, 255, 255, 0.8)",
           }}
         />
       ))}
 
       {/* ── Content ── */}
-      <div style={{ position: "relative", zIndex: 1, maxWidth: "880px", width: "100%" }}>
+      <div style={{ position: "relative", zIndex: 1, maxWidth: "940px", width: "100%" }}>
+
+        {/* Crescent Moon Icon Badge */}
+        <div style={{ marginBottom: "1.2rem", display: "flex", justifyContent: "center" }}>
+          <div
+            style={{
+              fontSize: "2.5rem",
+              lineHeight: 1,
+              filter: "drop-shadow(0 0 15px rgba(168, 85, 247, 0.5)) drop-shadow(0 0 8px rgba(255, 255, 255, 0.8))",
+            }}
+          >
+            🌙
+          </div>
+        </div>
 
         {/* Top ornamental badge */}
-        <div style={{ marginBottom: "1.8rem" }}>
-          <span className="badge badge-gold">
-            ✦ El Santuario Itinerante de Arte & Misticismo ✦
+        <div style={{ marginBottom: "1.5rem" }}>
+          <span className="badge badge-gold" style={{ letterSpacing: "0.2em", padding: "0.35rem 1.1rem" }}>
+            ✦ AQUELARRE ✦
           </span>
         </div>
 
-        {/* Main gothic title — matches AQUELARRE lettering spirit */}
+        {/* Main gothic title — MERCADO DE BRUJAS (LARGE & DOMINANT) */}
         <h1
-          className="text-gradient animate-float"
+          className="animate-float"
           style={{
-            fontSize: "clamp(2.4rem, 5.5vw, 4.2rem)",
-            lineHeight: 1.15,
-            marginBottom: "0.5rem",
+            fontSize: "clamp(3.2rem, 8vw, 6.2rem)",
+            lineHeight: 1.08,
+            marginBottom: "1.2rem",
             fontFamily: "var(--font-serif)",
             fontWeight: 700,
-            letterSpacing: "0.06em",
-            textShadow: "0 0 50px rgba(201, 164, 90, 0.25)",
+            letterSpacing: "0.04em",
+            color: "#ffffff",
+            textShadow: "0 0 45px rgba(168, 85, 247, 0.45), 0 0 90px rgba(255, 255, 255, 0.25)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "0.4rem",
+            flexWrap: "wrap",
           }}
         >
-          Aquelarre
+          <span style={{ opacity: 0.6, fontSize: "0.45em", color: "var(--accent-purple-light)", verticalAlign: "middle" }}>✦</span>
+          <span>Mercado de Brujas</span>
+          <span style={{ opacity: 0.6, fontSize: "0.45em", color: "var(--accent-purple-light)", verticalAlign: "middle" }}>✦</span>
         </h1>
+
         <h2
           style={{
-            fontSize: "clamp(1.1rem, 2.5vw, 1.6rem)",
+            fontSize: "clamp(0.95rem, 2vw, 1.35rem)",
             fontFamily: "var(--font-serif)",
             fontWeight: 400,
-            letterSpacing: "0.2em",
+            letterSpacing: "0.25em",
             textTransform: "uppercase",
             color: "var(--text-muted)",
-            marginBottom: "2rem",
+            marginBottom: "2.2rem",
           }}
         >
-          Mercado de Brujas
+          El Santuario Itinerante de Arte & Misticismo
         </h2>
 
         {/* Ornament divider */}
-        <div className="ornament-divider" style={{ marginBottom: "1.8rem" }}>
+        <div className="ornament-divider" style={{ marginBottom: "2rem" }}>
           <span
             style={{
               fontFamily: "var(--font-serif)",
               fontSize: "0.65rem",
-              letterSpacing: "0.25em",
-              color: "var(--accent-gold)",
+              letterSpacing: "0.3em",
+              color: "#ffffff",
               textTransform: "uppercase",
               opacity: 0.7,
             }}
           >
-            Lorem ipsum · dolor sit amet
+            ✦ · 🌙 · ✦
           </span>
         </div>
 
@@ -179,69 +200,15 @@ export default function HeroStory() {
             lineHeight: 1.85,
             color: "var(--text-muted)",
             maxWidth: "720px",
-            margin: "0 auto 3rem",
+            margin: "0 auto",
             fontFamily: "var(--font-sans)",
           }}
         >
-          <strong style={{ color: "var(--accent-cream)", fontFamily: "var(--font-serif)", letterSpacing: "0.05em" }}>
+          <strong style={{ color: "#ffffff", fontFamily: "var(--font-serif)", letterSpacing: "0.05em" }}>
             Mercado de Brujas
           </strong>{" "}
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          es un punto de encuentro independiente donde el arte, la botánica, la alquimia y las expresiones místicas se unen en cada edición presencial.
         </p>
-
-        {/* Stats — parchment style cards */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(170px, 1fr))",
-            gap: "1rem",
-            maxWidth: "760px",
-            margin: "0 auto 3rem",
-          }}
-        >
-          {[
-            { n: "40+", label: "Ediciones Celebradas", sub: "Ferias pop-up presenciales", icon: "🌕" },
-            { n: "150+", label: "Creadores", sub: "Marcas independientes", icon: "🌿" },
-            { n: "10,000+", label: "Visitantes", sub: "Experiencias compartidas", icon: "🔮" },
-          ].map((s) => (
-            <div
-              key={s.label}
-              className="ornate-frame glass-panel"
-              style={{ padding: "1.4rem 1rem", textAlign: "center" }}
-            >
-              <span style={{ fontSize: "1.5rem", display: "block", marginBottom: "0.4rem" }}>{s.icon}</span>
-              <span
-                style={{
-                  fontSize: "1.6rem",
-                  display: "block",
-                  color: "var(--accent-gold)",
-                  fontFamily: "var(--font-serif)",
-                  fontWeight: 700,
-                  lineHeight: 1,
-                  marginBottom: "0.3rem",
-                }}
-              >
-                {s.n}
-              </span>
-              <span style={{ fontSize: "0.8rem", color: "var(--text-main)", fontWeight: 700, display: "block" }}>
-                {s.label}
-              </span>
-              <span style={{ fontSize: "0.68rem", color: "var(--text-muted)", display: "block" }}>
-                {s.sub}
-              </span>
-            </div>
-          ))}
-        </div>
-
-        {/* CTA Buttons */}
-        <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
-          <Link href="/origenes" className="btn-primary">
-            📜 Ver Orígenes & Cronología
-          </Link>
-          <Link href="/ediciones" className="btn-secondary">
-            🎪 Ver Ediciones de la Feria
-          </Link>
-        </div>
       </div>
     </section>
   );
