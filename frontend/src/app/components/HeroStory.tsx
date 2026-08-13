@@ -1,19 +1,20 @@
 "use client";
 
 import React from "react";
+import VintageOvalFrame from "./VintageOvalFrame";
 
 export default function HeroStory() {
   return (
     <section
       style={{
         position: "relative",
-        padding: "5.5rem 2rem 4.5rem",
+        padding: "4.5rem 2rem 3rem",
         overflow: "hidden",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        minHeight: "82vh",
+        minHeight: "85vh",
         textAlign: "center",
       }}
     >
@@ -40,7 +41,7 @@ export default function HeroStory() {
         className="animate-pulse-glow"
         style={{
           position: "absolute",
-          top: "40%",
+          top: "35%",
           left: "50%",
           transform: "translate(-50%, -50%)",
           width: "450px",
@@ -54,12 +55,12 @@ export default function HeroStory() {
         }}
       />
 
-      {/* Rotating dashed sigil rings (Crisp Monochrome) */}
+      {/* Rotating dashed sigil rings */}
       <div
         className="animate-rotate-slow"
         style={{
           position: "absolute",
-          top: "50%",
+          top: "40%",
           left: "50%",
           width: "680px",
           height: "680px",
@@ -74,7 +75,7 @@ export default function HeroStory() {
       <div
         style={{
           position: "absolute",
-          top: "50%",
+          top: "40%",
           left: "50%",
           width: "480px",
           height: "480px",
@@ -120,7 +121,7 @@ export default function HeroStory() {
       <div style={{ position: "relative", zIndex: 1, maxWidth: "940px", width: "100%" }}>
 
         {/* Crescent Moon Icon Badge */}
-        <div style={{ marginBottom: "1.2rem", display: "flex", justifyContent: "center" }}>
+        <div style={{ marginBottom: "1rem", display: "flex", justifyContent: "center" }}>
           <div
             style={{
               fontSize: "2.5rem",
@@ -133,19 +134,19 @@ export default function HeroStory() {
         </div>
 
         {/* Top ornamental badge */}
-        <div style={{ marginBottom: "1.5rem" }}>
+        <div style={{ marginBottom: "1.2rem" }}>
           <span className="badge badge-gold" style={{ letterSpacing: "0.2em", padding: "0.35rem 1.1rem" }}>
             ✦ AQUELARRE ✦
           </span>
         </div>
 
-        {/* Main gothic title — MERCADO DE BRUJAS (LARGE & DOMINANT) */}
+        {/* Main Title — MERCADO DE BRUJAS */}
         <h1
           className="animate-float"
           style={{
             fontSize: "clamp(3.2rem, 8vw, 6.2rem)",
             lineHeight: 1.08,
-            marginBottom: "1.2rem",
+            marginBottom: "1rem",
             fontFamily: "var(--font-serif)",
             fontWeight: 700,
             letterSpacing: "0.04em",
@@ -159,56 +160,33 @@ export default function HeroStory() {
           }}
         >
           <span style={{ opacity: 0.6, fontSize: "0.45em", color: "var(--accent-purple-light)", verticalAlign: "middle" }}>✦</span>
-          <span>Mercado de Brujas</span>
+          <span>MERCADO DE BRUJAS</span>
           <span style={{ opacity: 0.6, fontSize: "0.45em", color: "var(--accent-purple-light)", verticalAlign: "middle" }}>✦</span>
         </h1>
 
+        {/* Subtitle / Tagline */}
         <h2
           style={{
-            fontSize: "clamp(0.95rem, 2vw, 1.35rem)",
+            fontSize: "clamp(1.05rem, 2.2vw, 1.45rem)",
             fontFamily: "var(--font-serif)",
             fontWeight: 400,
-            letterSpacing: "0.25em",
-            textTransform: "uppercase",
-            color: "var(--text-muted)",
-            marginBottom: "2.2rem",
+            letterSpacing: "0.15em",
+            color: "#ffffff",
+            marginBottom: "2.5rem",
+            lineHeight: 1.6,
           }}
         >
-          El Santuario Itinerante de Arte & Misticismo
+          Una feria itinerante. Un punto de encuentro. Una comunidad de brujas.
         </h2>
 
-        {/* Ornament divider */}
-        <div className="ornament-divider" style={{ marginBottom: "2rem" }}>
-          <span
-            style={{
-              fontFamily: "var(--font-serif)",
-              fontSize: "0.65rem",
-              letterSpacing: "0.3em",
-              color: "#ffffff",
-              textTransform: "uppercase",
-              opacity: 0.7,
-            }}
-          >
-            ✦ · 🌙 · ✦
-          </span>
+        {/* Featured Edition Media Showcase in Vintage Oval Frame */}
+        <div style={{ margin: "2rem auto 2.5rem" }}>
+          <VintageOvalFrame
+            imageSrc="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1200&auto=format&fit=crop"
+            alt="Mercado de Brujas Encuentro Presencial"
+            subtitle="✦ Edición Presencial · Santuario Itinerante ✦"
+          />
         </div>
-
-        {/* Intro paragraph */}
-        <p
-          style={{
-            fontSize: "clamp(0.95rem, 1.8vw, 1.1rem)",
-            lineHeight: 1.85,
-            color: "var(--text-muted)",
-            maxWidth: "720px",
-            margin: "0 auto",
-            fontFamily: "var(--font-sans)",
-          }}
-        >
-          <strong style={{ color: "#ffffff", fontFamily: "var(--font-serif)", letterSpacing: "0.05em" }}>
-            Mercado de Brujas
-          </strong>{" "}
-          es un punto de encuentro independiente donde el arte, la botánica, la alquimia y las expresiones místicas se unen en cada edición presencial.
-        </p>
       </div>
     </section>
   );

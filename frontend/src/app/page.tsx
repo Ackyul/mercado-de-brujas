@@ -18,8 +18,9 @@ export default function Home() {
       <Header />
       <HeroStory />
 
-      {/* ── Mission & Values ── */}
+      {/* ── Mission, Purpose & Comunidad ── */}
       <section
+        id="comunidad"
         style={{
           maxWidth: "1200px",
           margin: "0 auto 5rem",
@@ -39,22 +40,22 @@ export default function Home() {
               marginBottom: "0.75rem",
             }}
           >
-            El Propósito Detrás del Aquelarre
+            Una Comunidad Mágica & Su Propósito
           </h2>
           <p
             className="text-muted"
             style={{ maxWidth: "660px", margin: "0 auto", fontSize: "1rem", lineHeight: 1.75 }}
           >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Mercado de Brujas es una feria itinerante y un punto de encuentro que celebra el arte artesanal, la herbolaria ancestral y el misticismo.
           </p>
         </div>
 
         {/* 3 pillars */}
         <div className="pillars-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "1.5rem" }}>
           {[
-            { icon: "🌿", title: "Alquimia & Botánica", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam.", sub: "Arte & Herbolaria Ancestral" },
-            { icon: "💎", title: "El Valor del Oficio", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam.", sub: "Creación Artesanal Independiente" },
-            { icon: "🔮", title: "Encuentro Itinerante", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam.", sub: "Comunidad & Encuentros Pop-Up" },
+            { icon: "🌿", title: "Alquimia & Botánica", text: "Espacio para creadores e ilustradores enfocados en herbolaria, pociones artesanales, elementos naturales y la magia de las plantas.", sub: "Arte & Herbolaria Ancestral" },
+            { icon: "💎", title: "El Valor del Oficio", text: "Fomentamos la creación artesanal independiente, impulsando marcas locales, joyería mística, amuletos y piezas únicas.", sub: "Creación Artesanal Independiente" },
+            { icon: "🔮", title: "Encuentro Itinerante", text: "Construimos comunidad a través de ferias pop-up en distintas locaciones, talleres, oráculos y experiencias compartidas.", sub: "Comunidad & Encuentros Pop-Up" },
           ].map((pillar) => (
             <div
               key={pillar.title}
@@ -76,7 +77,7 @@ export default function Home() {
                   fontSize: "1.15rem",
                   fontFamily: "var(--font-serif)",
                   marginBottom: "0.5rem",
-                  color: "var(--accent-gold)",
+                  color: "var(--accent-purple-light)",
                   letterSpacing: "0.04em",
                 }}
               >
@@ -90,7 +91,61 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Navigation tiles ── */}
+      {/* ── Sé Parte / Join CTA Section ── */}
+      <section
+        id="se-parte"
+        style={{
+          maxWidth: "1200px",
+          margin: "0 auto 5rem",
+          padding: "0 2rem",
+          width: "100%",
+        }}
+      >
+        <div
+          className="glass-card-gold ornate-frame"
+          style={{
+            padding: "3rem 2rem",
+            textAlign: "center",
+            maxWidth: "800px",
+            margin: "0 auto",
+          }}
+        >
+          <span className="badge badge-purple" style={{ marginBottom: "1rem" }}>
+            ✦ Sé Parte de la Experiencia ✦
+          </span>
+          <h2
+            style={{
+              fontSize: "clamp(1.8rem, 3vw, 2.5rem)",
+              fontFamily: "var(--font-serif)",
+              color: "#ffffff",
+              marginBottom: "1rem",
+            }}
+          >
+            ¿Quieres participar en la próxima edición?
+          </h2>
+          <p
+            className="text-muted"
+            style={{ maxWidth: "600px", margin: "0 auto 2rem", fontSize: "0.95rem", lineHeight: 1.7 }}
+          >
+            Si eres creador, artesano, tarotista o practicante de artes místicas, únete a nuestra comunidad de brujas en el siguiente encuentro itinerante.
+          </p>
+          <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
+            <Link href="/ediciones" className="btn-primary">
+              🎪 Ver Próximos Encuentros
+            </Link>
+            <a
+              href="https://www.instagram.com/mercado_brujas/?hl=es"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-secondary"
+            >
+              💬 Contáctanos por Instagram
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Navigation tiles / Portada ── */}
       <section
         style={{
           maxWidth: "1200px",
@@ -100,7 +155,7 @@ export default function Home() {
         }}
       >
         <div style={{ textAlign: "center", marginBottom: "2.5rem" }}>
-          <span className="badge badge-gold">✦ Explora el Aquelarre ✦</span>
+          <span className="badge badge-gold">✦ Explora la Portada ✦</span>
           <h2
             style={{
               fontSize: "clamp(1.8rem, 3vw, 2.6rem)",
@@ -108,7 +163,7 @@ export default function Home() {
               marginTop: "0.75rem",
             }}
           >
-            Secciones de Mercado de Brujas
+            Portada & Secciones Principales
           </h2>
         </div>
 
@@ -121,9 +176,9 @@ export default function Home() {
           }}
         >
           {[
-            { href: "/origenes", icon: "📜", title: "Orígenes", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.", accent: false },
-            { href: "/ediciones", icon: "🎪", title: "Ediciones de la Feria", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.", accent: true },
-            { href: "/galeria", icon: "📸", title: "Recopilación Fotográfica", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.", accent: false },
+            { href: "/origenes", icon: "📜", title: "La Ruta (Orígenes)", text: "Conoce la historia, cronología y trayectoria de las ferias pop-up.", accent: false },
+            { href: "/ediciones", icon: "🎪", title: "Próximos Encuentros", text: "Descubre las fechas, locaciones y expositores de cada edición presencial.", accent: true },
+            { href: "/galeria", icon: "📸", title: "Galería de la Comunidad", text: "Explora la recopilación fotográfica de momentos y experiencias compartidas.", accent: false },
           ].map((tile) => (
             <Link key={tile.href} href={tile.href} style={{ textDecoration: "none" }}>
               <div
@@ -149,7 +204,7 @@ export default function Home() {
                     fontSize: "1.05rem",
                     fontFamily: "var(--font-serif)",
                     letterSpacing: "0.06em",
-                    color: tile.accent ? "var(--accent-gold)" : "var(--text-main)",
+                    color: tile.accent ? "var(--accent-purple-light)" : "var(--text-main)",
                     marginBottom: "0.6rem",
                   }}
                 >
@@ -184,14 +239,14 @@ export default function Home() {
                 fontFamily: "var(--font-serif)",
                 fontSize: "1.05rem",
                 letterSpacing: "0.1em",
-                color: "var(--accent-gold)",
+                color: "var(--text-main)",
                 marginBottom: "0.75rem",
               }}
             >
               🌙 Mercado de Brujas
             </h3>
             <p className="text-muted" style={{ fontSize: "0.85rem", lineHeight: 1.65 }}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Una feria itinerante. Un punto de encuentro. Una comunidad de brujas.
             </p>
           </div>
 
@@ -206,13 +261,14 @@ export default function Home() {
                 marginBottom: "0.75rem",
               }}
             >
-              Páginas
+              Navegación
             </h4>
             <ul style={{ listStyle: "none", padding: 0, margin: 0, fontSize: "0.85rem", display: "flex", flexDirection: "column", gap: "0.45rem" }}>
-              <li><Link href="/" style={{ color: "var(--text-muted)", textDecoration: "none" }}>Historia (Inicio)</Link></li>
-              <li><Link href="/origenes" style={{ color: "var(--text-muted)", textDecoration: "none" }}>Orígenes & Cronología</Link></li>
-              <li><Link href="/ediciones" style={{ color: "var(--accent-gold)", textDecoration: "none", fontWeight: 600 }}>🎪 Ediciones de la Feria</Link></li>
-              <li><Link href="/galeria" style={{ color: "var(--text-muted)", textDecoration: "none" }}>Recopilación Fotográfica</Link></li>
+              <li><Link href="/" style={{ color: "var(--text-muted)", textDecoration: "none" }}>Hogar</Link></li>
+              <li><Link href="/ediciones" style={{ color: "var(--accent-purple-light)", textDecoration: "none", fontWeight: 600 }}>Próximos Encuentros</Link></li>
+              <li><a href="#se-parte" style={{ color: "var(--text-muted)", textDecoration: "none" }}>Sé Parte</a></li>
+              <li><Link href="/origenes" style={{ color: "var(--text-muted)", textDecoration: "none" }}>La Ruta</Link></li>
+              <li><a href="#comunidad" style={{ color: "var(--text-muted)", textDecoration: "none" }}>Comunidad</a></li>
             </ul>
           </div>
 
@@ -230,7 +286,7 @@ export default function Home() {
               Redes Oficiales
             </h4>
             <p className="text-muted" style={{ fontSize: "0.85rem", marginBottom: "1rem" }}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
+              Sigue nuestros próximos encuentros y convocatorias abiertas en Instagram.
             </p>
             <a
               href="https://www.instagram.com/mercado_brujas/?hl=es"
@@ -246,7 +302,7 @@ export default function Home() {
 
         <div style={{ borderTop: "1px solid var(--border-subtle)", paddingTop: "1.5rem" }}>
           <p className="text-muted" style={{ fontSize: "0.8rem", fontFamily: "var(--font-serif)", letterSpacing: "0.08em" }}>
-            ✦ Mercado de Brujas © {new Date().getFullYear()} — Plataforma Web de Historia & Ediciones Pop-Up ✦
+            ✦ Mercado de Brujas © {new Date().getFullYear()} — Plataforma Web de Historia & Ferias Pop-Up ✦
           </p>
         </div>
       </footer>

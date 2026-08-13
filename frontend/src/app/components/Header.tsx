@@ -5,10 +5,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const navLinks = [
-  { href: "/", label: "Historia" },
-  { href: "/origenes", label: "Orígenes" },
-  { href: "/ediciones", label: "Ediciones" },
-  { href: "/galeria", label: "Galería" },
+  { href: "/", label: "Hogar" },
+  { href: "/ediciones", label: "Próximos encuentros" },
+  { href: "#se-parte", label: "Sé parte" },
+  { href: "/origenes", label: "La ruta" },
+  { href: "#comunidad", label: "Comunidad" },
 ];
 
 export default function Header() {
