@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Header from "./components/Header";
 import HeroStory from "./components/HeroStory";
+import VintageOvalFrame from "./components/VintageOvalFrame";
 import ImagePlaceholder from "./components/ImagePlaceholder";
 
 export default function Home() {
@@ -18,12 +19,12 @@ export default function Home() {
       <Header />
       <HeroStory />
 
-      {/* ── Mission, Purpose & Comunidad ── */}
+      {/* ── Una Comunidad Mágica (Magic Market Style Layout) ── */}
       <section
         id="comunidad"
         style={{
           maxWidth: "1200px",
-          margin: "0 auto 5rem",
+          margin: "1rem auto 5rem",
           padding: "0 2rem",
           width: "100%",
         }}
@@ -35,19 +36,34 @@ export default function Home() {
           </span>
           <h2
             style={{
-              fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
+              fontSize: "clamp(2rem, 4.5vw, 3.2rem)",
               fontFamily: "var(--font-serif)",
+              color: "#ffffff",
               marginBottom: "0.75rem",
+              letterSpacing: "0.04em",
             }}
           >
-            Una Comunidad Mágica & Su Propósito
+            Una comunidad mágica
           </h2>
           <p
-            className="text-muted"
-            style={{ maxWidth: "660px", margin: "0 auto", fontSize: "1rem", lineHeight: 1.75 }}
+            style={{
+              fontFamily: "var(--font-serif)",
+              fontSize: "clamp(1rem, 2vw, 1.3rem)",
+              color: "var(--text-muted)",
+              letterSpacing: "0.08em",
+              maxWidth: "680px",
+              margin: "0 auto 2.5rem",
+            }}
           >
-            Mercado de Brujas es una feria itinerante y un punto de encuentro que celebra el arte artesanal, la herbolaria ancestral y el misticismo.
+            Una feria itinerante. Un punto de encuentro. Una comunidad de brujas.
           </p>
+
+          {/* Oval Mirror Frame Showcase */}
+          <VintageOvalFrame
+            imageSrc="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1200&auto=format&fit=crop"
+            alt="Mercado de Brujas Comunidad Presencial"
+            subtitle="✦ Feria Pop-Up · Ediciones Presenciales ✦"
+          />
         </div>
 
         {/* 3 pillars */}

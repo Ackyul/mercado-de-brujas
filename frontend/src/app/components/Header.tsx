@@ -36,15 +36,17 @@ export default function Header() {
     <>
       <header
         style={{
-          position: "sticky",
-          top: 0,
+          position: "relative",
           zIndex: 100,
-          backgroundColor: scrolled ? "rgba(5, 5, 7, 0.95)" : "rgba(5, 5, 7, 0.6)",
-          backdropFilter: "blur(20px)",
-          WebkitBackdropFilter: "blur(20px)",
-          borderBottom: `1px solid ${scrolled ? "rgba(255, 255, 255, 0.18)" : "rgba(255, 255, 255, 0.08)"}`,
+          backgroundColor: scrolled ? "rgba(5, 5, 7, 0.95)" : "transparent",
+          backdropFilter: scrolled ? "blur(20px)" : "none",
+          WebkitBackdropFilter: scrolled ? "blur(20px)" : "none",
+          borderBottom: `1px solid ${scrolled ? "rgba(255, 255, 255, 0.15)" : "transparent"}`,
           transition: "all 0.35s ease",
-          padding: "0.9rem 1.25rem",
+          padding: "1.5rem 1rem 0.8rem",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
         }}
       >
         {/* Accent top line on scroll */}
@@ -62,119 +64,102 @@ export default function Header() {
           }}
         />
 
-        <div
+        {/* ── Top Centered Brand Logo (Magic Market Style) ── */}
+        <Link
+          href="/"
           style={{
-            maxWidth: "1280px",
-            margin: "0 auto",
             display: "flex",
+            flexDirection: "column",
             alignItems: "center",
-            justifyContent: "space-between",
+            textDecoration: "none",
+            marginBottom: "0.75rem",
           }}
         >
-          {/* Brand */}
-          <Link href="/" style={{ display: "flex", alignItems: "center", gap: "0.7rem", textDecoration: "none" }}>
-            <div
+          <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+            <span style={{ color: "rgba(255,255,255,0.7)", fontSize: "0.8rem" }}>✦</span>
+            <span
               style={{
-                width: "36px",
-                height: "36px",
-                borderRadius: "50%",
-                border: "1px solid rgba(255, 255, 255, 0.3)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: "1.15rem",
-                background: "radial-gradient(circle, rgba(168, 85, 247, 0.25), rgba(5, 5, 7, 0.95))",
-                boxShadow: "0 0 12px rgba(168, 85, 247, 0.3)",
-                flexShrink: 0,
+                fontFamily: "var(--font-serif)",
+                fontSize: "clamp(1.6rem, 3.8vw, 2.5rem)",
+                fontWeight: 700,
+                letterSpacing: "0.12em",
+                color: "#ffffff",
+                textTransform: "uppercase",
+                textShadow: "0 0 25px rgba(255, 255, 255, 0.3), 0 0 40px rgba(168, 85, 247, 0.4)",
               }}
             >
-              🌙
-            </div>
-            <div>
-              <span
-                style={{
-                  fontFamily: "var(--font-serif)",
-                  fontSize: "clamp(0.9rem, 2.5vw, 1.18rem)",
-                  fontWeight: 700,
-                  letterSpacing: "0.08em",
-                  display: "block",
-                  lineHeight: 1.1,
-                  color: "#ffffff",
-                  textTransform: "uppercase",
-                }}
-              >
-                Mercado de Brujas
-              </span>
-              <span
-                className="hide-mobile"
-                style={{
-                  fontSize: "0.56rem",
-                  letterSpacing: "0.18em",
-                  color: "var(--accent-purple-light)",
-                  textTransform: "uppercase",
-                  display: "block",
-                  fontFamily: "var(--font-serif)",
-                  opacity: 0.85,
-                }}
-              >
-                ✦ Aquelarre · Historia & Ferias ✦
-              </span>
-            </div>
-          </Link>
+              MERCADO DE BRUJAS
+            </span>
+            <span style={{ color: "rgba(255,255,255,0.7)", fontSize: "0.8rem" }}>✦</span>
+          </div>
+        </Link>
 
-          {/* Desktop nav */}
-          <nav className="desktop-nav" style={{ display: "flex", alignItems: "center", gap: "0.2rem" }}>
-            {navLinks.map((link) => {
-              const isActive = pathname === link.href;
-              return (
+        {/* ── Centered Navigation Row with Vertical Dividers (Magic Market Style) ── */}
+        <nav
+          className="desktop-nav"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "0.6rem",
+            flexWrap: "wrap",
+          }}
+        >
+          {navLinks.map((link, idx) => {
+            const isActive = pathname === link.href;
+            return (
+              <React.Fragment key={link.href}>
+                {idx > 0 && (
+                  <span
+                    style={{
+                      color: "rgba(255, 255, 255, 0.3)",
+                      fontSize: "0.75rem",
+                      userSelect: "none",
+                      padding: "0 0.15rem",
+                    }}
+                  >
+                    |
+                  </span>
+                )}
                 <Link
-                  key={link.href}
                   href={link.href}
                   style={{
                     fontFamily: "var(--font-serif)",
-                    color: isActive ? "var(--accent-gold)" : "var(--text-muted)",
+                    color: isActive ? "#ffffff" : "rgba(255, 255, 255, 0.75)",
                     textDecoration: "none",
-                    fontSize: "0.76rem",
-                    fontWeight: 700,
-                    letterSpacing: "0.1em",
-                    textTransform: "uppercase",
-                    padding: "0.45rem 0.85rem",
-                    borderRadius: "2px",
-                    backgroundColor: isActive ? "rgba(201, 164, 90, 0.1)" : "transparent",
-                    border: isActive ? "1px solid rgba(201, 164, 90, 0.3)" : "1px solid transparent",
+                    fontSize: "0.82rem",
+                    fontWeight: isActive ? 700 : 500,
+                    letterSpacing: "0.08em",
+                    padding: "0.35rem 0.5rem",
                     transition: "all 0.2s ease",
+                    borderBottom: isActive ? "1px solid #ffffff" : "1px solid transparent",
+                    textShadow: isActive ? "0 0 10px rgba(255,255,255,0.6)" : "none",
                   }}
                 >
                   {link.label}
                 </Link>
-              );
-            })}
-          </nav>
+              </React.Fragment>
+            );
+          })}
+        </nav>
 
-          {/* Desktop CTA */}
-          <a
-            href="https://www.instagram.com/mercado_brujas/?hl=es"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-secondary desktop-cta"
-            style={{ padding: "0.4rem 0.9rem", fontSize: "0.7rem", borderRadius: "2px" }}
-          >
-            📸 Instagram
-          </a>
-
-          {/* Hamburger */}
-          <button
-            className={`hamburger-btn${menuOpen ? " open" : ""}`}
-            onClick={() => setMenuOpen((v) => !v)}
-            aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
-            aria-expanded={menuOpen}
-            style={{ position: "relative", zIndex: 300 }}
-          >
-            <span />
-            <span />
-            <span />
-          </button>
-        </div>
+        {/* Mobile Hamburger Button */}
+        <button
+          className={`hamburger-btn${menuOpen ? " open" : ""}`}
+          onClick={() => setMenuOpen((v) => !v)}
+          aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
+          aria-expanded={menuOpen}
+          style={{
+            position: "absolute",
+            top: "1.2rem",
+            right: "1.25rem",
+            zIndex: 300,
+          }}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
       </header>
 
       {/* Mobile fullscreen menu overlay */}
