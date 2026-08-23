@@ -126,19 +126,24 @@ export default function VintageOvalFrame({
           />
         </div>
 
-        {/* ── Exact Original Victorian Oval Mirror Frame PNG (Clean Purple Rim - No Glow) ── */}
-        <img
-          src={FRAME_PNG_URL}
-          alt="Marco Ovalado Victoriano Morado"
+        {/* ── Exact Original Victorian Oval Mirror Frame PNG (Exact Button Purple #a855f7) ── */}
+        <div
           style={{
             position: "absolute",
             inset: 0,
             width: "100%",
             height: "100%",
-            objectFit: "contain",
             pointerEvents: "none",
             zIndex: 2,
-            filter: "sepia(1) hue-rotate(235deg) saturate(3.5) brightness(0.95) contrast(1.15)",
+            backgroundColor: "var(--accent-purple)",
+            maskImage: `url(${FRAME_PNG_URL})`,
+            WebkitMaskImage: `url(${FRAME_PNG_URL})`,
+            maskSize: "contain",
+            WebkitMaskSize: "contain",
+            maskRepeat: "no-repeat",
+            WebkitMaskRepeat: "no-repeat",
+            maskPosition: "center",
+            WebkitMaskPosition: "center",
           }}
         />
       </div>
