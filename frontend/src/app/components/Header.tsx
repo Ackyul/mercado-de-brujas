@@ -49,34 +49,28 @@ export default function Header() {
           alignItems: "center",
         }}
       >
-        {/* Top Centered Brand Logo (Mercado de Brujas Style) */}
+        {/* Top Centered Brand Logo (Mercado de Brujas Official Gothic Logo) */}
         <Link
           href="/"
           style={{
             display: "flex",
-            flexDirection: "column",
             alignItems: "center",
+            justifyContent: "center",
             textDecoration: "none",
-            marginBottom: "0.85rem",
+            marginBottom: "0.5rem",
           }}
         >
-          <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
-            <span style={{ color: "#c084fc", fontSize: "0.85rem" }}>✦</span>
-            <span
-              style={{
-                fontFamily: "var(--font-serif)",
-                fontSize: "clamp(1.8rem, 4vw, 2.7rem)",
-                fontWeight: 700,
-                letterSpacing: "0.15em",
-                color: "#ffffff",
-                textTransform: "uppercase",
-                textShadow: "0 0 20px rgba(168, 85, 247, 0.6), 0 0 35px rgba(255, 255, 255, 0.3)",
-              }}
-            >
-              MERCADO DE BRUJAS
-            </span>
-            <span style={{ color: "#c084fc", fontSize: "0.85rem" }}>✦</span>
-          </div>
+          <img
+            src="/logo-white-trans.png"
+            alt="Mercado de Brujas"
+            style={{
+              height: "clamp(70px, 13vw, 115px)",
+              width: "auto",
+              objectFit: "contain",
+              filter: "drop-shadow(0 0 20px rgba(168, 85, 247, 0.5))",
+              transition: "transform 0.3s ease, filter 0.3s ease",
+            }}
+          />
         </Link>
 
         {/* Centered Navigation Row with Vertical Dividers (Mercado de Brujas Style) */}
