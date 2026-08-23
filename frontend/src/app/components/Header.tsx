@@ -5,11 +5,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/ediciones", label: "Events" },
-  { href: "/origenes", label: "Spill the Magick" },
-  { href: "#se-parte", label: "Vendor Apps" },
-  { href: "#contacto", label: "Contact" },
+  { href: "/", label: "Hogar" },
+  { href: "/ediciones", label: "Próximos encuentros" },
+  { href: "/se-parte", label: "Se parte.." },
+  { href: "/la-ruta", label: "La ruta" },
+  { href: "/comunidad", label: "Comunidad" },
 ];
 
 export default function Header() {
