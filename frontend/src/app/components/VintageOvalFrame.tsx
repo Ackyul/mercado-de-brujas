@@ -11,7 +11,7 @@ interface VintageOvalFrameProps {
 }
 
 export default function VintageOvalFrame({
-  imageSrc = "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1200&auto=format&fit=crop",
+  imageSrc = "",
   videoSrc,
   alt = "Mercado de Brujas Edición Presencial",
   title,
@@ -30,17 +30,17 @@ export default function VintageOvalFrame({
         alignItems: "center",
       }}
     >
-      {/* ── Background Soft Glow ── */}
+      {/* ── Background Soft Purple Glow Aura ── */}
       <div
         style={{
           position: "absolute",
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
-          width: "85%",
-          height: "85%",
-          background: "radial-gradient(ellipse at center, rgba(168, 85, 247, 0.22) 0%, rgba(255, 255, 255, 0.05) 45%, transparent 70%)",
-          filter: "blur(40px)",
+          width: "90%",
+          height: "90%",
+          background: "radial-gradient(ellipse at center, rgba(168, 85, 247, 0.28) 0%, rgba(107, 33, 168, 0.12) 50%, transparent 75%)",
+          filter: "blur(45px)",
           pointerEvents: "none",
           zIndex: 0,
         }}
@@ -52,8 +52,8 @@ export default function VintageOvalFrame({
         style={{
           position: "relative",
           width: "100%",
-          maxWidth: "440px",
-          aspectRatio: "3 / 4.2",
+          maxWidth: "460px",
+          aspectRatio: "3 / 4.3",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -62,7 +62,7 @@ export default function VintageOvalFrame({
       >
         {/* SVG Ornamental Frame Decoration Overlay */}
         <svg
-          viewBox="0 0 400 560"
+          viewBox="0 0 400 580"
           style={{
             position: "absolute",
             inset: 0,
@@ -70,92 +70,106 @@ export default function VintageOvalFrame({
             height: "100%",
             pointerEvents: "none",
             zIndex: 10,
-            filter: "drop-shadow(0 6px 22px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 12px rgba(168, 85, 247, 0.35))",
+            filter: "drop-shadow(0 8px 24px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 16px rgba(168, 85, 247, 0.5))",
           }}
         >
           <defs>
-            {/* Gradient for the frame border */}
-            <linearGradient id="frameGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            {/* Glowing gradient for frame border: White -> Light Purple -> Deep Amethyst -> White */}
+            <linearGradient id="purpleFrameGrad" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#ffffff" />
-              <stop offset="35%" stopColor="#e4e4e7" />
-              <stop offset="65%" stopColor="#c084fc" />
+              <stop offset="30%" stopColor="#e9d5ff" />
+              <stop offset="60%" stopColor="#c084fc" />
+              <stop offset="85%" stopColor="#a855f7" />
               <stop offset="100%" stopColor="#ffffff" />
             </linearGradient>
+
+            <filter id="glowEffect">
+              <feGaussianBlur stdDeviation="3" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
           </defs>
 
-          {/* Outer Ornamental Scrolls - Top Crest */}
-          <g stroke="url(#frameGradient)" fill="none" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            {/* Top crown flourish */}
-            <path d="M 200 18 C 180 5, 160 15, 165 30 C 170 45, 195 45, 200 25 C 205 45, 230 45, 235 30 C 240 15, 220 5, 200 18 Z" fill="rgba(255,255,255,0.08)" />
-            <path d="M 200 8 C 170 -5, 140 25, 160 48 C 175 62, 192 50, 200 38 C 208 50, 225 62, 240 48 C 260 25, 230 -5, 200 8 Z" />
-            <circle cx="200" cy="12" r="3" fill="#ffffff" />
+          {/* ── Top Crown Filigree & Flourishes ── */}
+          <g stroke="url(#purpleFrameGrad)" fill="none" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+            {/* Center Crown Arch */}
+            <path d="M 200 28 C 180 10, 150 15, 160 38 C 170 58, 195 52, 200 42 C 205 52, 230 58, 240 38 C 250 15, 220 10, 200 28 Z" fill="rgba(168, 85, 247, 0.12)" />
+            <path d="M 200 15 C 165 -2, 130 30, 155 54 C 172 70, 192 56, 200 44 C 208 56, 228 70, 245 54 C 270 30, 235 -2, 200 15 Z" />
+            <circle cx="200" cy="18" r="3.5" fill="#ffffff" filter="url(#glowEffect)" />
 
-            {/* Top Left Leaf Swirls */}
-            <path d="M 160 35 C 130 25, 90 40, 85 70 C 80 100, 110 110, 130 90 C 145 75, 140 50, 120 48" />
-            <path d="M 125 55 C 95 50, 65 80, 75 110" />
+            {/* Upper Left Filigree Arcs */}
+            <path d="M 155 42 C 120 22, 72 40, 78 82 C 84 120, 118 115, 132 92 C 142 72, 132 52, 112 52" />
+            <path d="M 120 60 C 88 52, 55 85, 68 118" />
 
-            {/* Top Right Leaf Swirls */}
-            <path d="M 240 35 C 270 25, 310 40, 315 70 C 320 100, 290 110, 270 90 C 255 75, 260 50, 280 48" />
-            <path d="M 275 55 C 305 50, 335 80, 325 110" />
+            {/* Upper Right Filigree Arcs */}
+            <path d="M 245 42 C 280 22, 328 40, 322 82 C 316 120, 282 115, 268 92 C 258 72, 268 52, 288 52" />
+            <path d="M 280 60 C 312 52, 345 85, 332 118" />
 
-            {/* Bottom Crest flourish */}
-            <path d="M 200 542 C 180 555, 160 545, 165 530 C 170 515, 195 515, 200 535 C 205 515, 230 515, 235 530 C 240 545, 220 555, 200 542 Z" fill="rgba(255,255,255,0.08)" />
-            <path d="M 200 552 C 170 565, 140 535, 160 512 C 175 498, 192 510, 200 522 C 208 510, 225 498, 240 512 C 260 535, 230 565, 200 552 Z" />
-            <circle cx="200" cy="548" r="3" fill="#ffffff" />
+            {/* ── Left Side Ear Flourishes ── */}
+            <path d="M 50 235 C 18 265, 18 325, 50 355 C 70 325, 70 265, 50 235 Z" fill="rgba(168, 85, 247, 0.15)" />
+            <path d="M 40 210 C 8 260, 8 330, 40 380" />
+            <path d="M 60 255 C 38 275, 38 315, 60 335" />
 
-            {/* Bottom Left Leaf Swirls */}
-            <path d="M 160 525 C 130 535, 90 520, 85 490 C 80 460, 110 450, 130 470 C 145 485, 140 510, 120 512" />
-            <path d="M 125 505 C 95 510, 65 480, 75 450" />
+            {/* ── Right Side Ear Flourishes ── */}
+            <path d="M 350 235 C 382 265, 382 325, 350 355 C 330 325, 330 265, 350 235 Z" fill="rgba(168, 85, 247, 0.15)" />
+            <path d="M 360 210 C 392 260, 392 330, 360 380" />
+            <path d="M 340 255 C 362 275, 362 315, 340 335" />
 
-            {/* Bottom Right Leaf Swirls */}
-            <path d="M 240 525 C 270 535, 310 520, 315 490 C 320 460, 290 450, 270 470 C 255 485, 260 510, 280 512" />
-            <path d="M 275 505 C 305 510, 335 480, 325 450" />
+            {/* ── Bottom Pedestal Crown & Flourishes ── */}
+            <path d="M 200 552 C 180 570, 150 565, 160 542 C 170 522, 195 528, 200 538 C 205 528, 230 522, 240 542 C 250 565, 220 570, 200 552 Z" fill="rgba(168, 85, 247, 0.12)" />
+            <path d="M 200 565 C 165 582, 130 550, 155 526 C 172 510, 192 524, 200 536 C 208 524, 228 510, 245 526 C 270 550, 235 582, 200 565 Z" />
+            <circle cx="200" cy="562" r="3.5" fill="#ffffff" filter="url(#glowEffect)" />
 
-            {/* Side Accents Left */}
-            <path d="M 45 230 C 25 260, 25 300, 45 330 C 60 300, 60 260, 45 230 Z" fill="rgba(200, 132, 252, 0.15)" />
-            <path d="M 35 210 C 15 250, 15 310, 35 350" />
+            {/* Lower Left Filigree Arcs */}
+            <path d="M 155 538 C 120 558, 72 540, 78 498 C 84 460, 118 465, 132 488 C 142 508, 132 528, 112 528" />
+            <path d="M 120 520 C 88 528, 55 495, 68 462" />
 
-            {/* Side Accents Right */}
-            <path d="M 355 230 C 375 260, 375 300, 355 330 C 340 300, 340 260, 355 230 Z" fill="rgba(200, 132, 252, 0.15)" />
-            <path d="M 365 210 C 385 250, 385 310, 365 350" />
+            {/* Lower Right Filigree Arcs */}
+            <path d="M 245 538 C 280 558, 328 540, 322 498 C 316 460, 282 465, 268 488 C 258 508, 268 528, 288 528" />
+            <path d="M 280 520 C 312 528, 345 495, 332 462" />
           </g>
 
-          {/* Main Oval Frame Rim */}
+          {/* ── Concentric Oval Rings ── */}
+          {/* Ring 1: Outer Solid Oval */}
           <ellipse
             cx="200"
-            cy="280"
-            rx="142"
-            ry="202"
+            cy="295"
+            rx="144"
+            ry="206"
             fill="none"
-            stroke="url(#frameGradient)"
+            stroke="url(#purpleFrameGrad)"
             strokeWidth="5"
           />
+          {/* Ring 2: Middle Dashed Accent Ring */}
           <ellipse
             cx="200"
-            cy="280"
-            rx="148"
-            ry="208"
+            cy="295"
+            rx="150"
+            ry="212"
             fill="none"
-            stroke="rgba(255, 255, 255, 0.4)"
+            stroke="rgba(255, 255, 255, 0.55)"
             strokeWidth="1.5"
-            strokeDasharray="4 3"
+            strokeDasharray="5 4"
           />
+          {/* Ring 3: Inner Purple Glow Rim */}
           <ellipse
             cx="200"
-            cy="280"
-            rx="135"
-            ry="195"
+            cy="295"
+            rx="137"
+            ry="199"
             fill="none"
-            stroke="rgba(168, 85, 247, 0.6)"
-            strokeWidth="2"
+            stroke="rgba(192, 132, 252, 0.85)"
+            strokeWidth="2.5"
           />
 
-          {/* Small Stars / Sparkles around frame */}
-          <g fill="#ffffff" opacity="0.9">
-            <path d="M 200 40 L 202 45 L 207 47 L 202 49 L 200 54 L 198 49 L 193 47 L 198 45 Z" />
-            <path d="M 200 506 L 202 511 L 207 513 L 202 515 L 200 520 L 198 515 L 193 513 L 198 511 Z" />
-            <path d="M 52 280 L 54 283 L 57 285 L 54 287 L 52 290 L 50 287 L 47 285 L 50 283 Z" />
-            <path d="M 348 280 L 350 283 L 353 285 L 350 287 L 348 290 L 346 287 L 343 285 L 346 283 Z" />
+          {/* Sparkles on frame nodes */}
+          <g fill="#ffffff" opacity="0.95" filter="url(#glowEffect)">
+            <path d="M 200 48 L 202 53 L 207 55 L 202 57 L 200 62 L 198 57 L 193 55 L 198 53 Z" />
+            <path d="M 200 532 L 202 537 L 207 539 L 202 541 L 200 546 L 198 541 L 193 539 L 198 537 Z" />
+            <path d="M 52 295 L 54 298 L 57 300 L 54 302 L 52 305 L 50 302 L 47 300 L 50 298 Z" />
+            <path d="M 348 295 L 350 298 L 353 300 L 350 302 L 348 305 L 346 302 L 343 300 L 346 298 Z" />
           </g>
         </svg>
 
@@ -164,14 +178,14 @@ export default function VintageOvalFrame({
           style={{
             position: "absolute",
             width: "68%",
-            height: "71%",
-            top: "14.5%",
+            height: "70%",
+            top: "15.5%",
             left: "16%",
             borderRadius: "50% / 50%",
             overflow: "hidden",
-            boxShadow: "inset 0 0 30px rgba(0,0,0,0.85)",
+            boxShadow: "inset 0 0 35px rgba(0,0,0,0.95)",
             zIndex: 5,
-            backgroundColor: "#000",
+            backgroundColor: "#090710",
           }}
         >
           {videoSrc ? (
@@ -204,8 +218,8 @@ export default function VintageOvalFrame({
               style={{
                 width: "100%",
                 height: "100%",
-                backgroundColor: "rgba(45, 50, 36, 0.9)",
-                border: "2px dashed rgba(214, 204, 186, 0.4)",
+                backgroundColor: "rgba(18, 14, 28, 0.95)",
+                border: "2px dashed rgba(192, 132, 252, 0.4)",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
@@ -219,7 +233,7 @@ export default function VintageOvalFrame({
                 style={{
                   fontFamily: "var(--font-serif)",
                   fontSize: "0.82rem",
-                  color: "#f2ede4",
+                  color: "#c084fc",
                   fontWeight: 700,
                   letterSpacing: "0.06em",
                   textTransform: "uppercase",
@@ -235,7 +249,7 @@ export default function VintageOvalFrame({
             style={{
               position: "absolute",
               inset: 0,
-              background: "radial-gradient(ellipse at center, transparent 55%, rgba(45,50,36,0.85) 100%)",
+              background: "radial-gradient(ellipse at center, transparent 55%, rgba(6,5,10,0.85) 100%)",
               pointerEvents: "none",
             }}
           />

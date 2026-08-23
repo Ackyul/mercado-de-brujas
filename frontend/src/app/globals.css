@@ -1,44 +1,45 @@
 :root {
-  /* ─── Magic Market Vintage Olive & Cream Botanical Palette ─── */
-  /* Primary background: deep vintage olive moss green */
-  --bg-primary: #3b412d;
-  --bg-secondary: #454b35;
-  --bg-panel: #4e553e;
+  /* ─── Mercado de Brujas — Negro, Blanco & Morado Palette ─── */
+  /* Primary background: pitch obsidian black & deep violet night */
+  --bg-primary: #06050a;
+  --bg-secondary: #0d0b14;
+  --bg-panel: #13101e;
   /* Glass panels & cards */
-  --bg-glass: rgba(69, 75, 53, 0.92);
-  --bg-glass-hover: rgba(78, 85, 62, 0.96);
-  --bg-parchment: rgba(242, 237, 228, 0.06);
-  --bg-parchment-solid: #f2ede4;
+  --bg-glass: rgba(18, 14, 28, 0.94);
+  --bg-glass-hover: rgba(28, 22, 42, 0.96);
+  --bg-parchment: rgba(168, 85, 247, 0.05);
+  --bg-parchment-solid: #ffffff;
 
-  /* Borders: warm beige & vintage gold outline */
-  --border-subtle: rgba(226, 216, 199, 0.2);
-  --border-glow: rgba(242, 237, 228, 0.5);
-  --border-gold: rgba(216, 206, 190, 0.4);
+  /* Borders: vibrant purple glow & crisp white outline */
+  --border-subtle: rgba(168, 85, 247, 0.25);
+  --border-glow: rgba(192, 132, 252, 0.6);
+  --border-purple: rgba(168, 85, 247, 0.45);
+  --border-gold: rgba(192, 132, 252, 0.5);
 
-  /* Text: warm ivory/cream main text & muted beige */
-  --text-main: #f2ede4;
-  --text-muted: #c5beaf;
-  --text-parchment: #2c3121;
-  --text-accent: #e6dfd3;
+  /* Text: pure white main text & silver/lavender muted text */
+  --text-main: #ffffff;
+  --text-muted: #a1a1aa;
+  --text-parchment: #000000;
+  --text-accent: #c084fc;
 
   /* Accent palette */
-  --accent-gold: #d8cebe;       /* warm vintage beige button/accent */
-  --accent-amber: #cbbba6;      /* sandy vintage tone */
-  --accent-purple: #9d8189;     /* subtle dusty rose / purple accent */
-  --accent-purple-light: #f2ede4;
-  --accent-purple-dim: #2f3424;
-  --accent-teal: #78866b;
-  --accent-cream: #f8f5ee;      /* pure warm ivory */
-  --accent-moon: #ffffff;
+  --accent-gold: #c084fc;       /* vibrant light purple accent */
+  --accent-amber: #a855f7;      /* rich purple accent */
+  --accent-purple: #a855f7;     /* vibrant purple */
+  --accent-purple-light: #c084fc;
+  --accent-purple-dim: #6b21a8; /* deep purple background glow */
+  --accent-teal: #9333ea;
+  --accent-cream: #ffffff;      /* pure crisp white */
+  --accent-moon: #f4f4f5;       /* crisp white moon glow */
 
   /* Shadows */
-  --shadow-purple: 0 4px 20px rgba(0, 0, 0, 0.35);
-  --shadow-gold: 0 0 25px rgba(242, 237, 228, 0.15);
-  --shadow-fire: 0 0 35px rgba(0, 0, 0, 0.4);
+  --shadow-purple: 0 0 30px rgba(168, 85, 247, 0.4);
+  --shadow-gold: 0 0 25px rgba(255, 255, 255, 0.25);
+  --shadow-fire: 0 0 35px rgba(168, 85, 247, 0.3);
 
   --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 14px;
+  --radius-md: 10px;
+  --radius-lg: 18px;
 
   /* Cinzel / Georgia for headings, Outfit / Inter for body */
   --font-serif: var(--font-cinzel), 'Georgia', 'Times New Roman', serif;
@@ -59,12 +60,12 @@ html {
 body {
   min-height: 100vh;
   background-color: var(--bg-primary);
-  /* Atmospheric background: vintage olive moss green + subtle botanical/noise texture */
+  /* Atmospheric background: pitch obsidian black + glowing purple radial halos */
   background-image:
-    radial-gradient(ellipse at 50% 0%, rgba(78, 85, 62, 0.5) 0%, transparent 70%),
-    radial-gradient(ellipse at 85% 30%, rgba(59, 65, 45, 0.4) 0%, transparent 60%),
-    radial-gradient(ellipse at 15% 80%, rgba(69, 75, 53, 0.4) 0%, transparent 60%),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    radial-gradient(ellipse at 50% 0%, rgba(147, 51, 234, 0.22) 0%, transparent 65%),
+    radial-gradient(ellipse at 85% 30%, rgba(107, 33, 168, 0.15) 0%, transparent 55%),
+    radial-gradient(ellipse at 15% 75%, rgba(168, 85, 247, 0.12) 0%, transparent 60%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
   background-attachment: fixed;
   color: var(--text-main);
   font-family: var(--font-sans);

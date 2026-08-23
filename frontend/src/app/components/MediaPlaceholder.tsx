@@ -47,8 +47,8 @@ export default function MediaPlaceholder({
         height: height || "100%",
         minHeight: height ? undefined : "200px",
         aspectRatio: aspectRatio || undefined,
-        backgroundColor: "rgba(45, 50, 36, 0.75)",
-        border: "2px dashed rgba(214, 204, 186, 0.4)",
+        backgroundColor: "rgba(18, 14, 28, 0.85)",
+        border: "2px dashed rgba(168, 85, 247, 0.4)",
         borderRadius: type === "oval" ? "50%" : "var(--radius-md)",
         display: "flex",
         flexDirection: "column",
@@ -57,18 +57,18 @@ export default function MediaPlaceholder({
         padding: "1.5rem",
         position: "relative",
         overflow: "hidden",
-        boxShadow: "inset 0 0 30px rgba(0, 0, 0, 0.3)",
+        boxShadow: "inset 0 0 35px rgba(0, 0, 0, 0.6), 0 0 20px rgba(168, 85, 247, 0.15)",
         transition: "all 0.3s ease",
         cursor: "pointer",
         ...style,
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.borderColor = "rgba(242, 237, 228, 0.8)";
-        e.currentTarget.style.backgroundColor = "rgba(55, 61, 44, 0.85)";
+        e.currentTarget.style.borderColor = "rgba(192, 132, 252, 0.85)";
+        e.currentTarget.style.backgroundColor = "rgba(28, 22, 42, 0.95)";
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.borderColor = "rgba(214, 204, 186, 0.4)";
-        e.currentTarget.style.backgroundColor = "rgba(45, 50, 36, 0.75)";
+        e.currentTarget.style.borderColor = "rgba(168, 85, 247, 0.4)";
+        e.currentTarget.style.backgroundColor = "rgba(18, 14, 28, 0.85)";
       }}
     >
       {/* Background aesthetic line grid */}
@@ -142,16 +142,17 @@ export default function MediaPlaceholder({
               setIsPlaying(!isPlaying);
             }}
             style={{
-              backgroundColor: "rgba(30, 34, 24, 0.85)",
-              border: "1px solid rgba(226, 216, 199, 0.4)",
-              color: "#f2ede4",
+              backgroundColor: "rgba(18, 14, 28, 0.95)",
+              border: "1px solid rgba(168, 85, 247, 0.5)",
+              color: "#ffffff",
               borderRadius: "4px",
-              padding: "0.3rem 0.6rem",
+              padding: "0.35rem 0.7rem",
               fontSize: "0.75rem",
               cursor: "pointer",
               display: "flex",
               alignItems: "center",
               gap: "0.3rem",
+              boxShadow: "0 0 10px rgba(168, 85, 247, 0.2)",
             }}
           >
             {isPlaying ? "⏸ Pausa" : "▶ Reproducir"}
@@ -163,13 +164,14 @@ export default function MediaPlaceholder({
               setIsMuted(!isMuted);
             }}
             style={{
-              backgroundColor: "rgba(30, 34, 24, 0.85)",
-              border: "1px solid rgba(226, 216, 199, 0.4)",
-              color: "#f2ede4",
+              backgroundColor: "rgba(18, 14, 28, 0.95)",
+              border: "1px solid rgba(168, 85, 247, 0.5)",
+              color: "#ffffff",
               borderRadius: "4px",
-              padding: "0.3rem 0.6rem",
+              padding: "0.35rem 0.7rem",
               fontSize: "0.75rem",
               cursor: "pointer",
+              boxShadow: "0 0 10px rgba(168, 85, 247, 0.2)",
             }}
           >
             {isMuted ? "🔇 Silencio" : "🔊 Audio"}

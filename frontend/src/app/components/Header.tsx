@@ -38,10 +38,10 @@ export default function Header() {
         style={{
           position: "relative",
           zIndex: 100,
-          backgroundColor: scrolled ? "rgba(59, 65, 45, 0.95)" : "transparent",
+          backgroundColor: scrolled ? "rgba(6, 5, 10, 0.95)" : "transparent",
           backdropFilter: scrolled ? "blur(20px)" : "none",
           WebkitBackdropFilter: scrolled ? "blur(20px)" : "none",
-          borderBottom: `1px solid ${scrolled ? "rgba(226, 216, 199, 0.2)" : "transparent"}`,
+          borderBottom: `1px solid ${scrolled ? "rgba(168, 85, 247, 0.3)" : "transparent"}`,
           transition: "all 0.35s ease",
           padding: "1.75rem 1rem 1rem",
           display: "flex",
@@ -61,21 +61,21 @@ export default function Header() {
           }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
-            <span style={{ color: "#d8cebe", fontSize: "0.85rem" }}>✦</span>
+            <span style={{ color: "#c084fc", fontSize: "0.85rem" }}>✦</span>
             <span
               style={{
                 fontFamily: "var(--font-serif)",
                 fontSize: "clamp(1.8rem, 4vw, 2.7rem)",
                 fontWeight: 700,
                 letterSpacing: "0.15em",
-                color: "#f2ede4",
+                color: "#ffffff",
                 textTransform: "uppercase",
-                textShadow: "0 2px 10px rgba(0,0,0,0.5)",
+                textShadow: "0 0 20px rgba(168, 85, 247, 0.6), 0 0 35px rgba(255, 255, 255, 0.3)",
               }}
             >
-              MAGIC MARKET
+              MERCADO DE BRUJAS
             </span>
-            <span style={{ color: "#d8cebe", fontSize: "0.85rem" }}>✦</span>
+            <span style={{ color: "#c084fc", fontSize: "0.85rem" }}>✦</span>
           </div>
         </Link>
 
@@ -97,7 +97,7 @@ export default function Header() {
                 {idx > 0 && (
                   <span
                     style={{
-                      color: "rgba(226, 216, 199, 0.35)",
+                      color: "rgba(168, 85, 247, 0.4)",
                       fontSize: "0.8rem",
                       userSelect: "none",
                       padding: "0 0.1rem",
@@ -110,14 +110,15 @@ export default function Header() {
                   href={link.href}
                   style={{
                     fontFamily: "var(--font-serif)",
-                    color: isActive ? "#ffffff" : "#d8cebe",
+                    color: isActive ? "#ffffff" : "#a1a1aa",
                     textDecoration: "none",
                     fontSize: "0.88rem",
                     fontWeight: isActive ? 700 : 400,
                     letterSpacing: "0.08em",
                     padding: "0.25rem 0.5rem",
                     transition: "all 0.2s ease",
-                    borderBottom: isActive ? "1px solid #f2ede4" : "1px solid transparent",
+                    borderBottom: isActive ? "1px solid #c084fc" : "1px solid transparent",
+                    textShadow: isActive ? "0 0 12px rgba(192, 132, 252, 0.8)" : "none",
                   }}
                 >
                   {link.label}

@@ -90,7 +90,7 @@ export default function Home() {
               style={{
                 fontSize: "clamp(2.2rem, 4vw, 3.2rem)",
                 fontFamily: "var(--font-serif)",
-                color: "#f2ede4",
+                color: "#ffffff",
                 marginBottom: "1.5rem",
                 letterSpacing: "0.04em",
                 lineHeight: 1.15,
@@ -115,7 +115,7 @@ export default function Home() {
               style={{
                 fontSize: "1.35rem",
                 fontFamily: "var(--font-serif)",
-                color: "#f2ede4",
+                color: "#c084fc",
                 marginBottom: "0.85rem",
                 letterSpacing: "0.04em",
               }}
@@ -146,8 +146,8 @@ export default function Home() {
         </div>
 
         {/* Butterfly / Moth Emblem Divider */}
-        <div style={{ textAlign: "center", margin: "4rem 0 2rem", opacity: 0.8 }}>
-          <span style={{ fontSize: "2.5rem" }}>🦋</span>
+        <div style={{ textAlign: "center", margin: "4rem 0 2rem", opacity: 0.85 }}>
+          <span style={{ fontSize: "2.5rem", filter: "drop-shadow(0 0 12px rgba(168, 85, 247, 0.7))" }}>🦋</span>
         </div>
       </section>
 
@@ -166,9 +166,10 @@ export default function Home() {
             style={{
               fontSize: "clamp(1.5rem, 3vw, 2.2rem)",
               fontFamily: "var(--font-serif)",
-              color: "#f2ede4",
+              color: "#ffffff",
               letterSpacing: "0.15em",
               textTransform: "uppercase",
+              textShadow: "0 0 20px rgba(168, 85, 247, 0.5)",
             }}
           >
             ✦ UPCOMING EVENT ✦
@@ -208,12 +209,13 @@ export default function Home() {
               style={{
                 fontSize: "clamp(2rem, 4vw, 3rem)",
                 fontFamily: "var(--font-serif)",
-                color: "#f2ede4",
+                color: "#ffffff",
                 letterSpacing: "0.12em",
                 textTransform: "uppercase",
+                textShadow: "0 0 25px rgba(168, 85, 247, 0.4)",
               }}
             >
-              MAGIC MARKET
+              MERCADO DE BRUJAS
             </h3>
 
             <p
@@ -231,8 +233,8 @@ export default function Home() {
               href="/ediciones"
               style={{
                 display: "inline-block",
-                backgroundColor: "var(--accent-gold)",
-                color: "#303525",
+                backgroundColor: "var(--accent-purple)",
+                color: "#ffffff",
                 fontFamily: "var(--font-serif)",
                 fontSize: "0.95rem",
                 fontWeight: 700,
@@ -242,14 +244,14 @@ export default function Home() {
                 textTransform: "uppercase",
                 borderRadius: "var(--radius-sm)",
                 transition: "all 0.3s ease",
-                boxShadow: "0 4px 15px rgba(0,0,0,0.25)",
+                boxShadow: "0 0 25px rgba(168, 85, 247, 0.5)",
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = "#f2ede4";
+                e.currentTarget.style.backgroundColor = "#c084fc";
                 e.currentTarget.style.transform = "translateY(-2px)";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = "var(--accent-gold)";
+                e.currentTarget.style.backgroundColor = "var(--accent-purple)";
                 e.currentTarget.style.transform = "translateY(0)";
               }}
             >
@@ -273,9 +275,10 @@ export default function Home() {
             style={{
               fontSize: "clamp(1.6rem, 3.2vw, 2.4rem)",
               fontFamily: "var(--font-serif)",
-              color: "#f2ede4",
+              color: "#ffffff",
               letterSpacing: "0.15em",
               textTransform: "uppercase",
+              textShadow: "0 0 20px rgba(168, 85, 247, 0.4)",
             }}
           >
             MAGIC MARKET
@@ -315,15 +318,15 @@ export default function Home() {
               width: "42px",
               height: "42px",
               borderRadius: "50%",
-              backgroundColor: "rgba(30, 34, 24, 0.9)",
-              border: "1px solid rgba(226, 216, 199, 0.4)",
-              color: "#f2ede4",
+              backgroundColor: "rgba(18, 14, 28, 0.95)",
+              border: "1px solid rgba(168, 85, 247, 0.5)",
+              color: "#ffffff",
               fontSize: "1.2rem",
               cursor: "pointer",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              boxShadow: "0 4px 12px rgba(0,0,0,0.5)",
+              boxShadow: "0 0 15px rgba(168, 85, 247, 0.4)",
               zIndex: 10,
             }}
           >
@@ -341,15 +344,15 @@ export default function Home() {
               width: "42px",
               height: "42px",
               borderRadius: "50%",
-              backgroundColor: "rgba(30, 34, 24, 0.9)",
-              border: "1px solid rgba(226, 216, 199, 0.4)",
-              color: "#f2ede4",
+              backgroundColor: "rgba(18, 14, 28, 0.95)",
+              border: "1px solid rgba(168, 85, 247, 0.5)",
+              color: "#ffffff",
               fontSize: "1.2rem",
               cursor: "pointer",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              boxShadow: "0 4px 12px rgba(0,0,0,0.5)",
+              boxShadow: "0 0 15px rgba(168, 85, 247, 0.4)",
               zIndex: 10,
             }}
           >
@@ -362,8 +365,8 @@ export default function Home() {
       <section
         id="contacto"
         style={{
-          backgroundColor: "#343927",
-          borderTop: "1px solid rgba(226, 216, 199, 0.15)",
+          backgroundColor: "#0b0912",
+          borderTop: "1px solid rgba(168, 85, 247, 0.25)",
           padding: "5rem 2rem 3rem",
           marginTop: "auto",
         }}
@@ -373,7 +376,7 @@ export default function Home() {
             style={{
               fontSize: "clamp(1.4rem, 2.8vw, 2.1rem)",
               fontFamily: "var(--font-serif)",
-              color: "#f2ede4",
+              color: "#ffffff",
               marginBottom: "2.5rem",
               lineHeight: 1.35,
               fontWeight: 400,
@@ -385,12 +388,13 @@ export default function Home() {
           {subscribed ? (
             <div
               style={{
-                backgroundColor: "rgba(78, 85, 62, 0.8)",
-                border: "1px solid var(--accent-gold)",
+                backgroundColor: "rgba(18, 14, 28, 0.9)",
+                border: "1px solid var(--accent-purple)",
                 padding: "1.5rem",
                 borderRadius: "var(--radius-sm)",
-                color: "#f2ede4",
+                color: "#ffffff",
                 marginBottom: "3rem",
+                boxShadow: "0 0 20px rgba(168, 85, 247, 0.3)",
               }}
             >
               ✦ ¡Gracias por suscribirte! Te notificaremos pronto sobre los próximos eventos. ✦
@@ -412,7 +416,7 @@ export default function Home() {
                     style={{
                       display: "block",
                       fontSize: "0.85rem",
-                      color: "#d8cebe",
+                      color: "#c084fc",
                       marginBottom: "0.4rem",
                       fontFamily: "var(--font-serif)",
                     }}
@@ -428,10 +432,10 @@ export default function Home() {
                     style={{
                       width: "100%",
                       padding: "0.8rem 1rem",
-                      backgroundColor: "rgba(55, 61, 44, 0.8)",
-                      border: "1px solid rgba(226, 216, 199, 0.3)",
+                      backgroundColor: "rgba(18, 14, 28, 0.9)",
+                      border: "1px solid rgba(168, 85, 247, 0.4)",
                       borderRadius: "var(--radius-sm)",
-                      color: "#f2ede4",
+                      color: "#ffffff",
                       fontSize: "0.95rem",
                       outline: "none",
                     }}
@@ -442,8 +446,8 @@ export default function Home() {
                   type="submit"
                   style={{
                     alignSelf: "flex-end",
-                    backgroundColor: "var(--accent-gold)",
-                    color: "#303525",
+                    backgroundColor: "var(--accent-purple)",
+                    color: "#ffffff",
                     border: "none",
                     fontFamily: "var(--font-serif)",
                     fontSize: "0.9rem",
@@ -453,9 +457,10 @@ export default function Home() {
                     borderRadius: "var(--radius-sm)",
                     cursor: "pointer",
                     transition: "all 0.25s ease",
+                    boxShadow: "0 0 15px rgba(168, 85, 247, 0.4)",
                   }}
-                  onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#f2ede4")}
-                  onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "var(--accent-gold)")}
+                  onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#c084fc")}
+                  onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "var(--accent-purple)")}
                 >
                   Subscribe
                 </button>
@@ -488,7 +493,7 @@ export default function Home() {
           {/* Bottom Footer Bar (Email, Copyright & Social Icons) */}
           <div
             style={{
-              borderTop: "1px solid rgba(226, 216, 199, 0.15)",
+              borderTop: "1px solid rgba(168, 85, 247, 0.2)",
               paddingTop: "2rem",
               display: "flex",
               flexWrap: "wrap",
@@ -504,14 +509,14 @@ export default function Home() {
               <span>Email: </span>
               <a
                 href="mailto:MagicMarketPopUp@gmail.com"
-                style={{ color: "#f2ede4", textDecoration: "none", fontStyle: "italic" }}
+                style={{ color: "#c084fc", textDecoration: "none", fontStyle: "italic" }}
               >
                 MagicMarketPopUp@gmail.com
               </a>
             </div>
 
             <div>
-              <span>© {new Date().getFullYear()} Magic Market Pop Up</span>
+              <span>© {new Date().getFullYear()} Mercado de Brujas / Magic Market</span>
             </div>
 
             {/* Social Icons */}
@@ -521,7 +526,7 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                style={{ color: "#f2ede4", textDecoration: "none" }}
+                style={{ color: "#ffffff", textDecoration: "none" }}
               >
                 📸
               </a>
@@ -530,7 +535,7 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="TikTok"
-                style={{ color: "#f2ede4", textDecoration: "none" }}
+                style={{ color: "#ffffff", textDecoration: "none" }}
               >
                 🎵
               </a>
