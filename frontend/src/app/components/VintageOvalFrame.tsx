@@ -156,7 +156,7 @@ export default function VintageOvalFrame({
             pointerEvents: "none",
             zIndex: 2,
             filter:
-              "sepia(1) hue-rotate(225deg) saturate(3.5) brightness(0.95) contrast(1.15) drop-shadow(0 0 22px rgba(168, 85, 247, 0.85))",
+              "sepia(1) hue-rotate(235deg) saturate(4) brightness(0.9) contrast(1.2) drop-shadow(0 0 25px rgba(168, 85, 247, 0.9))",
           }}
         />
       </div>
