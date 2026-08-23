@@ -44,23 +44,6 @@ export default function VintageOvalFrame({
           justifyContent: "center",
         }}
       >
-        {/* Soft Background Purple Glow Aura */}
-        <div
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            width: "75%",
-            height: "80%",
-            background:
-              "radial-gradient(ellipse at center, rgba(168, 85, 247, 0.45) 0%, rgba(107, 33, 168, 0.2) 50%, transparent 75%)",
-            filter: "blur(35px)",
-            pointerEvents: "none",
-            zIndex: 0,
-          }}
-        />
-
         {/* Inner Media Content Container (Clipped Oval Behind Frame) */}
         <div
           style={{
@@ -71,7 +54,7 @@ export default function VintageOvalFrame({
             left: "21.75%",
             borderRadius: "50% / 50%",
             overflow: "hidden",
-            boxShadow: "inset 0 0 35px rgba(0,0,0,0.95)",
+            boxShadow: "inset 0 0 15px rgba(0,0,0,0.8)",
             zIndex: 1,
             backgroundColor: "#090710",
           }}
@@ -137,13 +120,13 @@ export default function VintageOvalFrame({
               position: "absolute",
               inset: 0,
               background:
-                "radial-gradient(ellipse at center, transparent 55%, rgba(6,5,10,0.85) 100%)",
+                "radial-gradient(ellipse at center, transparent 55%, rgba(6,5,10,0.7) 100%)",
               pointerEvents: "none",
             }}
           />
         </div>
 
-        {/* ── Exact Original Victorian Oval Mirror Frame PNG (Glowing Purple Rim) ── */}
+        {/* ── Exact Original Victorian Oval Mirror Frame PNG (Clean Purple Rim - No Glow) ── */}
         <img
           src={FRAME_PNG_URL}
           alt="Marco Ovalado Victoriano Morado"
@@ -155,8 +138,7 @@ export default function VintageOvalFrame({
             objectFit: "contain",
             pointerEvents: "none",
             zIndex: 2,
-            filter:
-              "sepia(1) hue-rotate(235deg) saturate(4) brightness(0.9) contrast(1.2) drop-shadow(0 0 25px rgba(168, 85, 247, 0.9))",
+            filter: "sepia(1) hue-rotate(235deg) saturate(3.5) brightness(0.95) contrast(1.15)",
           }}
         />
       </div>
