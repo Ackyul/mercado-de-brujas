@@ -33,18 +33,6 @@ export default function VintageOvalFrame({
         alignItems: "center",
       }}
     >
-      {/* ── SVG Mask Definition for Center Cutout ── */}
-      <svg style={{ position: "absolute", width: 0, height: 0, overflow: "hidden" }}>
-        <defs>
-          <mask id="purpleFrameCutoutMask">
-            {/* White area keeps the outer frame overlay */}
-            <rect width="100%" height="100%" fill="white" />
-            {/* Black oval cuts out the center transparent window so the photo stays 100% natural */}
-            <ellipse cx="50%" cy="50%" rx="35%" ry="41%" fill="black" />
-          </mask>
-        </defs>
-      </svg>
-
       {/* ── Outer Frame Container ── */}
       <div
         style={{
@@ -73,7 +61,7 @@ export default function VintageOvalFrame({
           }}
         />
 
-        {/* Inner Media Content Container (Crisp & Un-tinted Photo / Video / Placeholder) */}
+        {/* Inner Media Content Container (Clipped Oval Behind Frame) */}
         <div
           style={{
             position: "absolute",
@@ -155,30 +143,22 @@ export default function VintageOvalFrame({
           />
         </div>
 
-        {/* ── Exact Victorian Frame PNG (Only Ornate Rim Tinted Glowing Purple) ── */}
-        <div
+        {/* ── Exact Original Victorian Oval Mirror Frame PNG (Glowing Purple Rim) ── */}
+        <img
+          src={FRAME_PNG_URL}
+          alt="Marco Ovalado Victoriano Morado"
           style={{
             position: "absolute",
             inset: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "contain",
             pointerEvents: "none",
             zIndex: 2,
-            filter: "drop-shadow(0 0 22px rgba(168, 85, 247, 0.85))",
-            mask: "url(#purpleFrameCutoutMask)",
-            WebkitMask: "url(#purpleFrameCutoutMask)",
+            filter:
+              "sepia(1) hue-rotate(235deg) saturate(4) brightness(0.9) contrast(1.2) drop-shadow(0 0 25px rgba(168, 85, 247, 0.9))",
           }}
-        >
-          <img
-            src={FRAME_PNG_URL}
-            alt="Marco Ovalado Victoriano Morado"
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "contain",
-              filter:
-                "sepia(1) hue-rotate(235deg) saturate(4) brightness(0.9) contrast(1.2)",
-            }}
-          />
-        </div>
+        />
       </div>
 
       {/* Frame Caption / Title */}
