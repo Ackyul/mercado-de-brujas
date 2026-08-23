@@ -1,12 +1,31 @@
 "use client";
 
+import React, { useState } from "react";
 import Link from "next/link";
 import Header from "./components/Header";
-import HeroStory from "./components/HeroStory";
 import VintageOvalFrame from "./components/VintageOvalFrame";
-import ImagePlaceholder from "./components/ImagePlaceholder";
+import MediaPlaceholder from "./components/MediaPlaceholder";
 
 export default function Home() {
+  const [email, setEmail] = useState("");
+  const [subscribed, setSubscribed] = useState(false);
+  const [agree, setAgree] = useState(false);
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  const galleryPlaceholders = [
+    { label: "[Espacio para Galería #1 - Stalls]", sub: "Formato 1:1 o 4:3" },
+    { label: "[Espacio para Galería #2 - Tarot]", sub: "Formato 1:1 o 4:3" },
+    { label: "[Espacio para Galería #3 - Music]", sub: "Formato 1:1 o 4:3" },
+    { label: "[Espacio para Galería #4 - Community]", sub: "Formato 1:1 o 4:3" },
+  ];
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email) {
+      setSubscribed(true);
+    }
+  };
+
   return (
     <div
       style={{
@@ -14,314 +33,511 @@ export default function Home() {
         display: "flex",
         flexDirection: "column",
         backgroundColor: "var(--bg-primary)",
+        color: "var(--text-main)",
       }}
     >
       <Header />
-      <HeroStory />
 
-      {/* ── Una Comunidad Mágica (Magic Market Style Layout) ── */}
+      {/* ── SECTION 1: Hero Video Placeholder Container (Magic Market Style) ── */}
+      <section
+        style={{
+          maxWidth: "1100px",
+          width: "100%",
+          margin: "1.5rem auto 4rem",
+          padding: "0 1.5rem",
+        }}
+      >
+        <div
+          style={{
+            borderRadius: "var(--radius-md)",
+            overflow: "hidden",
+            boxShadow: "0 12px 40px rgba(0, 0, 0, 0.4)",
+            border: "1px solid var(--border-subtle)",
+          }}
+        >
+          <MediaPlaceholder
+            type="video"
+            label="[Espacio para Video de Portada - Magic Market]"
+            sublabel="Recomendado: Video loop MP4 de alta calidad (16:9)"
+            aspectRatio="16/9"
+            height="520px"
+            showControls={true}
+          />
+        </div>
+      </section>
+
+      {/* ── SECTION 2: A Magickal Community (Text + Vintage Oval Frame) ── */}
       <section
         id="comunidad"
         style={{
-          maxWidth: "1200px",
-          margin: "1rem auto 5rem",
-          padding: "0 2rem",
+          maxWidth: "1140px",
           width: "100%",
-        }}
-      >
-        {/* Section header */}
-        <div style={{ textAlign: "center", marginBottom: "3rem" }}>
-          <span className="badge badge-gold" style={{ marginBottom: "1rem" }}>
-            ✦ Espacio Sagrado & Cultural ✦
-          </span>
-          <h2
-            style={{
-              fontSize: "clamp(2rem, 4.5vw, 3.2rem)",
-              fontFamily: "var(--font-serif)",
-              color: "#ffffff",
-              marginBottom: "0.75rem",
-              letterSpacing: "0.04em",
-            }}
-          >
-            Una comunidad mágica
-          </h2>
-          <p
-            style={{
-              fontFamily: "var(--font-serif)",
-              fontSize: "clamp(1rem, 2vw, 1.3rem)",
-              color: "var(--text-muted)",
-              letterSpacing: "0.08em",
-              maxWidth: "680px",
-              margin: "0 auto 2.5rem",
-            }}
-          >
-            Una feria itinerante. Un punto de encuentro. Una comunidad de brujas.
-          </p>
-
-          {/* Oval Mirror Frame Showcase */}
-          <VintageOvalFrame
-            imageSrc="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1200&auto=format&fit=crop"
-            alt="Mercado de Brujas Comunidad Presencial"
-            subtitle="✦ Feria Pop-Up · Ediciones Presenciales ✦"
-          />
-        </div>
-
-        {/* 3 pillars */}
-        <div className="pillars-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "1.5rem" }}>
-          {[
-            { icon: "🌿", title: "Alquimia & Botánica", text: "Espacio para creadores e ilustradores enfocados en herbolaria, pociones artesanales, elementos naturales y la magia de las plantas.", sub: "Arte & Herbolaria Ancestral" },
-            { icon: "💎", title: "El Valor del Oficio", text: "Fomentamos la creación artesanal independiente, impulsando marcas locales, joyería mística, amuletos y piezas únicas.", sub: "Creación Artesanal Independiente" },
-            { icon: "🔮", title: "Encuentro Itinerante", text: "Construimos comunidad a través de ferias pop-up en distintas locaciones, talleres, oráculos y experiencias compartidas.", sub: "Comunidad & Encuentros Pop-Up" },
-          ].map((pillar) => (
-            <div
-              key={pillar.title}
-              className="glass-panel ornate-frame"
-              style={{ padding: "1.5rem", display: "flex", flexDirection: "column" }}
-            >
-              <div
-                style={{
-                  height: "180px",
-                  marginBottom: "1.25rem",
-                  borderRadius: "var(--radius-sm)",
-                  overflow: "hidden",
-                }}
-              >
-                <ImagePlaceholder height="100%" label="(Imagen)"  />
-              </div>
-              <h3
-                style={{
-                  fontSize: "1.15rem",
-                  fontFamily: "var(--font-serif)",
-                  marginBottom: "0.5rem",
-                  color: "var(--accent-purple-light)",
-                  letterSpacing: "0.04em",
-                }}
-              >
-                {pillar.icon} {pillar.title}
-              </h3>
-              <p className="text-muted" style={{ fontSize: "0.9rem", lineHeight: 1.65 }}>
-                {pillar.text}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── Sé Parte / Join CTA Section ── */}
-      <section
-        id="se-parte"
-        style={{
-          maxWidth: "1200px",
           margin: "0 auto 5rem",
           padding: "0 2rem",
-          width: "100%",
         }}
       >
         <div
-          className="glass-card-gold ornate-frame"
           style={{
-            padding: "3rem 2rem",
-            textAlign: "center",
-            maxWidth: "800px",
-            margin: "0 auto",
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+            gap: "3.5rem",
+            alignItems: "center",
           }}
         >
-          <span className="badge badge-purple" style={{ marginBottom: "1rem" }}>
-            ✦ Sé Parte de la Experiencia ✦
-          </span>
+          {/* Left Text Block */}
+          <div>
+            <h2
+              style={{
+                fontSize: "clamp(2.2rem, 4vw, 3.2rem)",
+                fontFamily: "var(--font-serif)",
+                color: "#f2ede4",
+                marginBottom: "1.5rem",
+                letterSpacing: "0.04em",
+                lineHeight: 1.15,
+              }}
+            >
+              A Magickal Community
+            </h2>
+
+            <p
+              style={{
+                fontSize: "1rem",
+                lineHeight: 1.75,
+                color: "var(--text-main)",
+                marginBottom: "2rem",
+                fontFamily: "var(--font-sans)",
+              }}
+            >
+              It's a beautiful day as you enter the gates of Magic Market. You hear the birds chirp, feel the warmth of the sun, smell the trees and grass. The energy of the space feels surreal as you're surrounded with beautiful Victorian homes. You're excited to frolic with your people and connect with like minded souls in a place that feels other worldly.
+            </p>
+
+            <h3
+              style={{
+                fontSize: "1.35rem",
+                fontFamily: "var(--font-serif)",
+                color: "#f2ede4",
+                marginBottom: "0.85rem",
+                letterSpacing: "0.04em",
+              }}
+            >
+              Welcome to Magic Market
+            </h3>
+
+            <p
+              style={{
+                fontSize: "0.95rem",
+                lineHeight: 1.7,
+                color: "var(--text-muted)",
+                marginBottom: "1.5rem",
+              }}
+            >
+              A metaphysical market featuring 75 vendors ranging from metaphysical products, vintage, plants, tarot, palmistry, witch supply as well as workshops and classes including sound healing, yoga and more. Come join our witchy community and enjoy delicious vegan food while listening to the sounds of local featured artists. We currently pop up at Heritage Museums in Los Angeles and Orange County.
+            </p>
+          </div>
+
+          {/* Right Vintage Oval Frame Placeholder */}
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <VintageOvalFrame
+              imageSrc=""
+              title=""
+              subtitle=""
+            />
+          </div>
+        </div>
+
+        {/* Butterfly / Moth Emblem Divider */}
+        <div style={{ textAlign: "center", margin: "4rem 0 2rem", opacity: 0.8 }}>
+          <span style={{ fontSize: "2.5rem" }}>🦋</span>
+        </div>
+      </section>
+
+      {/* ── SECTION 3: UPCOMING EVENT Showcase ── */}
+      <section
+        id="events"
+        style={{
+          maxWidth: "1140px",
+          width: "100%",
+          margin: "0 auto 6rem",
+          padding: "0 2rem",
+        }}
+      >
+        <div style={{ textAlign: "center", marginBottom: "3rem" }}>
           <h2
             style={{
-              fontSize: "clamp(1.8rem, 3vw, 2.5rem)",
+              fontSize: "clamp(1.5rem, 3vw, 2.2rem)",
               fontFamily: "var(--font-serif)",
-              color: "#ffffff",
-              marginBottom: "1rem",
+              color: "#f2ede4",
+              letterSpacing: "0.15em",
+              textTransform: "uppercase",
             }}
           >
-            ¿Quieres participar en la próxima edición?
+            ✦ UPCOMING EVENT ✦
           </h2>
-          <p
-            className="text-muted"
-            style={{ maxWidth: "600px", margin: "0 auto 2rem", fontSize: "0.95rem", lineHeight: 1.7 }}
+        </div>
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+            gap: "3rem",
+            alignItems: "center",
+          }}
+        >
+          {/* Event Flyer / Poster Placeholder */}
+          <div style={{ maxWidth: "480px", margin: "0 auto", width: "100%" }}>
+            <MediaPlaceholder
+              type="flyer"
+              label="[Espacio para Afiche / Flyer del Evento]"
+              sublabel="Formato recomendado: Afiche 4:5 o Póster de Evento"
+              height="480px"
+            />
+          </div>
+
+          {/* Event Info Action Card */}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-start",
+              justifyContent: "center",
+              gap: "1.5rem",
+              padding: "1rem",
+            }}
           >
-            Si eres creador, artesano, tarotista o practicante de artes místicas, únete a nuestra comunidad de brujas en el siguiente encuentro itinerante.
-          </p>
-          <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
-            <Link href="/ediciones" className="btn-primary">
-              🎪 Ver Próximos Encuentros
-            </Link>
-            <a
-              href="https://www.instagram.com/mercado_brujas/?hl=es"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-secondary"
+            <h3
+              style={{
+                fontSize: "clamp(2rem, 4vw, 3rem)",
+                fontFamily: "var(--font-serif)",
+                color: "#f2ede4",
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+              }}
             >
-              💬 Contáctanos por Instagram
-            </a>
+              MAGIC MARKET
+            </h3>
+
+            <p
+              style={{
+                fontSize: "1rem",
+                color: "var(--text-muted)",
+                lineHeight: 1.65,
+                maxWidth: "480px",
+              }}
+            >
+              Encuentros itinerantes de magia, artesanías independientes, talleres holísticos y comunidad mística.
+            </p>
+
+            <Link
+              href="/ediciones"
+              style={{
+                display: "inline-block",
+                backgroundColor: "var(--accent-gold)",
+                color: "#303525",
+                fontFamily: "var(--font-serif)",
+                fontSize: "0.95rem",
+                fontWeight: 700,
+                letterSpacing: "0.12em",
+                padding: "0.9rem 2.2rem",
+                textDecoration: "none",
+                textTransform: "uppercase",
+                borderRadius: "var(--radius-sm)",
+                transition: "all 0.3s ease",
+                boxShadow: "0 4px 15px rgba(0,0,0,0.25)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = "#f2ede4";
+                e.currentTarget.style.transform = "translateY(-2px)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = "var(--accent-gold)";
+                e.currentTarget.style.transform = "translateY(0)";
+              }}
+            >
+              EVENT INFORMATION
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* ── Navigation tiles / Portada ── */}
+      {/* ── SECTION 4: MAGIC MARKET Gallery Carousel ── */}
       <section
         style={{
-          maxWidth: "1200px",
-          margin: "0 auto 5rem",
-          padding: "0 2rem",
+          maxWidth: "1140px",
           width: "100%",
+          margin: "0 auto 6rem",
+          padding: "0 2rem",
         }}
       >
         <div style={{ textAlign: "center", marginBottom: "2.5rem" }}>
-          <span className="badge badge-gold">✦ Explora la Portada ✦</span>
           <h2
             style={{
-              fontSize: "clamp(1.8rem, 3vw, 2.6rem)",
+              fontSize: "clamp(1.6rem, 3.2vw, 2.4rem)",
               fontFamily: "var(--font-serif)",
-              marginTop: "0.75rem",
+              color: "#f2ede4",
+              letterSpacing: "0.15em",
+              textTransform: "uppercase",
             }}
           >
-            Portada & Secciones Principales
+            MAGIC MARKET
           </h2>
         </div>
 
+        {/* Gallery Carousel Grid */}
         <div
-          className="nav-tiles-grid"
           style={{
+            position: "relative",
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
             gap: "1.25rem",
           }}
         >
-          {[
-            { href: "/origenes", icon: "📜", title: "La Ruta (Orígenes)", text: "Conoce la historia, cronología y trayectoria de las ferias pop-up.", accent: false },
-            { href: "/ediciones", icon: "🎪", title: "Próximos Encuentros", text: "Descubre las fechas, locaciones y expositores de cada edición presencial.", accent: true },
-            { href: "/galeria", icon: "📸", title: "Galería de la Comunidad", text: "Explora la recopilación fotográfica de momentos y experiencias compartidas.", accent: false },
-          ].map((tile) => (
-            <Link key={tile.href} href={tile.href} style={{ textDecoration: "none" }}>
-              <div
-                className={tile.accent ? "glass-card-gold ornate-frame" : "glass-panel"}
-                style={{
-                  padding: "2rem 1.5rem",
-                  textAlign: "center",
-                  height: "100%",
-                  transition: "transform 0.25s ease",
-                }}
-                onMouseEnter={(e) =>
-                  ((e.currentTarget as HTMLDivElement).style.transform = "translateY(-4px)")
-                }
-                onMouseLeave={(e) =>
-                  ((e.currentTarget as HTMLDivElement).style.transform = "translateY(0)")
-                }
-              >
-                <span style={{ fontSize: "2.2rem", display: "block", marginBottom: "0.85rem" }}>
-                  {tile.icon}
-                </span>
-                <h3
-                  style={{
-                    fontSize: "1.05rem",
-                    fontFamily: "var(--font-serif)",
-                    letterSpacing: "0.06em",
-                    color: tile.accent ? "var(--accent-purple-light)" : "var(--text-main)",
-                    marginBottom: "0.6rem",
-                  }}
-                >
-                  {tile.title}
-                </h3>
-                <p className="text-muted" style={{ fontSize: "0.85rem", lineHeight: 1.6 }}>
-                  {tile.text}
-                </p>
-              </div>
-            </Link>
+          {galleryPlaceholders.map((item, idx) => (
+            <div key={idx} style={{ height: "260px" }}>
+              <MediaPlaceholder
+                type="image"
+                label={item.label}
+                sublabel={item.sub}
+                height="100%"
+              />
+            </div>
           ))}
+
+          {/* Carousel Arrows */}
+          <button
+            type="button"
+            onClick={() => setActiveSlide((prev) => (prev > 0 ? prev - 1 : 3))}
+            aria-label="Anterior"
+            style={{
+              position: "absolute",
+              left: "-1.5rem",
+              top: "50%",
+              transform: "translateY(-50%)",
+              width: "42px",
+              height: "42px",
+              borderRadius: "50%",
+              backgroundColor: "rgba(30, 34, 24, 0.9)",
+              border: "1px solid rgba(226, 216, 199, 0.4)",
+              color: "#f2ede4",
+              fontSize: "1.2rem",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              boxShadow: "0 4px 12px rgba(0,0,0,0.5)",
+              zIndex: 10,
+            }}
+          >
+            ‹
+          </button>
+          <button
+            type="button"
+            onClick={() => setActiveSlide((prev) => (prev < 3 ? prev + 1 : 0))}
+            aria-label="Siguiente"
+            style={{
+              position: "absolute",
+              right: "-1.5rem",
+              top: "50%",
+              transform: "translateY(-50%)",
+              width: "42px",
+              height: "42px",
+              borderRadius: "50%",
+              backgroundColor: "rgba(30, 34, 24, 0.9)",
+              border: "1px solid rgba(226, 216, 199, 0.4)",
+              color: "#f2ede4",
+              fontSize: "1.2rem",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              boxShadow: "0 4px 12px rgba(0,0,0,0.5)",
+              zIndex: 10,
+            }}
+          >
+            ›
+          </button>
         </div>
       </section>
 
-      {/* ── Footer ── */}
-      <footer className="footer-bar" style={{ marginTop: "auto" }}>
-        <div
-          className="footer-grid"
-          style={{
-            maxWidth: "1200px",
-            margin: "0 auto",
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-            gap: "2rem",
-            marginBottom: "2.5rem",
-            textAlign: "left",
-          }}
-        >
-          <div>
-            <h3
-              style={{
-                fontFamily: "var(--font-serif)",
-                fontSize: "1.05rem",
-                letterSpacing: "0.1em",
-                color: "var(--text-main)",
-                marginBottom: "0.75rem",
-              }}
-            >
-              🌙 Mercado de Brujas
-            </h3>
-            <p className="text-muted" style={{ fontSize: "0.85rem", lineHeight: 1.65 }}>
-              Una feria itinerante. Un punto de encuentro. Una comunidad de brujas.
-            </p>
-          </div>
+      {/* ── SECTION 5: Mailing List Subscription Form & Footer ── */}
+      <section
+        id="contacto"
+        style={{
+          backgroundColor: "#343927",
+          borderTop: "1px solid rgba(226, 216, 199, 0.15)",
+          padding: "5rem 2rem 3rem",
+          marginTop: "auto",
+        }}
+      >
+        <div style={{ maxWidth: "800px", margin: "0 auto", textAlign: "center" }}>
+          <h2
+            style={{
+              fontSize: "clamp(1.4rem, 2.8vw, 2.1rem)",
+              fontFamily: "var(--font-serif)",
+              color: "#f2ede4",
+              marginBottom: "2.5rem",
+              lineHeight: 1.35,
+              fontWeight: 400,
+            }}
+          >
+            Join our mailing list & be the first to know about upcoming events!
+          </h2>
 
-          <div>
-            <h4
+          {subscribed ? (
+            <div
               style={{
-                fontFamily: "var(--font-serif)",
-                fontSize: "0.85rem",
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
-                color: "var(--text-main)",
-                marginBottom: "0.75rem",
+                backgroundColor: "rgba(78, 85, 62, 0.8)",
+                border: "1px solid var(--accent-gold)",
+                padding: "1.5rem",
+                borderRadius: "var(--radius-sm)",
+                color: "#f2ede4",
+                marginBottom: "3rem",
               }}
             >
-              Navegación
-            </h4>
-            <ul style={{ listStyle: "none", padding: 0, margin: 0, fontSize: "0.85rem", display: "flex", flexDirection: "column", gap: "0.45rem" }}>
-              <li><Link href="/" style={{ color: "var(--text-muted)", textDecoration: "none" }}>Hogar</Link></li>
-              <li><Link href="/ediciones" style={{ color: "var(--accent-purple-light)", textDecoration: "none", fontWeight: 600 }}>Próximos Encuentros</Link></li>
-              <li><a href="#se-parte" style={{ color: "var(--text-muted)", textDecoration: "none" }}>Sé Parte</a></li>
-              <li><Link href="/origenes" style={{ color: "var(--text-muted)", textDecoration: "none" }}>La Ruta</Link></li>
-              <li><a href="#comunidad" style={{ color: "var(--text-muted)", textDecoration: "none" }}>Comunidad</a></li>
-            </ul>
-          </div>
+              ✦ ¡Gracias por suscribirte! Te notificaremos pronto sobre los próximos eventos. ✦
+            </div>
+          ) : (
+            <form onSubmit={handleSubscribe} style={{ marginBottom: "3.5rem" }}>
+              <div
+                style={{
+                  display: "flex",
+                  gap: "1rem",
+                  flexWrap: "wrap",
+                  justifyContent: "center",
+                  maxWidth: "650px",
+                  margin: "0 auto 1.25rem",
+                }}
+              >
+                <div style={{ flex: 1, minWidth: "260px", textAlign: "left" }}>
+                  <label
+                    style={{
+                      display: "block",
+                      fontSize: "0.85rem",
+                      color: "#d8cebe",
+                      marginBottom: "0.4rem",
+                      fontFamily: "var(--font-serif)",
+                    }}
+                  >
+                    Email *
+                  </label>
+                  <input
+                    type="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="tu.correo@ejemplo.com"
+                    style={{
+                      width: "100%",
+                      padding: "0.8rem 1rem",
+                      backgroundColor: "rgba(55, 61, 44, 0.8)",
+                      border: "1px solid rgba(226, 216, 199, 0.3)",
+                      borderRadius: "var(--radius-sm)",
+                      color: "#f2ede4",
+                      fontSize: "0.95rem",
+                      outline: "none",
+                    }}
+                  />
+                </div>
 
-          <div>
-            <h4
-              style={{
-                fontFamily: "var(--font-serif)",
-                fontSize: "0.85rem",
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
-                color: "var(--text-main)",
-                marginBottom: "0.75rem",
-              }}
-            >
-              Redes Oficiales
-            </h4>
-            <p className="text-muted" style={{ fontSize: "0.85rem", marginBottom: "1rem" }}>
-              Sigue nuestros próximos encuentros y convocatorias abiertas en Instagram.
-            </p>
-            <a
-              href="https://www.instagram.com/mercado_brujas/?hl=es"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-secondary"
-              style={{ fontSize: "0.78rem", padding: "0.45rem 1rem" }}
-            >
-              📸 @mercado_brujas
-            </a>
+                <button
+                  type="submit"
+                  style={{
+                    alignSelf: "flex-end",
+                    backgroundColor: "var(--accent-gold)",
+                    color: "#303525",
+                    border: "none",
+                    fontFamily: "var(--font-serif)",
+                    fontSize: "0.9rem",
+                    fontWeight: 700,
+                    letterSpacing: "0.08em",
+                    padding: "0.85rem 2rem",
+                    borderRadius: "var(--radius-sm)",
+                    cursor: "pointer",
+                    transition: "all 0.25s ease",
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#f2ede4")}
+                  onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "var(--accent-gold)")}
+                >
+                  Subscribe
+                </button>
+              </div>
+
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "0.6rem",
+                  fontSize: "0.85rem",
+                  color: "var(--text-muted)",
+                }}
+              >
+                <input
+                  type="checkbox"
+                  id="mailing-agree"
+                  checked={agree}
+                  onChange={(e) => setAgree(e.target.checked)}
+                  style={{ cursor: "pointer" }}
+                />
+                <label htmlFor="mailing-agree" style={{ cursor: "pointer" }}>
+                  I want to subscribe to your mailing list.
+                </label>
+              </div>
+            </form>
+          )}
+
+          {/* Bottom Footer Bar (Email, Copyright & Social Icons) */}
+          <div
+            style={{
+              borderTop: "1px solid rgba(226, 216, 199, 0.15)",
+              paddingTop: "2rem",
+              display: "flex",
+              flexWrap: "wrap",
+              alignItems: "center",
+              justifyContent: "space-between",
+              gap: "1.5rem",
+              fontSize: "0.85rem",
+              color: "var(--text-muted)",
+              fontFamily: "var(--font-serif)",
+            }}
+          >
+            <div>
+              <span>Email: </span>
+              <a
+                href="mailto:MagicMarketPopUp@gmail.com"
+                style={{ color: "#f2ede4", textDecoration: "none", fontStyle: "italic" }}
+              >
+                MagicMarketPopUp@gmail.com
+              </a>
+            </div>
+
+            <div>
+              <span>© {new Date().getFullYear()} Magic Market Pop Up</span>
+            </div>
+
+            {/* Social Icons */}
+            <div style={{ display: "flex", gap: "1.2rem", fontSize: "1.2rem" }}>
+              <a
+                href="https://www.instagram.com/mercado_brujas/?hl=es"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                style={{ color: "#f2ede4", textDecoration: "none" }}
+              >
+                📸
+              </a>
+              <a
+                href="https://www.tiktok.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="TikTok"
+                style={{ color: "#f2ede4", textDecoration: "none" }}
+              >
+                🎵
+              </a>
+            </div>
           </div>
         </div>
-
-        <div style={{ borderTop: "1px solid var(--border-subtle)", paddingTop: "1.5rem" }}>
-          <p className="text-muted" style={{ fontSize: "0.8rem", fontFamily: "var(--font-serif)", letterSpacing: "0.08em" }}>
-            ✦ Mercado de Brujas © {new Date().getFullYear()} — Plataforma Web de Historia & Ferias Pop-Up ✦
-          </p>
-        </div>
-      </footer>
+      </section>
     </div>
   );
 }

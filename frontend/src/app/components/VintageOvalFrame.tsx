@@ -187,7 +187,7 @@ export default function VintageOvalFrame({
                 objectFit: "cover",
               }}
             />
-          ) : (
+          ) : imageSrc ? (
             <img
               src={imageSrc}
               alt={alt}
@@ -199,6 +199,35 @@ export default function VintageOvalFrame({
                 transition: "transform 0.6s ease",
               }}
             />
+          ) : (
+            <div
+              style={{
+                width: "100%",
+                height: "100%",
+                backgroundColor: "rgba(45, 50, 36, 0.9)",
+                border: "2px dashed rgba(214, 204, 186, 0.4)",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                padding: "1rem",
+                textAlign: "center",
+              }}
+            >
+              <span style={{ fontSize: "2rem", marginBottom: "0.5rem" }}>🪞</span>
+              <span
+                style={{
+                  fontFamily: "var(--font-serif)",
+                  fontSize: "0.82rem",
+                  color: "#f2ede4",
+                  fontWeight: 700,
+                  letterSpacing: "0.06em",
+                  textTransform: "uppercase",
+                }}
+              >
+                [Espacio para Marco Ovalado]
+              </span>
+            </div>
           )}
 
           {/* Inner Vignette Overlay */}
@@ -206,7 +235,7 @@ export default function VintageOvalFrame({
             style={{
               position: "absolute",
               inset: 0,
-              background: "radial-gradient(ellipse at center, transparent 55%, rgba(5,5,7,0.7) 100%)",
+              background: "radial-gradient(ellipse at center, transparent 55%, rgba(45,50,36,0.85) 100%)",
               pointerEvents: "none",
             }}
           />

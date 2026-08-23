@@ -5,11 +5,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const navLinks = [
-  { href: "/", label: "Hogar" },
-  { href: "/ediciones", label: "Próximos encuentros" },
-  { href: "#se-parte", label: "Sé parte" },
-  { href: "/origenes", label: "La ruta" },
-  { href: "#comunidad", label: "Comunidad" },
+  { href: "/", label: "Home" },
+  { href: "/ediciones", label: "Events" },
+  { href: "/origenes", label: "Spill the Magick" },
+  { href: "#se-parte", label: "Vendor Apps" },
+  { href: "#contacto", label: "Contact" },
 ];
 
 export default function Header() {
@@ -38,33 +38,18 @@ export default function Header() {
         style={{
           position: "relative",
           zIndex: 100,
-          backgroundColor: scrolled ? "rgba(5, 5, 7, 0.95)" : "transparent",
+          backgroundColor: scrolled ? "rgba(59, 65, 45, 0.95)" : "transparent",
           backdropFilter: scrolled ? "blur(20px)" : "none",
           WebkitBackdropFilter: scrolled ? "blur(20px)" : "none",
-          borderBottom: `1px solid ${scrolled ? "rgba(255, 255, 255, 0.15)" : "transparent"}`,
+          borderBottom: `1px solid ${scrolled ? "rgba(226, 216, 199, 0.2)" : "transparent"}`,
           transition: "all 0.35s ease",
-          padding: "1.5rem 1rem 0.8rem",
+          padding: "1.75rem 1rem 1rem",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
         }}
       >
-        {/* Accent top line on scroll */}
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            height: "2px",
-            background:
-              "linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.7) 30%, rgba(168, 85, 247, 0.6) 70%, transparent 100%)",
-            opacity: scrolled ? 1 : 0,
-            transition: "opacity 0.35s ease",
-          }}
-        />
-
-        {/* ── Top Centered Brand Logo (Magic Market Style) ── */}
+        {/* Top Centered Brand Logo (Magic Market Style) */}
         <Link
           href="/"
           style={{
@@ -72,36 +57,36 @@ export default function Header() {
             flexDirection: "column",
             alignItems: "center",
             textDecoration: "none",
-            marginBottom: "0.75rem",
+            marginBottom: "0.85rem",
           }}
         >
-          <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-            <span style={{ color: "rgba(255,255,255,0.7)", fontSize: "0.8rem" }}>✦</span>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
+            <span style={{ color: "#d8cebe", fontSize: "0.85rem" }}>✦</span>
             <span
               style={{
                 fontFamily: "var(--font-serif)",
-                fontSize: "clamp(1.6rem, 3.8vw, 2.5rem)",
+                fontSize: "clamp(1.8rem, 4vw, 2.7rem)",
                 fontWeight: 700,
-                letterSpacing: "0.12em",
-                color: "#ffffff",
+                letterSpacing: "0.15em",
+                color: "#f2ede4",
                 textTransform: "uppercase",
-                textShadow: "0 0 25px rgba(255, 255, 255, 0.3), 0 0 40px rgba(168, 85, 247, 0.4)",
+                textShadow: "0 2px 10px rgba(0,0,0,0.5)",
               }}
             >
-              MERCADO DE BRUJAS
+              MAGIC MARKET
             </span>
-            <span style={{ color: "rgba(255,255,255,0.7)", fontSize: "0.8rem" }}>✦</span>
+            <span style={{ color: "#d8cebe", fontSize: "0.85rem" }}>✦</span>
           </div>
         </Link>
 
-        {/* ── Centered Navigation Row with Vertical Dividers (Magic Market Style) ── */}
+        {/* Centered Navigation Row with Vertical Dividers (Magic Market Style) */}
         <nav
           className="desktop-nav"
           style={{
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            gap: "0.6rem",
+            gap: "0.8rem",
             flexWrap: "wrap",
           }}
         >
@@ -112,10 +97,10 @@ export default function Header() {
                 {idx > 0 && (
                   <span
                     style={{
-                      color: "rgba(255, 255, 255, 0.3)",
-                      fontSize: "0.75rem",
+                      color: "rgba(226, 216, 199, 0.35)",
+                      fontSize: "0.8rem",
                       userSelect: "none",
-                      padding: "0 0.15rem",
+                      padding: "0 0.1rem",
                     }}
                   >
                     |
@@ -125,15 +110,14 @@ export default function Header() {
                   href={link.href}
                   style={{
                     fontFamily: "var(--font-serif)",
-                    color: isActive ? "#ffffff" : "rgba(255, 255, 255, 0.75)",
+                    color: isActive ? "#ffffff" : "#d8cebe",
                     textDecoration: "none",
-                    fontSize: "0.82rem",
-                    fontWeight: isActive ? 700 : 500,
+                    fontSize: "0.88rem",
+                    fontWeight: isActive ? 700 : 400,
                     letterSpacing: "0.08em",
-                    padding: "0.35rem 0.5rem",
+                    padding: "0.25rem 0.5rem",
                     transition: "all 0.2s ease",
-                    borderBottom: isActive ? "1px solid #ffffff" : "1px solid transparent",
-                    textShadow: isActive ? "0 0 10px rgba(255,255,255,0.6)" : "none",
+                    borderBottom: isActive ? "1px solid #f2ede4" : "1px solid transparent",
                   }}
                 >
                   {link.label}
