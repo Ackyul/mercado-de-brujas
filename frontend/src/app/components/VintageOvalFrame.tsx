@@ -138,7 +138,7 @@ export default function VintageOvalFrame({
             objectFit: "contain",
             pointerEvents: "none",
             zIndex: 2,
-            filter: "sepia(1) hue-rotate(235deg) saturate(4) brightness(0.85) contrast(1.05)",
+            filter: "sepia(1) hue-rotate(212deg) saturate(3.8) brightness(0.9) contrast(1.05)",
           }}
         />
       </div>
