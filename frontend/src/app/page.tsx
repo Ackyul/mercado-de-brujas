@@ -261,240 +261,19 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── SECTION 4: MAGIC MARKET Gallery Carousel ── */}
-      <section
-        style={{
-          maxWidth: "1140px",
-          width: "100%",
-          margin: "0 auto 6rem",
-          padding: "0 2rem",
-        }}
-      >
-        <div style={{ textAlign: "center", marginBottom: "2.5rem" }}>
-          <h2
-            style={{
-              fontSize: "clamp(1.6rem, 3.2vw, 2.4rem)",
-              fontFamily: "var(--font-serif)",
-              color: "#ffffff",
-              letterSpacing: "0.15em",
-              textTransform: "uppercase",
-              textShadow: "0 0 20px rgba(168, 85, 247, 0.4)",
-            }}
-          >
-            MAGIC MARKET
-          </h2>
-        </div>
-
-        {/* Gallery Carousel Grid */}
-        <div
-          style={{
-            position: "relative",
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-            gap: "1.25rem",
-          }}
-        >
-          {galleryPlaceholders.map((item, idx) => (
-            <div key={idx} style={{ height: "260px" }}>
-              <MediaPlaceholder
-                type="image"
-                label={item.label}
-                sublabel={item.sub}
-                height="100%"
-              />
-            </div>
-          ))}
-
-          {/* Carousel Arrows */}
-          <button
-            type="button"
-            onClick={() => setActiveSlide((prev) => (prev > 0 ? prev - 1 : 3))}
-            aria-label="Anterior"
-            style={{
-              position: "absolute",
-              left: "-1.5rem",
-              top: "50%",
-              transform: "translateY(-50%)",
-              width: "42px",
-              height: "42px",
-              borderRadius: "50%",
-              backgroundColor: "rgba(18, 14, 28, 0.95)",
-              border: "1px solid rgba(168, 85, 247, 0.5)",
-              color: "#ffffff",
-              fontSize: "1.2rem",
-              cursor: "pointer",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              boxShadow: "0 0 15px rgba(168, 85, 247, 0.4)",
-              zIndex: 10,
-            }}
-          >
-            ‹
-          </button>
-          <button
-            type="button"
-            onClick={() => setActiveSlide((prev) => (prev < 3 ? prev + 1 : 0))}
-            aria-label="Siguiente"
-            style={{
-              position: "absolute",
-              right: "-1.5rem",
-              top: "50%",
-              transform: "translateY(-50%)",
-              width: "42px",
-              height: "42px",
-              borderRadius: "50%",
-              backgroundColor: "rgba(18, 14, 28, 0.95)",
-              border: "1px solid rgba(168, 85, 247, 0.5)",
-              color: "#ffffff",
-              fontSize: "1.2rem",
-              cursor: "pointer",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              boxShadow: "0 0 15px rgba(168, 85, 247, 0.4)",
-              zIndex: 10,
-            }}
-          >
-            ›
-          </button>
-        </div>
-      </section>
-
-      {/* ── SECTION 5: Mailing List Subscription Form & Footer ── */}
-      <section
+      {/* ── FOOTER BAR ── */}
+      <footer
         id="contacto"
         style={{
           backgroundColor: "#0b0912",
           borderTop: "1px solid rgba(168, 85, 247, 0.25)",
-          padding: "5rem 2rem 3rem",
+          padding: "3rem 2rem 2.5rem",
           marginTop: "auto",
         }}
       >
-        <div style={{ maxWidth: "800px", margin: "0 auto", textAlign: "center" }}>
-          <h2
-            style={{
-              fontSize: "clamp(1.4rem, 2.8vw, 2.1rem)",
-              fontFamily: "var(--font-serif)",
-              color: "#ffffff",
-              marginBottom: "2.5rem",
-              lineHeight: 1.35,
-              fontWeight: 400,
-            }}
-          >
-            Join our mailing list & be the first to know about upcoming events!
-          </h2>
-
-          {subscribed ? (
-            <div
-              style={{
-                backgroundColor: "rgba(18, 14, 28, 0.9)",
-                border: "1px solid var(--accent-purple)",
-                padding: "1.5rem",
-                borderRadius: "var(--radius-sm)",
-                color: "#ffffff",
-                marginBottom: "3rem",
-                boxShadow: "0 0 20px rgba(168, 85, 247, 0.3)",
-              }}
-            >
-              ✦ ¡Gracias por suscribirte! Te notificaremos pronto sobre los próximos eventos. ✦
-            </div>
-          ) : (
-            <form onSubmit={handleSubscribe} style={{ marginBottom: "3.5rem" }}>
-              <div
-                style={{
-                  display: "flex",
-                  gap: "1rem",
-                  flexWrap: "wrap",
-                  justifyContent: "center",
-                  maxWidth: "650px",
-                  margin: "0 auto 1.25rem",
-                }}
-              >
-                <div style={{ flex: 1, minWidth: "260px", textAlign: "left" }}>
-                  <label
-                    style={{
-                      display: "block",
-                      fontSize: "0.85rem",
-                      color: "#c084fc",
-                      marginBottom: "0.4rem",
-                      fontFamily: "var(--font-serif)",
-                    }}
-                  >
-                    Email *
-                  </label>
-                  <input
-                    type="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="tu.correo@ejemplo.com"
-                    style={{
-                      width: "100%",
-                      padding: "0.8rem 1rem",
-                      backgroundColor: "rgba(18, 14, 28, 0.9)",
-                      border: "1px solid rgba(168, 85, 247, 0.4)",
-                      borderRadius: "var(--radius-sm)",
-                      color: "#ffffff",
-                      fontSize: "0.95rem",
-                      outline: "none",
-                    }}
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  style={{
-                    alignSelf: "flex-end",
-                    backgroundColor: "var(--accent-purple)",
-                    color: "#ffffff",
-                    border: "none",
-                    fontFamily: "var(--font-serif)",
-                    fontSize: "0.9rem",
-                    fontWeight: 700,
-                    letterSpacing: "0.08em",
-                    padding: "0.85rem 2rem",
-                    borderRadius: "var(--radius-sm)",
-                    cursor: "pointer",
-                    transition: "all 0.25s ease",
-                    boxShadow: "0 0 15px rgba(168, 85, 247, 0.4)",
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#c084fc")}
-                  onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "var(--accent-purple)")}
-                >
-                  Subscribe
-                </button>
-              </div>
-
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: "0.6rem",
-                  fontSize: "0.85rem",
-                  color: "var(--text-muted)",
-                }}
-              >
-                <input
-                  type="checkbox"
-                  id="mailing-agree"
-                  checked={agree}
-                  onChange={(e) => setAgree(e.target.checked)}
-                  style={{ cursor: "pointer" }}
-                />
-                <label htmlFor="mailing-agree" style={{ cursor: "pointer" }}>
-                  I want to subscribe to your mailing list.
-                </label>
-              </div>
-            </form>
-          )}
-
-          {/* Bottom Footer Bar (Email, Copyright & Social Icons) */}
+        <div style={{ maxWidth: "1140px", margin: "0 auto" }}>
           <div
             style={{
-              borderTop: "1px solid rgba(168, 85, 247, 0.2)",
-              paddingTop: "2rem",
               display: "flex",
               flexWrap: "wrap",
               alignItems: "center",
@@ -542,7 +321,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </footer>
     </div>
   );
 }
