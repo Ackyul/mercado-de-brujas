@@ -143,10 +143,10 @@ export default function VintageOvalFrame({
           />
         </div>
 
-        {/* ── Exact Original Victorian Oval Mirror Frame Image Overlay ── */}
+        {/* ── Exact Original Victorian Oval Mirror Frame Image Overlay (Tinted Purple) ── */}
         <img
           src={FRAME_PNG_URL}
-          alt="Marco Ovalado Victoriano"
+          alt="Marco Ovalado Victoriano Morado"
           style={{
             position: "absolute",
             inset: 0,
@@ -155,7 +155,8 @@ export default function VintageOvalFrame({
             objectFit: "contain",
             pointerEvents: "none",
             zIndex: 2,
-            filter: "brightness(1.15) contrast(1.1) drop-shadow(0 0 18px rgba(168, 85, 247, 0.55))",
+            filter:
+              "sepia(1) hue-rotate(225deg) saturate(3.5) brightness(0.95) contrast(1.15) drop-shadow(0 0 22px rgba(168, 85, 247, 0.85))",
           }}
         />
       </div>
