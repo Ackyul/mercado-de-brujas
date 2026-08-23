@@ -49,7 +49,7 @@ export default function Header() {
           alignItems: "center",
         }}
       >
-        {/* Top Centered Brand Logo (Magic Market Style) */}
+        {/* Top Centered Brand Logo (Mercado de Brujas Style) */}
         <Link
           href="/"
           style={{
@@ -79,7 +79,7 @@ export default function Header() {
           </div>
         </Link>
 
-        {/* Centered Navigation Row with Vertical Dividers (Magic Market Style) */}
+        {/* Centered Navigation Row with Vertical Dividers (Mercado de Brujas Style) */}
         <nav
           className="desktop-nav"
           style={{

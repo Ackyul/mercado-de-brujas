@@ -97,7 +97,7 @@ export default function ComunidadPage() {
           </p>
         </section>
 
-        {/* SECTION 1: A MAGICKAL COMMUNITY INTRO + OVAL FRAME */}
+        {/* SECTION 1: UNA COMUNIDAD MÁGICA INTRO + OVAL FRAME */}
         <section
           style={{
             display: "grid",

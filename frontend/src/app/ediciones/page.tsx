@@ -517,15 +517,15 @@ export default function EdicionesPage() {
             <div>
               <span>Email: </span>
               <a
-                href="mailto:MagicMarketPopUp@gmail.com"
+                href="mailto:contacto@mercadodebrujas.com"
                 style={{ color: "#c084fc", textDecoration: "none", fontStyle: "italic" }}
               >
-                MagicMarketPopUp@gmail.com
+                contacto@mercadodebrujas.com
               </a>
             </div>
 
             <div>
-              <span>© {new Date().getFullYear()} Mercado de Brujas / Magic Market</span>
+              <span>© {new Date().getFullYear()} Mercado de Brujas</span>
             </div>
 
             {/* Social Icons */}

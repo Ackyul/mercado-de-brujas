@@ -17,7 +17,7 @@ export default function VintageOvalFrame({
   title,
   subtitle,
 }: VintageOvalFrameProps) {
-  // Exact frame PNG asset extracted from magicmarketpopup.com
+  // Exact frame PNG asset extracted for Mercado de Brujas
   const FRAME_PNG_URL =
     "https://static.wixstatic.com/media/bf0cab_e90ad6e663ae45bda9d2c57dc700384a~mv2.png";
 

@@ -38,7 +38,7 @@ export default function Home() {
     >
       <Header />
 
-      {/* ── SECTION 1: Hero Video Placeholder Container (Magic Market Style) ── */}
+      {/* ── SECTION 1: Hero Video Placeholder Container (Mercado de Brujas Style) ── */}
       <section
         style={{
           maxWidth: "1100px",
@@ -57,7 +57,7 @@ export default function Home() {
         >
           <MediaPlaceholder
             type="video"
-            label="[Espacio para Video de Portada - Magic Market]"
+            label="[Espacio para Video de Portada - Mercado de Brujas]"
             sublabel="Recomendado: Video loop MP4 de alta calidad (16:9)"
             aspectRatio="16/9"
             height="520px"
@@ -66,7 +66,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── SECTION 2: A Magickal Community (Text + Vintage Oval Frame) ── */}
+      {/* ── SECTION 2: Una Comunidad Mágica (Text + Vintage Oval Frame) ── */}
       <section
         id="comunidad"
         style={{
@@ -96,7 +96,7 @@ export default function Home() {
                 lineHeight: 1.15,
               }}
             >
-              A Magickal Community
+              Una Comunidad Mágica
             </h2>
 
             <p
@@ -108,7 +108,7 @@ export default function Home() {
                 fontFamily: "var(--font-sans)",
               }}
             >
-              It's a beautiful day as you enter the gates of Magic Market. You hear the birds chirp, feel the warmth of the sun, smell the trees and grass. The energy of the space feels surreal as you're surrounded with beautiful Victorian homes. You're excited to frolic with your people and connect with like minded souls in a place that feels other worldly.
+              Es un día hermoso al cruzar los portones de Mercado de Brujas. Escuchas el cantar de las aves, sientes la calidez del sol y el aroma de la naturaleza. La energía del espacio se siente surreal mientras estás rodeado de hermosas casas victorianas. Te entusiasma compartir con tu comunidad y conectar con almas afines en un lugar místico y fuera de lo común.
             </p>
 
             <h3
@@ -120,7 +120,7 @@ export default function Home() {
                 letterSpacing: "0.04em",
               }}
             >
-              Welcome to Magic Market
+              Bienvenidx a Mercado de Brujas
             </h3>
 
             <p
@@ -131,7 +131,7 @@ export default function Home() {
                 marginBottom: "1.5rem",
               }}
             >
-              A metaphysical market featuring 75 vendors ranging from metaphysical products, vintage, plants, tarot, palmistry, witch supply as well as workshops and classes including sound healing, yoga and more. Come join our witchy community and enjoy delicious vegan food while listening to the sounds of local featured artists. We currently pop up at Heritage Museums in Los Angeles and Orange County.
+              Un mercado metafísico y místico que reúne a expositores con productos místico-holísticos, piezas vintage, plantas, lecturas de tarot, quiromancia y suministros mágicos, además de talleres, clases de sanación sonora, yoga y más. Únete a nuestra comunidad y disfruta de deliciosa comida vegana mientras escuchas la música de artistas locales.
             </p>
           </div>
 
@@ -448,15 +448,15 @@ export default function Home() {
             <div>
               <span>Email: </span>
               <a
-                href="mailto:MagicMarketPopUp@gmail.com"
+                href="mailto:contacto@mercadodebrujas.com"
                 style={{ color: "#c084fc", textDecoration: "none", fontStyle: "italic" }}
               >
-                MagicMarketPopUp@gmail.com
+                contacto@mercadodebrujas.com
               </a>
             </div>
 
             <div>
-              <span>© {new Date().getFullYear()} Mercado de Brujas / Magic Market</span>
+              <span>© {new Date().getFullYear()} Mercado de Brujas</span>
             </div>
 
             {/* Social Icons */}

@@ -35,7 +35,7 @@ export default function HeroStory() {
         }}
       />
 
-      {/* ── Central Hero Video / Media Box Inset (Magic Market Top Banner Style) ── */}
+      {/* ── Central Hero Video / Media Box Inset (Mercado de Brujas Top Banner Style) ── */}
       <div
         style={{
           position: "relative",
