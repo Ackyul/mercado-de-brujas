@@ -292,6 +292,16 @@ p, span, a, li, button, input, label {
 .animate-rotate-slow  { animation: rotateSlow 60s linear infinite; }
 .animate-flicker      { animation: flickerFire 2.5s ease-in-out infinite; }
 
+/* ── Main Hero Logo Visual Styling ── */
+.main-hero-logo {
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), filter 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+.main-hero-logo:hover {
+  transform: scale(1.03);
+  filter: drop-shadow(0 0 45px rgba(192, 132, 252, 0.95)) drop-shadow(0 0 90px rgba(168, 85, 247, 0.65)) !important;
+}
+
 /* ── Timeline ── */
 .timeline-container {
   position: relative;

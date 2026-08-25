@@ -36,20 +36,21 @@ export default function Header() {
     <>
       <header
         style={{
-          position: "relative",
+          position: "sticky",
+          top: 0,
           zIndex: 100,
-          backgroundColor: scrolled ? "rgba(6, 5, 10, 0.95)" : "transparent",
-          backdropFilter: scrolled ? "blur(20px)" : "none",
-          WebkitBackdropFilter: scrolled ? "blur(20px)" : "none",
-          borderBottom: `1px solid ${scrolled ? "rgba(168, 85, 247, 0.3)" : "transparent"}`,
-          transition: "all 0.35s ease",
-          padding: "1.75rem 1rem 1rem",
+          backgroundColor: scrolled ? "rgba(6, 5, 10, 0.95)" : "rgba(6, 5, 10, 0.4)",
+          backdropFilter: scrolled ? "blur(20px)" : "blur(8px)",
+          WebkitBackdropFilter: scrolled ? "blur(20px)" : "blur(8px)",
+          borderBottom: `1px solid ${scrolled ? "rgba(168, 85, 247, 0.3)" : "rgba(168, 85, 247, 0.1)"}`,
+          transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+          padding: scrolled ? "0.75rem 1rem 0.75rem" : "2.2rem 1.5rem 1.25rem",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
         }}
       >
-        {/* Top Centered Brand Logo (Mercado de Brujas Official Gothic Logo) */}
+        {/* Top Centered Brand Logo (Mercado de Brujas Official Gothic Main Hero Logo) */}
         <Link
           href="/"
           style={{
@@ -57,18 +58,23 @@ export default function Header() {
             alignItems: "center",
             justifyContent: "center",
             textDecoration: "none",
-            marginBottom: "0.5rem",
+            marginBottom: scrolled ? "0.35rem" : "1.2rem",
+            transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
           }}
         >
           <img
             src="/logo-white-trans.png"
             alt="Mercado de Brujas"
+            className="main-hero-logo"
             style={{
-              height: "clamp(70px, 13vw, 115px)",
+              height: scrolled ? "clamp(65px, 10vw, 85px)" : "clamp(170px, 28vw, 300px)",
               width: "auto",
+              maxWidth: "92vw",
               objectFit: "contain",
-              filter: "drop-shadow(0 0 20px rgba(168, 85, 247, 0.5))",
-              transition: "transform 0.3s ease, filter 0.3s ease",
+              filter: scrolled
+                ? "drop-shadow(0 0 15px rgba(168, 85, 247, 0.45))"
+                : "drop-shadow(0 0 35px rgba(168, 85, 247, 0.8)) drop-shadow(0 0 70px rgba(192, 132, 252, 0.4))",
+              transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
             }}
           />
         </Link>
