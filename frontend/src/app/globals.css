@@ -398,8 +398,8 @@ p, span, a, li, button, input, label {
    MOBILE RESPONSIVE — base breakpoint 768px
 ───────────────────────────────────────────── */
 
-/* Prevent horizontal overflow on all screens */
-html, body { overflow-x: hidden; }
+/* Prevent horizontal overflow on all screens while preserving sticky header positioning */
+html, body { overflow-x: clip; }
 
 /* PC Carousel Navigation Arrows */
 .carousel-arrow-btn {
